@@ -1,0 +1,12 @@
+unlock
+gamemode
+difficulty
+unlockProgress
+
+easyStreak
+mediumStreak
+hardStreak
+
+easyMaxStreak
+mediumMaxStreak
+hardMaxStreak

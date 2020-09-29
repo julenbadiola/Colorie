@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<languages>
+    <English>
+        <play>PLAY</play>
+        <options>OPTIONS</options>
+        <exit>EXIT</exit>
+        <back>BACK</back>
+        <tutorial>TUTORIAL</tutorial>
+        <easy>EASY</easy>
+        <medium>MEDIUM</medium>
+        <hard>HARD</hard>
+        <volume>VOLUME</volume>
+        <unlocked>UNLOCKED</unlocked>
+        <locked>LOCKED</locked>
+        <vibration>VIBRATION</vibration>
+        <on>ON</on>
+        <off>OFF</off>
+        <musicvolume>MUSIC VOLUME</musicvolume>
+        <effectsvolume>EFFECTS VOLUME</effectsvolume>
+        
+        <tutFindpath1>THE GOAL IS TO JOIN THE TWO ENDINGS COLORED IN BLUE</tutFindpath1>
+        <tutFindpath2>BROWN CUBES ARE OBSTACLES</tutFindpath2>
+        <tutFindpath3>SELECT A POSSIBLE PATH AFTER THE OBSTACLES ARE HIDED</tutFindpath3>
+        <skip>SKIP</skip>
+        <next>NEXT</next>
+        <finish>FINISH</finish>
+
+        <pause>PAUSE</pause>
+        <youareplaying>You are playing</youareplaying>
+        <resume>RESUME</resume>
+        <changedifficulty>CHANGE DIFFICULTY</changedifficulty>
+        <menu>MENU</menu>
+        <newrecord>NEW RECORD</newrecord>
+        <streak>STREAK</streak>
+        <record>RECORD</record>
+        <records>MAX STREAKS</records>
+
+        <gameWellDoneMessage>WELL DONE!</gameWellDoneMessage>
+        <gameFailedMessage>FAILED...</gameFailedMessage>
+        <gameDifficultyMessage>NEXT DIFFICULTY UNLOCKED!</gameDifficultyMessage>
+
+        <close>CLOSE</close>
+
+        <findpathgm>FIND THE PATH</findpathgm>
+        <obstaclesgm>SELECT THE OBSTACLES</obstaclesgm>
+        
+        <tutObstacles1>THE GOAL IS TO SELECT ALL CUBES COLORED IN BROWN</tutObstacles1>
+        <tutObstacles2>IF OTHER CUBE IS SELECTED, THE GAME ENDS WITH INCORRECT RESULT</tutObstacles2>
+        <tutObstacles3>IF MORE THAN 50% OF ALL BROWN CUBES ARE SELECTED, THE GAME ENDS WITH CORRECT RESULT</tutObstacles3>
+        
+        <loading>LOADING</loading>
+        <wait>WAIT</wait>
+        <tryagain>TRY AGAIN</tryagain>
+        <gamemode>GAMEMODE</gamemode>
+
+    </English>
+ 
+    <French>
+        <play>JOUER</play>
+        <options>OPTIONS</options>
+        <exit>SORTIR</exit>
+        <back>REVENIR</back>
+        <tutorial>TUTORIAL</tutorial>
+        <easy>FACILE</easy>
+        <medium>INTERMÉDIAIRE</medium>
+        <hard>DIFFICILE</hard>
+        <volume>VOLUME</volume>
+        <unlocked>DÉVERROUILLÉ</unlocked>
+        <locked>VERROUILLÉ</locked>
+        <vibration>VIBRATION</vibration>
+        <on>ON</on>
+        <off>OFF</off>
+        <musicvolume>VOLUME DE LA MUSIQUE</musicvolume>
+        <effectsvolume>VOLUME DES EFFETS</effectsvolume>
+
+        <tutFindpath1>L´OBJECTIF EST DE JOINDRE LES DEUX EXTRÉMITÉS, COLORÉES EN BLEU</tutFindpath1>
+        <tutFindpath2>LES CUBES BRUNS SONT OBSTACLES</tutFindpath2>
+        <tutFindpath3>APRÈS CACHER LES OBSTACLES, CHOISISSEZ UNE ROUTE</tutFindpath3>
+        <skip>SAUTER</skip>
+        <next>SUIVANT</next>
+        <finish>FINIR</finish>
+
+        <pause>PAUSE</pause>
+        <youareplaying>Vous jouez dans</youareplaying>
+        <resume>SUIVRE</resume>
+        <changedifficulty>CHANGER LA DIFFICULTÉ</changedifficulty>
+        <menu>MENU</menu>
+        <newrecord>NOUVEL RECORD</newrecord>
+        <streak>SÉRIE</streak>
+        <record>RECORD</record>
+        <records>RECORDS</records>
+
+        <gameWellDoneMessage>BIEN FAIT!</gameWellDoneMessage>
+        <gameFailedMessage>ÉCHEC...</gameFailedMessage>
+        <gameDifficultyMessage>PROCHAINE DIFFICULTÉ DÉBLOQUÉE!</gameDifficultyMessage>
+
+        <close>CLORE</close>
+
+        <findpathgm>TROUVEZ LE CHEMIN</findpathgm>
+        <obstaclesgm>SÉLECTIONNEZ LES OBSTACLES</obstaclesgm>
+        
+        <tutObstacles1>L'OBJECTIF EST DE SÉLECTIONNER TOUS LES CUBES COLORÉS EN BRUN</tutObstacles1>
+        <tutObstacles2>SI UN AUTRE CUBE EST SÉLECTIONNÉ, LE JEU SE TERMINE AVEC UN RÉSULTAT INCORRECT</tutObstacles2>
+        <tutObstacles3>SI 50% DE TOUS LES CUBES BRUNS SONT SÉLECTIONNÉS, LE JEU SE TERMINE AVEC UN RÉSULTAT CORRECT</tutObstacles3>
+        
+        <loading>CHARGEMENT</loading>
+        <wait>ATTENDRE</wait>
+        <tryagain>ESSAYER À NOUVEAU</tryagain>
+        <gamemode>MODE DE JEU</gamemode>
+    </French>
+ 
+    <German>
+        <play>SPIELEN</play>
+        <options>OPTIONEN</options>
+        <exit>BEENDEN</exit>
+        <back>ZURÜCK</back>
+        <tutorial>ANLEITUNG</tutorial>
+        <easy>EINFACH</easy>
+        <medium>MITTLE</medium>
+        <hard>SCHWIERIG</hard>
+        <volume>LAUTSTÄRKE</volume>
+        <locked>GESPERRT</locked>
+        <unlocked>ENTSPERRT</unlocked>
+        <vibration>VIBRATION</vibration>
+        <on>AKTIVIEREN</on>
+        <off>DEAKTIVIEREN</off>
+        <musicvolume>MUSIKLAUTSTÄRKE</musicvolume>
+        <effectsvolume>EFFECTLAUTSTÄRKE</effectsvolume>
+
+        <tutFindpath1>DAS ZIEL IST, DIE BEIDEN ENDEN IN BLAU ZU VERBINDEN</tutFindpath1>
+        <tutFindpath2>BRAUNE WÜRFEL SIND HINDERNISSE</tutFindpath2>
+        <tutFindpath3>NACH DEM DIE HINDERNISSE VERSCHWUNDEN SIND, WÄHLEN SIE DEN WEG</tutFindpath3>
+        <skip>ÜBERSPRINGEN</skip>
+        <next>NÄCHSTER</next>
+        <finish>BEENDEN</finish>
+
+        <pause>PAUSE</pause>
+        <youareplaying>Sie spielen</youareplaying>
+        <resume>FOLGEN</resume>
+        <changedifficulty>SCHWIERIGKEIT ÄNDERN</changedifficulty>
+        <menu>MENÜ</menu>
+        <newrecord>NEUE REKORD</newrecord>
+        <streak>SIEGESSERIE</streak>
+        <record>REKORD</record>
+        <records>REKORDE</records>
+
+        <gameWellDoneMessage>SEHR GUT!</gameWellDoneMessage>
+        <gameFailedMessage>FEHLER...</gameFailedMessage>
+        <gameDifficultyMessage>NÄCHSTE SCHWIERIGKEIT ENTSPERRT!</gameDifficultyMessage>
+
+        <close>SCHLIESSEN</close>
+
+        <findpathgm>FINDEN SIE DEN WEG</findpathgm>
+        <obstaclesgm>WÄHLEN SIE DIE HINDERNISSE AUS</obstaclesgm>
+        
+        <tutObstacles1>DAS ZIEL IST ES, ALLE IN BRAUN GEFÄRBTEN WÜRFEL AUSZUWÄHLEN</tutObstacles1>
+        <tutObstacles2>WENN ANDERER WÜRFEL AUSGEWÄHLT WIRD, ENDET DAS SPIEL MIT FALSCHEM ERGEBNIS</tutObstacles2>
+        <tutObstacles3>WENN 50% ALLER BRAUNEN WÜRFEL AUSGEWÄHLT WERDEN, ENDET DAS SPIEL MIT DEM RICHTIGEN ERGEBNIS</tutObstacles3>
+        
+        <loading>WIRD GELADEN</loading>
+        <wait>WARTEN</wait>
+        <tryagain>WEITER SPIELEN</tryagain>
+        <gamemode>SPIELEMODUS FOLGEN</gamemode>
+    </German>
+    
+    <Portuguese>
+        <play>JOGAR</play>
+        <options>OPÇÕES</options>
+        <exit>EXIT</exit>
+        <back>COSTAS</back>
+        <tutorial>TUTORIAL</tutorial>
+        <easy>FÁCIL</easy>
+        <medium>MÉDIO</medium>
+        <hard>DURO</hard>
+        <volume>VOLUME</volume>
+        <unlocked>DESBLOQUEADO</unlocked>
+        <locked>BLOQUEADO</locked>
+        <vibration>VIBRAÇÃO</vibration>
+        <on>ATIVAR</on>
+        <off>DESATIVAR</off>
+        <musicvolume>VOLUME DA MÚSICA</musicvolume>
+        <effectsvolume>VOLUME DE EFEITOS</effectsvolume>
+
+        <tutFindpath1>O OBJETIVO É JUNTAR AS DUAS PONTAS, COLORIDAS EM AZUL</tutFindpath1>
+        <tutFindpath2>BALDES MARRONS SÃO OBSTÁCULOS</tutFindpath2>
+        <tutFindpath3>APÓS OCULTAR OS OBSTÁCULOS, SELECIONE UMA ESTRADA</tutFindpath3>
+        <skip>PULAR</skip>
+        <next>PRÓXIMO</next>
+        <finish>ACABAMENTO</finish>
+
+        <pause>PAUSAR</pause>
+        <youareplaying>Você está jogando</youareplaying>
+        <resume>SEGUIR</resume>
+        <changedifficulty>MUDAR DIFICULDADE</changedifficulty>
+        <menu>MENU</menu>
+        <newrecord>NOVA RAIA</newrecord>
+        <streak>RAIA</streak>
+        <record>RECORD</record>
+        <records>RECORDS</records>
+
+        <gameWellDoneMessage>BEM FEITO!</gameWellDoneMessage>
+        <gameFailedMessage>FALHA ...</gameFailedMessage>
+        <gameDifficultyMessage>PRÓXIMA DIFICULDADE DESBLOQUEADA!</gameDifficultyMessage>
+
+        <close>FECHAR</close>
+
+        <findpathgm>ENCONTRE O CAMINHO</findpathgm>
+        <obstaclesgm>SELECIONE OS OBSTÁCULOS</obstaclesgm>
+        
+        <tutObstacles1>O OBJETIVO É SELECIONAR TODOS OS CUBOS COLORIDOS EM MARROM</tutObstacles1>
+        <tutObstacles2>SE OUTRO CUBO É SELECIONADO, O JOGO TERMINA COM RESULTADO INCORRETO</tutObstacles2>
+        <tutObstacles3>SE 50% DE TODOS OS CUBOS MARRONS SÃO SELECIONADOS, O JOGO TERMINA COM RESULTADO CORRETO</tutObstacles3>
+        
+        <loading>CARREGANDO</loading>
+        <wait>ESPERAR</wait>
+        <tryagain>TENTE NOVAMENTE</tryagain>
+        <gamemode>MODO DE JOGO</gamemode>
+    </Portuguese>
+
+    <Spanish>
+        <play>JUGAR</play>
+        <options>OPCIONES</options>
+        <exit>SALIR</exit>
+        <back>VOLVER</back>
+        <tutorial>TUTORIAL</tutorial>
+        <easy>FÁCIL</easy>
+        <medium>INTERMEDIO</medium>
+        <hard>DIFÍCIL</hard>
+        <volume>VOLUMEN</volume>
+        <unlocked>DESBLOQUEADO</unlocked>
+        <locked>BLOQUEADO</locked>
+        <vibration>VIBRACIÓN</vibration>
+        <on>ACTIVADO</on>
+        <off>DESACTIVADO</off>
+        <musicvolume>VOLUMEN DE MÚSICA</musicvolume>
+        <effectsvolume>VOLUMEN DE EFECTOS</effectsvolume>
+
+        <tutFindpath1>EL OBJETIVO ES UNIR LOS DOS EXTREMOS, COLOREADOS EN AZUL</tutFindpath1>
+        <tutFindpath2>LOS CUBOS MARRONES SON OBSTÁCULOS</tutFindpath2>
+        <tutFindpath3>TRAS ESCONDERSE LOS OBSTACULOS, SELECCIONA UN CAMINO</tutFindpath3>
+        <skip>SALTAR</skip>
+        <next>SIGUIENTE</next>
+        <finish>CERRAR</finish>
+
+        <pause>PAUSA</pause>
+        <youareplaying>Estás jugando en</youareplaying>
+        <resume>REANUDAR</resume>
+        <changedifficulty>CAMBIAR DIFICULTAD</changedifficulty>
+        <menu>MENU</menu>
+        <newrecord>NUEVO RECORD</newrecord>
+        <streak>RACHA</streak>
+        <record>RECORD</record>
+        <records>RACHAS RECORD</records>
+
+        <gameWellDoneMessage>¡BIEN HECHO!</gameWellDoneMessage>
+        <gameFailedMessage>FALLO...</gameFailedMessage>
+        <gameDifficultyMessage>¡SIGUIENTE DIFICULTAD DESBLOQUEADA!</gameDifficultyMessage>
+        
+
+        <close>CERRAR</close>
+
+        <findpathgm>ENCONTRAR EL CAMINO</findpathgm>
+        <obstaclesgm>SELECCIONAR LOS OBSTÁCULOS</obstaclesgm>
+        
+        <tutObstacles1>EL OBJETIVO ES SELECCIONAR TODOS LOS CUBOS COLOREADOS EN MARRÓN</tutObstacles1>
+        <tutObstacles2>SI SE SELECCIONA OTRO CUBO, EL JUEGO TERMINA CON UN RESULTADO INCORRECTO</tutObstacles2>
+        <tutObstacles3>SI EL 50% DE TODOS LOS CUBOS MARRONES ESTÁN SELECCIONADOS, EL JUEGO TERMINA CON EL RESULTADO CORRECTO</tutObstacles3>
+        
+        <loading>CARGANDO</loading>
+        <wait>ESPERA</wait>
+        <tryagain>INTENTAR DE NUEVO</tryagain>
+        <gamemode>MODO DE JUEGO</gamemode>
+    </Spanish>
+    
+</languages>
