@@ -35,7 +35,7 @@ namespace GameSpace {
             } else if (total == counter && !hecho) {
                 hecho = true;
                 Debug.Log ("TODOS RESUELTOS " + timePassed + " s.");
-                GlobalVar.launch = false;
+                GlobalVar.firstLaunch = false;
                 SceneManagerController.goToScene (PlayerPrefs.GetString("scene"));
             } else {
                 //Debug.Log("ESPERANDO A LA RESPUESTA DE TODOS " + timePassed + " s: " + counter + " / " + total);

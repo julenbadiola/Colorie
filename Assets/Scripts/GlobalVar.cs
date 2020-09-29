@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
-using System.Linq;
 using UnityEngine.SceneManagement;
 
 namespace GameSpace {
-    
+
     public static class GlobalVar {
         public static string AuthorizationToken = "Token c83c28761403c5cac48319d062a5ddcf161980dc";
         public static string BearerToken = "";
-        public static bool launch = true;
+        public static bool firstLaunch = true;
         public static bool tryagain = false;
-        public static bool pause = false;
         //Una corrutina que recibe la acción (primer parámetro) a realizar al enviar el form (segundo parámetro)
         //Dentro del action hay un bool (que muestra si el request ha tirado error) y el string (lo devuelto por el server)
 
@@ -23,46 +22,46 @@ namespace GameSpace {
         public static Dictionary<int, int> scores;
         public static List<int> gamemodes;
 
-        public static void resetStartGame(){
+        public static void resetStartGame () {
             scores = null;
-            randomizeGamemodes();
+            randomizeGamemodes ();
             setColors ();
-            
+
             SceneManager.LoadScene ("game" + gamemodes[0]);
         }
 
         public static void randomizeGamemodes () {
             gamemodes = new List<int> () {
-                1
+                1,2,3
             };
             gamemodes = gamemodes.OrderBy (i => Guid.NewGuid ()).ToList ();
             //SceneManager load first gamemode
         }
 
-        public static float getProgress(){
-            float ina = gamemodes.IndexOf(getGamemodeNumber());
+        public static float getProgress () {
+            float ina = gamemodes.IndexOf (getGamemodeNumber ());
             float of = gamemodes.Count;
             //Debug.Log("In " + ina + " of " + of + " = " + (ina/of));
-            return ina / of;
+            return ina / of ;
         }
 
-        public static float getProgressOfNextGamemode(){
-            float ina = gamemodes.IndexOf(getGamemodeNumber()) + 1;
+        public static float getProgressOfNextGamemode () {
+            float ina = gamemodes.IndexOf (getGamemodeNumber ()) + 1;
             float of = gamemodes.Count;
-            float value = ina / of;
-            if(value > 1){
+            float value = ina / of ;
+            if (value > 1) {
                 return 1f;
-            }else{
+            } else {
                 return value;
             }
         }
-        
-        public static int getGamemodeNumber(){
-            return Int16.Parse(SceneManager.GetActiveScene().name.Replace("game", ""));
+
+        public static int getGamemodeNumber () {
+            return Int16.Parse (SceneManager.GetActiveScene ().name.Replace ("game", ""));
         }
 
         public static void addScore (int score) {
-            int gm = getGamemodeNumber();
+            int gm = getGamemodeNumber ();
 
             if (scores == null) {
                 scores = new Dictionary<int, int> ();
@@ -72,25 +71,23 @@ namespace GameSpace {
             foreach (var item in scores) {
                 Debug.Log ("ITEMS" + item + " - " + i);
                 i++;
-            }          
-            goToNextGamemode(gm);  
+            }
+            goToNextGamemode (gm);
         }
 
-        public static void goToNextGamemode(int gm){
-            int nextGm = gamemodes.IndexOf(gm) + 1;
-            if(nextGm == gamemodes.Count){
+        public static void goToNextGamemode (int gm) {
+            int nextGm = gamemodes.IndexOf (gm) + 1;
+            if (nextGm == gamemodes.Count) {
                 //SceneManager sendResultsToDB
                 int suma = 0;
-                for (int i = 1; i <= scores.Count; i++)
-                {
+                for (int i = 1; i <= scores.Count; i++) {
                     suma += scores[i];
                 }
-                Debug.Log("JUEGO ACABADO con SCORE = " + suma);
-            }else{
-                SceneManager.LoadScene ("game"+gamemodes[nextGm]);
+                Debug.Log ("JUEGO ACABADO con SCORE = " + suma);
+            } else {
+                SceneManager.LoadScene ("game" + gamemodes[nextGm]);
             }
         }
-
 
         public static void setColors () {
             visibleColors = new List<ColorObject> ();
@@ -99,9 +96,11 @@ namespace GameSpace {
             visibleColors.Add (new ColorObject ("red", Color.red, Color.white));
             visibleColors.Add (new ColorObject ("green", Color.green, Color.black));
             visibleColors.Add (new ColorObject ("black", Color.black, Color.white));
+            visibleColors.Add (new ColorObject ("purple", Color.magenta, Color.white));
+            visibleColors.Add (new ColorObject ("cyan", Color.cyan, Color.black));
             colorsWithoutWhite = new List<ColorObject> (visibleColors);
             colorsWithoutWhite.Add (new ColorObject ("gray", Color.gray, Color.black));
-            colorsWithoutWhite.Add (new ColorObject ("orange", new Color (0.254f, 0.161f, 0f, 1f), Color.black));
+            colorsWithoutWhite.Add (new ColorObject ("orange", new Color32 (255, 137, 0, 255), Color.black));
             colors = new List<ColorObject> (colorsWithoutWhite);
             colors.Add (new ColorObject ("white", Color.white, Color.black));
         }
@@ -144,7 +143,7 @@ namespace GameSpace {
         ///////////////////////////////////
         //RESULT FUNCTIONS
         ///////////////////////////////////
-        
+
         public static void sendData (string send, string scene) {
             PlayerPrefs.SetString ("send", send);
             PlayerPrefs.SetString ("scene", scene);

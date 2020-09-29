@@ -22,6 +22,7 @@ namespace GameSpace {
     public class GameMode : MonoBehaviour {
         public int times;
         public float waitTime;
+        [HideInInspector]
         public float timerBarValue;
 
         public TopCanvas topCanvas;

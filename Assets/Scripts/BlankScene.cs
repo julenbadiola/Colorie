@@ -7,14 +7,13 @@ namespace GameSpace {
     public class BlankScene : MonoBehaviour {
         void Start () {
             initializePrefs ();
-
             Communication.initialize ();
             LangDataset.initialize ();
             Communication.getBearerToken ();
             PlayerPrefs.SetInt ("error", 0);
-            SceneManagerController.ChangeSceneMenu ();
 
             GlobalVar.setColors();
+            SceneManagerController.ChangeSceneMenu ();
             /*
             GlobalVar.colors.Add(new ColorObject("brown", Color.brown));
             GlobalVar.colors.Add(new ColorObject("purple", Color.purple));

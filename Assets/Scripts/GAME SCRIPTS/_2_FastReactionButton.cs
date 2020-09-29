@@ -23,7 +23,7 @@ namespace GameSpace {
 
         }
         void Start () {
-            script = gameObject.GetComponent<_2_FastReaction> ();
+            script = GameObject.Find("Dynamics").GetComponent<_2_FastReaction> ();
             button = gameObject.GetComponent<Button> ();
 
             button.image.color = Color.white;
