@@ -20,7 +20,8 @@ namespace GameSpace {
         private Color PlayerColor;
         private Slider[] sliders;
 
-        float timePassed = 0f;
+        private float timePassed = 0f;
+        private bool hint = false;
 
         protected override void Awake () {
             timerBarValue = times;
@@ -55,6 +56,7 @@ namespace GameSpace {
             int i = Array.FindIndex (r, x => x == r.Max ());
             sliders[i].value = r.Max ();
             sliders[i].interactable = false;
+            hint = true;
         }
 
         public void updatePlayerColor () {
@@ -81,7 +83,7 @@ namespace GameSpace {
             float timeScore = Mathf.FloorToInt(timePassed / (float) timerBarValue);
             print ("PERC: " + percParecido + " de igualdad, TIMESCORE: " + timeScore);
 
-            int score = GlobalVar.mapScore(percParecido * timeScore, GlobalVar.getGamemodeNumber());
+            int score = Mathf.FloorToInt(percParecido * timeScore);
             StartCoroutine (showMessage (score));
         }
     }

@@ -16,9 +16,11 @@ namespace GameSpace {
         //Una corrutina que recibe la acción (primer parámetro) a realizar al enviar el form (segundo parámetro)
         //Dentro del action hay un bool (que muestra si el request ha tirado error) y el string (lo devuelto por el server)
 
-        public static List<ColorObject> colors;
-        public static List<ColorObject> colorsWithoutWhite;
+        public static List<ColorObject> basicColors;
         public static List<ColorObject> visibleColors;
+        public static List<ColorObject> colorsWithoutWhite;
+        public static List<ColorObject> colors;
+
         public static Dictionary<int, int> scores;
         public static List<int> gamemodes;
         public static List<int> maxScores;
@@ -27,23 +29,45 @@ namespace GameSpace {
             scores = null;
             randomizeGamemodes ();
             setColors ();
-
+            //TO DO, retrieve max scores form DB
+            maxScores = new List<int> () {
+                200,
+                200,
+                200,
+                200
+            };
             SceneManager.LoadScene ("game" + gamemodes[0]);
         }
+
+        public static ColorObject getRandomColorFrom (List<string> list, System.Random random) {
+            while (true) {
+                ColorObject res = colors[random.Next (colors.Count)];
+                if (list.Contains (res.Name)) {
+                    return res;
+                }
+            }
+        }
+        
         public static float map (float s, float a1, float a2, float b1, float b2) {
             return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
+            /*if(res>b2){
+                return b2;
+            }else{
+                return res;
+            }*/
         }
 
-        public static int mapScore(float actualScore, int gamemode){
+        public static int mapScore (float actualScore, int gamemode) {
             // TO DO, get max of all players on that gamemode;
             //float maxScore = getMaxOfGamemode(int gamemode);
+            //For that, we have to send the actualScore to the server
             float maxScore = 1000f;
-            return Mathf.FloorToInt(map(actualScore, 0f, maxScore, 0f, 1000f));
+            return Mathf.FloorToInt (map (actualScore, 0f, maxScore, 0f, 1000f));
         }
 
         public static void randomizeGamemodes () {
             gamemodes = new List<int> () {
-                4
+                2
             };
             gamemodes = gamemodes.OrderBy (i => Guid.NewGuid ()).ToList ();
             //SceneManager load first gamemode
@@ -101,14 +125,15 @@ namespace GameSpace {
         }
 
         public static void setColors () {
-            visibleColors = new List<ColorObject> ();
-            visibleColors.Add (new ColorObject ("yellow", Color.yellow, Color.black));
-            visibleColors.Add (new ColorObject ("blue", Color.blue, Color.white));
-            visibleColors.Add (new ColorObject ("red", Color.red, Color.white));
-            visibleColors.Add (new ColorObject ("green", Color.green, Color.black));
+            basicColors = new List<ColorObject> ();
+            basicColors.Add (new ColorObject ("yellow", Color.yellow, Color.black));
+            basicColors.Add (new ColorObject ("blue", Color.blue, Color.white));
+            basicColors.Add (new ColorObject ("red", Color.red, Color.white));
+            basicColors.Add (new ColorObject ("green", Color.green, Color.black));
+            basicColors.Add (new ColorObject ("purple", Color.magenta, Color.white));
+            basicColors.Add (new ColorObject ("cyan", Color.cyan, Color.black));
+            visibleColors = new List<ColorObject> (basicColors);
             visibleColors.Add (new ColorObject ("black", Color.black, Color.white));
-            visibleColors.Add (new ColorObject ("purple", Color.magenta, Color.white));
-            visibleColors.Add (new ColorObject ("cyan", Color.cyan, Color.black));
             colorsWithoutWhite = new List<ColorObject> (visibleColors);
             colorsWithoutWhite.Add (new ColorObject ("gray", Color.gray, Color.black));
             colorsWithoutWhite.Add (new ColorObject ("orange", new Color32 (255, 137, 0, 255), Color.black));

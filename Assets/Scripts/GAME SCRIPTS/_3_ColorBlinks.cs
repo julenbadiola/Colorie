@@ -65,7 +65,7 @@ namespace GameSpace {
             if(color == maxColor.Color){
                 score = Mathf.FloorToInt(100f / playedTime);
             }
-            StartCoroutine (showMessage (GlobalVar.mapScore(score, GlobalVar.getGamemodeNumber())));
+            StartCoroutine(showMessage(score));
         }
 
         void setColorLists () {

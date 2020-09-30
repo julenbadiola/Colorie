@@ -45,17 +45,17 @@ namespace GameSpace {
                 if (blackButtons.Contains (i)) {
                     randButtons[i].GetComponent<_2_FastReactionButton> ().setBlack ();
                 } else {
-                    randButtons[i].GetComponent<_2_FastReactionButton> ().setBlue ();
+                    randButtons[i].GetComponent<_2_FastReactionButton> ().setColored ();
                 }
                 yield return new WaitForSeconds (waitTime);
             }
 
-            int score = 40;
+            int score = 0;
             for (int i = 0; i < buttonGroup.transform.childCount; i++) {
                 GameObject but = buttonGroup.transform.GetChild (i).gameObject;
                 score += but.GetComponent<_2_FastReactionButton> ().getScore ();
             }
-            StartCoroutine (showMessage (GlobalVar.mapScore(score, GlobalVar.getGamemodeNumber())));
+            StartCoroutine(showMessage(score));
         }
     }
 

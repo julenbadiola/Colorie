@@ -10,14 +10,14 @@ namespace GameSpace {
         _2_FastReaction script;
         Button button;
         bool black = false;
-        bool blue = false;
+        bool colored = false;
         bool touched = false;
         int score = 0;
 
         // Start is called before the first frame update
         float playedTime;
         void Update () {
-            if ((black || blue) && !touched) {
+            if ((black || colored) && !touched) {
                 playedTime += Time.deltaTime;
             }
 
@@ -31,9 +31,6 @@ namespace GameSpace {
                 touch ();
             });
         }
-        public void setIncorrect () {
-            button.image.color = Color.red;
-        }
 
         public void setBlack () {
             black = true;
@@ -41,35 +38,34 @@ namespace GameSpace {
             StartCoroutine (wait ());
         }
 
-        public void setBlue () {
-            blue = true;
-            button.image.color = Color.blue;
+        public void setColored () {
+            colored = true;
+            button.image.color = GlobalVar.getRandomColorFrom(new List<string> {"yellow", "blue", "green", "purple", "cyan"}, script.random).Color;
             StartCoroutine (wait ());
         }
 
         public void touch () {
             touched = true;
-            //Si no es blue, el toque es incorrecto
-            //Puntuacion
-            //azul tocado = 10 ptos
-            //negro tocado = -10 puntos
-            //blanco tocado = -5 puntos
-            if (!blue) {
+
+            if (!colored) {
                 if (black) {
-                    score -= 10;
+                    score -= Mathf.FloorToInt(10f * playedTime); 
                 } else {
                     score -= 5;
                 }
 
-                setIncorrect ();
+                button.image.color = Color.red;
             } else {
-                score += 10;
+
+                score += Mathf.FloorToInt(10f * ((float) script.timeShown / (float) playedTime));
                 button.image.color = Color.white;
+
             }
         }
 
         public int getScore () {
-            return Mathf.FloorToInt (score * (script.timeShown * 2f / playedTime));
+            //Mathf.FloorToInt (score * (script.timeShown * 2f / playedTime));
+            return score;
         }
 
         IEnumerator wait () {
@@ -77,7 +73,7 @@ namespace GameSpace {
             yield return new WaitForSeconds (script.timeShown);
             if (!touched) {
                 if (!black) {
-                    setIncorrect ();
+                    button.image.color = Color.red;
                 } else if (black) {
                     button.image.color = Color.white;
                 }
