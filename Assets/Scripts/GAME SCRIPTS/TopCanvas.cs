@@ -25,10 +25,6 @@ namespace GameSpace {
         public float time = 5f;
         float passedTime = 0f;
 
-        float map (float s, float a1, float a2, float b1, float b2) {
-            return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
-        }
-
         void Start () {
             pause = GameObject.Find("PauseButton").GetComponent<Button>();
             progress = GlobalVar.getProgress ();
@@ -49,9 +45,9 @@ namespace GameSpace {
             //Sets timer bar progress bar value and color, determined by the value
             timerBar.value = valueTimer;
             if (valueTimer > 0.5f) {
-                fillTimer.color = new Color (map (valueTimer, 1f, 0.5f, 0f, 0.7255f), 0.7255f, 0f, 1f);
+                fillTimer.color = new Color (GlobalVar.map (valueTimer, 1f, 0.5f, 0f, 0.7255f), 0.7255f, 0f, 1f);
             } else {
-                fillTimer.color = new Color (0.7255f, map (valueTimer, 0.5f, 0f, 0.7255f, 0f), 0f, 1f);
+                fillTimer.color = new Color (0.7255f, GlobalVar.map (valueTimer, 0.5f, 0f, 0.7255f, 0f), 0f, 1f);
             }
         }
 

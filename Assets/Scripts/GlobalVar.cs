@@ -21,6 +21,7 @@ namespace GameSpace {
         public static List<ColorObject> visibleColors;
         public static Dictionary<int, int> scores;
         public static List<int> gamemodes;
+        public static List<int> maxScores;
 
         public static void resetStartGame () {
             scores = null;
@@ -28,6 +29,16 @@ namespace GameSpace {
             setColors ();
 
             SceneManager.LoadScene ("game" + gamemodes[0]);
+        }
+        public static float map (float s, float a1, float a2, float b1, float b2) {
+            return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
+        }
+
+        public static int mapScore(float actualScore, int gamemode){
+            // TO DO, get max of all players on that gamemode;
+            //float maxScore = getMaxOfGamemode(int gamemode);
+            float maxScore = 1000f;
+            return Mathf.FloorToInt(map(actualScore, 0f, maxScore, 0f, 1000f));
         }
 
         public static void randomizeGamemodes () {

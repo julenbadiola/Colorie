@@ -55,7 +55,7 @@ namespace GameSpace {
                 GameObject but = buttonGroup.transform.GetChild (i).gameObject;
                 score += but.GetComponent<_2_FastReactionButton> ().getScore ();
             }
-            StartCoroutine(showMessage(score));
+            StartCoroutine (showMessage (GlobalVar.mapScore(score, GlobalVar.getGamemodeNumber())));
         }
     }
 

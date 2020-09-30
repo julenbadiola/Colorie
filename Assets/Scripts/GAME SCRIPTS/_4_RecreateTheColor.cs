@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,34 +14,48 @@ namespace GameSpace {
         public Slider sliderGreen;
         public Slider sliderBlue;
         public Button acceptButton;
+        public Button hintButton;
 
         private Color RandomColorCircle;
         private Color PlayerColor;
-        // Start is called before the first frame update
+        private Slider[] sliders;
+
+        float timePassed = 0f;
 
         protected override void Awake () {
             timerBarValue = times;
-            base.Awake();
+            base.Awake ();
+        }
+
+        void Update(){
+            timePassed += Time.deltaTime;
         }
 
         void Start () {
             sliderRed.onValueChanged.AddListener (delegate { updatePlayerColor (); });
             sliderGreen.onValueChanged.AddListener (delegate { updatePlayerColor (); });
             sliderBlue.onValueChanged.AddListener (delegate { updatePlayerColor (); });
+            sliders = new Slider[3] { sliderRed, sliderGreen, sliderBlue };
             acceptButton.onClick.AddListener (delegate { compareColorsAndSendScore (); });
+            hintButton.onClick.AddListener (delegate { showHint (); });
 
             RandomColorCircle = new Color (
-                Random.Range (0f, 1f),
-                Random.Range (0f, 1f),
-                Random.Range (0f, 1f)
+                UnityEngine.Random.Range (0f, 1f),
+                UnityEngine.Random.Range (0f, 1f),
+                UnityEngine.Random.Range (0f, 1f)
             );
 
             Circle.GetComponent<Button> ().image.color = RandomColorCircle;
             updatePlayerColor ();
-            StartCoroutine(waitSecondsAndSendScore());
+            StartCoroutine (waitSecondsAndSendScore ());
         }
 
-        
+        public void showHint () {
+            float[] r = new float[3] { RandomColorCircle.r, RandomColorCircle.g, RandomColorCircle.b };
+            int i = Array.FindIndex (r, x => x == r.Max ());
+            sliders[i].value = r.Max ();
+            sliders[i].interactable = false;
+        }
 
         public void updatePlayerColor () {
             PlayerColor = new Color (
@@ -52,7 +68,7 @@ namespace GameSpace {
 
         IEnumerator waitSecondsAndSendScore () {
             yield return new WaitForSeconds (timerBarValue);
-            compareColorsAndSendScore();
+            compareColorsAndSendScore ();
         }
 
         public void compareColorsAndSendScore () {
@@ -60,10 +76,13 @@ namespace GameSpace {
                 Mathf.Abs (RandomColorCircle.g - PlayerColor.g) +
                 Mathf.Abs (RandomColorCircle.b - PlayerColor.b);
 
-            float percDiferente = suma * 100 / 255;
-            print ("PERC: " + percDiferente + " de difencia");
+            float percDiferente = 100 * suma * 100 / 255;
+            float percParecido = 100 - percDiferente;
+            float timeScore = Mathf.FloorToInt(timePassed / (float) timerBarValue);
+            print ("PERC: " + percParecido + " de igualdad, TIMESCORE: " + timeScore);
 
-            StartCoroutine (showMessage (Mathf.FloorToInt(percDiferente * 100)));
+            int score = GlobalVar.mapScore(percParecido * timeScore, GlobalVar.getGamemodeNumber());
+            StartCoroutine (showMessage (score));
         }
     }
 }

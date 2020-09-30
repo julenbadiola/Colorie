@@ -66,7 +66,7 @@ namespace GameSpace {
             foreach (GameObject but in randButtons) {
                 score += but.GetComponent<_1_ColorButton> ().getScore ();
             }
-            StartCoroutine (showMessage (score));
+            StartCoroutine (showMessage (GlobalVar.mapScore(score, GlobalVar.getGamemodeNumber())));
         }
 
     }
