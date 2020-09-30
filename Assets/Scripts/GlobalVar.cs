@@ -32,7 +32,7 @@ namespace GameSpace {
 
         public static void randomizeGamemodes () {
             gamemodes = new List<int> () {
-                1,2,3
+                4
             };
             gamemodes = gamemodes.OrderBy (i => Guid.NewGuid ()).ToList ();
             //SceneManager load first gamemode

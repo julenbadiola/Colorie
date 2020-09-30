@@ -18,23 +18,17 @@ EditorBuildSettings:
     path: Assets/Scenes/LoadData.unity
     guid: d88ced14df60f4e06ba4b2dc6a2bd8ef
   - enabled: 1
-    path: Assets/Scenes/TutorialObstacles.unity
-    guid: 7e17179807895e24bbac91c057c252c7
-  - enabled: 1
-    path: Assets/Scenes/TutorialFindpath.unity
-    guid: 1a890839893024c71a51386f815b3661
-  - enabled: 1
     path: Assets/Scripts/GAME SCRIPTS/game1.unity
     guid: 49c9a855cee2f47f7a6cfb0262e6dcee
   - enabled: 1
     path: Assets/Scripts/GAME SCRIPTS/game2.unity
     guid: b7b813eadd5f14867806c96ff455a8fd
   - enabled: 1
-    path: Assets/Scripts/GAME SCRIPTS/OTRO.unity
-    guid: 6cad02d16020541c297b916a44181826
-  - enabled: 1
     path: Assets/Scripts/GAME SCRIPTS/game3.unity
     guid: 11f0753adb727496c8d1a908147a1e83
+  - enabled: 1
+    path: Assets/Scripts/GAME SCRIPTS/game4.unity
+    guid: f58cea0e986b94fddbc08831a7c6a93a
   - enabled: 1
     path: Assets/Scenes/SendData.unity
     guid: 1c27298376143430d934e1965de739d7

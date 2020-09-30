@@ -46,6 +46,7 @@ namespace GameSpace {
         }
 
         public void setTimerBarValue (float valueTimer) {
+            //Sets timer bar progress bar value and color, determined by the value
             timerBar.value = valueTimer;
             if (valueTimer > 0.5f) {
                 fillTimer.color = new Color (map (valueTimer, 1f, 0.5f, 0f, 0.7255f), 0.7255f, 0f, 1f);
