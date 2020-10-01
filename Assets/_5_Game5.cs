@@ -22,23 +22,29 @@ namespace GameSpace {
 
         void Start () {
             randColorsForButtons = GlobalVar.colors.OrderBy (x => random.Next ()).Take (buttons.Count).ToList ();
-            for (int i = 0; i < circles.Count; i++) {
-                circles[i].AddComponent<_5_GameCircles> ().setCorrectColor (randColorsForButtons.Select (o => o.Name).ToList ());
-            }
+            circles.ForEach (c => c.AddComponent<_5_GameCircles> ().setCorrectColor (randColorsForButtons.Select (o => o.Name).ToList (), random));
             StartCoroutine (waitToStart ());
         }
 
         IEnumerator waitToStart () {
+            buttons.ForEach (b => b.interactable = false);
+
+            yield return new WaitForSeconds (timerBarValue);
+
+            circles.ForEach (c => c.GetComponent<_5_GameCircles> ().hide ());
             for (int i = 0; i < buttons.Count; i++) {
-                buttons[i].interactable = false;
+                buttons[i].interactable = true;
                 buttons[i].image.color = randColorsForButtons[i].Color;
                 buttons[i].GetComponentInChildren<TextMeshProUGUI> ().text = randColorsForButtons[i].Name.ToUpper ();
                 buttons[i].GetComponentInChildren<TextMeshProUGUI> ().color = randColorsForButtons[i].Color;
             }
+
+            topCanvas.resetTimeBar();
             yield return new WaitForSeconds (timerBarValue);
-            for (int i = 0; i < buttons.Count; i++) {
-                buttons[i].interactable = true;
-            }
+            int score = 0;
+            circles.ForEach (c => score += c.GetComponent<_5_GameCircles>().getScore());
+            StartCoroutine(showMessage(score));
+
         }
 
     }

@@ -10,12 +10,15 @@ namespace GameSpace {
         private ColorObject playedColor;
         private Image image;
         bool played = false;
+        int score = 0;
 
-        void Start(){
+        void Awake(){
             image = gameObject.GetComponent<Image>();
         }
-        public void setCorrectColor(List<string> list){
-            CorrectColor = GlobalVar.getRandomColorFrom(true, list, new System.Random());
+
+        public void setCorrectColor(List<string> list, System.Random random){
+            CorrectColor = GlobalVar.getRandomColorFrom(true, list, random);
+            image.color = CorrectColor.Color;
         }
 
         public void playColor(ColorObject color){
@@ -33,8 +36,17 @@ namespace GameSpace {
             image.color = CorrectColor.Color;
         }
 
-        void hide () {
+        public void hide () {
             image.color = Color.white;
+        }
+
+        public int getScore(){
+            if(CorrectColor.Color == playedColor.Color){
+                return 20;
+            }
+            else{
+                return 0;
+            }
         }
 
         

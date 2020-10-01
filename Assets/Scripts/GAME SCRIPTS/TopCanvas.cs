@@ -51,6 +51,10 @@ namespace GameSpace {
             }
         }
 
+        public void resetTimeBar(){
+            passedTime = 0f;
+        }
+
         public void timerBarUpdate () {
                 float v = (time - passedTime) / time;
                 setTimerBarValue (v);
