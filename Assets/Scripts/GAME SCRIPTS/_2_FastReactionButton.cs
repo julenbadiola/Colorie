@@ -40,7 +40,7 @@ namespace GameSpace {
 
         public void setColored () {
             colored = true;
-            button.image.color = GlobalVar.getRandomColorFrom(new List<string> {"yellow", "blue", "green", "purple", "cyan"}, script.random).Color;
+            button.image.color = GlobalVar.getRandomColorFrom(true, new List<string> {"yellow", "blue", "green", "purple", "cyan"}, script.random).Color;
             StartCoroutine (wait ());
         }
 

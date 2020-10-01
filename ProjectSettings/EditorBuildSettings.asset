@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scripts/GAME SCRIPTS/game4.unity
     guid: f58cea0e986b94fddbc08831a7c6a93a
   - enabled: 1
+    path: Assets/Scripts/GAME SCRIPTS/game5.unity
+    guid: 05e93a327ac364ba9872c345915da67d
+  - enabled: 1
     path: Assets/Scenes/SendData.unity
     guid: 1c27298376143430d934e1965de739d7
   m_configObjects: {}

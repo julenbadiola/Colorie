@@ -39,15 +39,16 @@ namespace GameSpace {
             SceneManager.LoadScene ("game" + gamemodes[0]);
         }
 
-        public static ColorObject getRandomColorFrom (List<string> list, System.Random random) {
+        public static ColorObject getRandomColorFrom (bool isIn, List<string> list, System.Random random) {
             while (true) {
                 ColorObject res = colors[random.Next (colors.Count)];
-                if (list.Contains (res.Name)) {
+                if ( list.Contains (res.Name).Equals(isIn) ) 
+                {
                     return res;
                 }
             }
         }
-        
+
         public static float map (float s, float a1, float a2, float b1, float b2) {
             return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
             /*if(res>b2){
@@ -67,7 +68,7 @@ namespace GameSpace {
 
         public static void randomizeGamemodes () {
             gamemodes = new List<int> () {
-                2
+                5
             };
             gamemodes = gamemodes.OrderBy (i => Guid.NewGuid ()).ToList ();
             //SceneManager load first gamemode
