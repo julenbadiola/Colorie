@@ -9,7 +9,7 @@ namespace GameSpace {
         private ColorObject CorrectColor;
         private ColorObject playedColor;
         private Image image;
-        bool played = false;
+        public bool played = false;
         int score = 0;
 
         void Awake(){

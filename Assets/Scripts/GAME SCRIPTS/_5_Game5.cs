@@ -14,6 +14,10 @@ namespace GameSpace {
         public List<GameObject> circles;
         public List<Button> buttons;
         List<ColorObject> randColorsForButtons;
+        bool finish = false;
+
+        bool countTime = false;
+        float passedTime = 0f;
 
         protected override void Awake () {
             timerBarValue = times;
@@ -23,28 +27,41 @@ namespace GameSpace {
         void Start () {
             randColorsForButtons = GlobalVar.colors.OrderBy (x => random.Next ()).Take (buttons.Count).ToList ();
             circles.ForEach (c => c.AddComponent<_5_GameCircles> ().setCorrectColor (randColorsForButtons.Select (o => o.Name).ToList (), random));
+            buttons.ForEach (c => c.gameObject.AddComponent<_5_GameButtons> ());
             StartCoroutine (waitToStart ());
         }
 
         IEnumerator waitToStart () {
             buttons.ForEach (b => b.interactable = false);
+            for (int i = 0; i < buttons.Count; i++) {
+                buttons[i].GetComponent<_5_GameButtons> ().show (randColorsForButtons[i], circles);
+            }
+            yield return new WaitForSeconds (timerBarValue);
+            
+            circles.ForEach (c => c.GetComponent<_5_GameCircles> ().hide ());
+            buttons.ForEach (b => b.interactable = true);
+            
+            topCanvas.resetTimeBar ();
+            countTime = true;
 
             yield return new WaitForSeconds (timerBarValue);
-
-            circles.ForEach (c => c.GetComponent<_5_GameCircles> ().hide ());
-            for (int i = 0; i < buttons.Count; i++) {
-                buttons[i].interactable = true;
-                buttons[i].image.color = randColorsForButtons[i].Color;
-                buttons[i].GetComponentInChildren<TextMeshProUGUI> ().text = randColorsForButtons[i].Name.ToUpper ();
-                buttons[i].GetComponentInChildren<TextMeshProUGUI> ().color = randColorsForButtons[i].Color;
+            if (!finish) {
+                finishGame ();
             }
 
-            topCanvas.resetTimeBar();
-            yield return new WaitForSeconds (timerBarValue);
-            int score = 0;
-            circles.ForEach (c => score += c.GetComponent<_5_GameCircles>().getScore());
-            StartCoroutine(showMessage(score));
+        }
 
+        void Update(){
+            if(countTime){
+                passedTime += Time.deltaTime;
+            }
+        }
+
+        public void finishGame () {
+            finish = true;
+            int score = 0;
+            circles.ForEach (c => score += c.GetComponent<_5_GameCircles> ().getScore ());
+            StartCoroutine (showMessage (score));
         }
 
     }

@@ -6640,7 +6640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c556345c3486f41ba90a273dd0d4d766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  times: 10
+  times: 4
   waitTime: 1
   timerBarValue: 0
   topCanvas: {fileID: 1068571156}
