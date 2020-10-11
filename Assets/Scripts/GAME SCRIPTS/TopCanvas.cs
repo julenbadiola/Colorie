@@ -9,7 +9,7 @@ namespace GameSpace {
         public Slider progressBar;
         public Slider timerBar;
         public Button pause;
-        
+
         public float totalTimeProgressAnim = 0.7f;
         float fps;
         //progressBar animation
@@ -26,7 +26,7 @@ namespace GameSpace {
         float passedTime = 0f;
 
         void Start () {
-            pause = GameObject.Find("PauseButton").GetComponent<Button>();
+            pause = GameObject.Find ("PauseButton").GetComponent<Button> ();
             progress = GlobalVar.getProgress ();
             nextProgress = GlobalVar.getProgressOfNextGamemode ();
 
@@ -41,6 +41,10 @@ namespace GameSpace {
             //print ("Progress: " + progress + ", nextProgress: " + nextProgress);
         }
 
+        public void setTimerBarToZero () {
+            passedTime = time;
+        }
+
         public void setTimerBarValue (float valueTimer) {
             //Sets timer bar progress bar value and color, determined by the value
             timerBar.value = valueTimer;
@@ -51,14 +55,17 @@ namespace GameSpace {
             }
         }
 
-        public void resetTimeBar(){
+        public void resetTimeBar () {
             passedTime = 0f;
         }
 
         public void timerBarUpdate () {
+            if (passedTime < time) {
                 float v = (time - passedTime) / time;
                 setTimerBarValue (v);
                 passedTime += Time.deltaTime;
+            }
+
         }
 
         public void progressBarUpdate () {
@@ -88,7 +95,7 @@ namespace GameSpace {
             while (progressBarAnim) {
                 yield return new WaitForSeconds (0.1f);
             }
-            
+
         }
     }
 

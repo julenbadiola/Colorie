@@ -26,7 +26,6 @@ namespace GameSpace {
         public float timerBarValue;
 
         public TopCanvas topCanvas;
-        public TextMeshProUGUI messageText;
         public GameObject messageCanvas;
 
         SoundPlayer soundPlayer;
@@ -40,7 +39,6 @@ namespace GameSpace {
         protected virtual void Awake () {
             //Defecto = times * waitTime
             random = new System.Random ();
-            messageCanvas.SetActive (false);
             //Lang manager
             try {
                 //makeTranslations ();
@@ -76,9 +74,9 @@ namespace GameSpace {
             StartCoroutine (topCanvas.startAnimation ());
             //Message and add score
             //The score to show is the map of the score given by the max of the BD
-            messageText.text = GlobalVar.mapScore(score, GlobalVar.getGamemodeNumber()) + "";
+            Instantiate(messageCanvas).transform.SetParent(GameObject.Find("GameCanvas").transform);
+            GameObject.Find("messageText").GetComponent<TextMeshProUGUI>().text = GlobalVar.mapScore(score, GlobalVar.getGamemodeNumber()) + "";
 
-            messageCanvas.SetActive (true);
             yield return new WaitForSeconds (3);            
             GlobalVar.addScore (score);
         }

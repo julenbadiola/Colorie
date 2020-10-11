@@ -12,6 +12,8 @@ namespace GameSpace {
 
     public class _5_Game5 : GameMode {
         public List<GameObject> circles;
+        [HideInInspector]
+        public List<_5_GameCircles> circlesList;
         public List<Button> buttons;
         List<ColorObject> randColorsForButtons;
         bool finish = false;
@@ -27,6 +29,7 @@ namespace GameSpace {
         void Start () {
             randColorsForButtons = GlobalVar.colors.OrderBy (x => random.Next ()).Take (buttons.Count).ToList ();
             circles.ForEach (c => c.AddComponent<_5_GameCircles> ().setCorrectColor (randColorsForButtons.Select (o => o.Name).ToList (), random));
+            circles.ForEach(c => circlesList.Add(c.GetComponent<_5_GameCircles>()));
             buttons.ForEach (c => c.gameObject.AddComponent<_5_GameButtons> ());
             StartCoroutine (waitToStart ());
         }
@@ -34,12 +37,12 @@ namespace GameSpace {
         IEnumerator waitToStart () {
             buttons.ForEach (b => b.interactable = false);
             for (int i = 0; i < buttons.Count; i++) {
-                buttons[i].GetComponent<_5_GameButtons> ().show (randColorsForButtons[i], circles);
+                buttons[i].GetComponent<_5_GameButtons> ().create (randColorsForButtons[i]);
             }
             yield return new WaitForSeconds (timerBarValue);
             
-            circles.ForEach (c => c.GetComponent<_5_GameCircles> ().hide ());
-            buttons.ForEach (b => b.interactable = true);
+            circlesList.ForEach (c => c.hide ());
+            buttons.ForEach (b => b.GetComponent<_5_GameButtons> ().show ());
             
             topCanvas.resetTimeBar ();
             countTime = true;
@@ -59,8 +62,11 @@ namespace GameSpace {
 
         public void finishGame () {
             finish = true;
+            topCanvas.setTimerBarToZero();
+
             int score = 0;
-            circles.ForEach (c => score += c.GetComponent<_5_GameCircles> ().getScore ());
+            circlesList.ForEach (c => score += c.getScore ());
+            score = Mathf.FloorToInt(score * (timerBarValue / passedTime));
             StartCoroutine (showMessage (score));
         }
 

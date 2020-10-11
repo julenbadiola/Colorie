@@ -16,8 +16,8 @@ namespace GameSpace {
         List<ColorObject> randColors;
         List<ColorObject> colors;
         ColorObject maxColor;
-        bool stopped = true;
-        float playedTime = 0f;
+        bool countTime = false;
+        float passedTime = 0f;
         
         protected override void Awake () {
             timerBarValue = times * waitTime;
@@ -49,21 +49,21 @@ namespace GameSpace {
                 buttons[i].GetComponent<_3_ColorBlinksButton>().show();
             }
             //Start counting time
-            stopped = false;
+            countTime = true;
         }
 
         void Update () {
-            if (!stopped) {
-                playedTime += Time.deltaTime;
+            if (countTime) {
+                passedTime += Time.deltaTime;
             }
         }
         
         public void checkAnswerAndSendScore(Color color){
-            stopped = true;
+            countTime = false;
             int score = 0;
             //If clicked button is the correct, score is positive; on the contrary, is 0
             if(color == maxColor.Color){
-                score = Mathf.FloorToInt(100f / playedTime);
+                score = Mathf.FloorToInt(100f / passedTime);
             }
             StartCoroutine(showMessage(score));
         }

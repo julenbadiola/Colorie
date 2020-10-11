@@ -68,7 +68,7 @@ namespace GameSpace {
 
         public static void randomizeGamemodes () {
             gamemodes = new List<int> () {
-                5
+                1
             };
             gamemodes = gamemodes.OrderBy (i => Guid.NewGuid ()).ToList ();
             //SceneManager load first gamemode

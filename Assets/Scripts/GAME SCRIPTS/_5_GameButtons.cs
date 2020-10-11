@@ -13,6 +13,7 @@ namespace GameSpace {
 
         void Awake () {
             button = GetComponent<Button> ();
+            listCircles = GameObject.Find("Dynamics").GetComponent<_5_Game5>().circlesList;
         }
         void Start () {
             button.interactable = false;
@@ -21,12 +22,16 @@ namespace GameSpace {
             });
         }
 
-        public void show (ColorObject color, List<GameObject> list) {
-            listCircles = list.Select (o => o.GetComponent<_5_GameCircles> ()).ToList ();
+        public void show(){
+            button.image.color = myColor.Color;
+            button.GetComponentInChildren<TextMeshProUGUI> ().color = myColor.Color;
+            button.interactable = true;
+        }
+
+        public void create (ColorObject color) {
             myColor = color;
-            button.image.color = color.Color;
+            button.image.color = Color.white;
             button.GetComponentInChildren<TextMeshProUGUI> ().text = color.Name.ToUpper ();
-            button.GetComponentInChildren<TextMeshProUGUI> ().color = color.Color;
         }
 
         public void touch () {
