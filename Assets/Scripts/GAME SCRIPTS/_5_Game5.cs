@@ -44,7 +44,7 @@ namespace GameSpace {
             circlesList.ForEach (c => c.hide ());
             buttons.ForEach (b => b.GetComponent<_5_GameButtons> ().show ());
             
-            topCanvas.resetTimeBar ();
+            topCanvasScr.resetTimeBar ();
             countTime = true;
 
             yield return new WaitForSeconds (timerBarValue);
@@ -62,7 +62,7 @@ namespace GameSpace {
 
         public void finishGame () {
             finish = true;
-            topCanvas.setTimerBarToZero();
+            topCanvasScr.setTimerBarToZero();
 
             int score = 0;
             circlesList.ForEach (c => score += c.getScore ());

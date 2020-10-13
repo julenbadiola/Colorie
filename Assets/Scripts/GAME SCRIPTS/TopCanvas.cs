@@ -10,6 +10,7 @@ namespace GameSpace {
         public Slider timerBar;
         public Button pause;
 
+        [HideInInspector]
         public float totalTimeProgressAnim = 0.7f;
         float fps;
         //progressBar animation
@@ -22,6 +23,7 @@ namespace GameSpace {
         bool progressBarAnim = false;
 
         //timerBar animation
+        [HideInInspector]
         public float time = 5f;
         float passedTime = 0f;
 

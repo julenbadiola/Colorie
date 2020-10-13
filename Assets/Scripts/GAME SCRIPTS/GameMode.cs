@@ -25,16 +25,20 @@ namespace GameSpace {
         [HideInInspector]
         public float timerBarValue;
 
-        public TopCanvas topCanvas;
-        public GameObject messageCanvas;
+        public GameObject topCanvasPrefab;
+        [HideInInspector]
+        public TopCanvas topCanvasScr;
+        public GameObject messageCanvasPrefab;
 
         SoundPlayer soundPlayer;
         public System.Random random;
-
+        [HideInInspector]
         public Button pauseButton;
+        public GameObject pausePrefab;
+        [HideInInspector]
         public GameObject pauseCanvas;
-        public Button resumeButton;
-        public Button menuButton;
+        Button resumeButton;
+        Button menuButton;
 
         protected virtual void Awake () {
             //Defecto = times * waitTime
@@ -46,10 +50,19 @@ namespace GameSpace {
             } catch (System.Exception) {
                 print ("ERROR EN AWAKE LANGUAGE GAME Creator");
             }
+            GameObject canvasObj = (GameObject)Instantiate(topCanvasPrefab);
+            canvasObj.transform.SetParent(GameObject.Find("GameCanvas").transform, false);
+            topCanvasScr = canvasObj.GetComponent<TopCanvas>();            
             pauseCanvasStuff();
         }
 
         public void pauseCanvasStuff(){
+            pauseCanvas = (GameObject)Instantiate(pausePrefab);
+            pauseCanvas.transform.SetParent(GameObject.Find("GameCanvas").transform, false);
+            pauseButton = GameObject.Find("PauseButton").GetComponent<Button>();
+            resumeButton = GameObject.Find("ResumeButton").GetComponent<Button>();
+            menuButton = GameObject.Find("MenuButton").GetComponent<Button>();
+            
             pauseCanvas.SetActive(false);
             pauseButton.onClick.AddListener (delegate () {
                 SceneManagerController.pauseGame();
@@ -71,11 +84,11 @@ namespace GameSpace {
         }
 
         public IEnumerator showMessage (int score) {
-            StartCoroutine (topCanvas.startAnimation ());
+            StartCoroutine (topCanvasScr.startAnimation ());
             //Message and add score
             //The score to show is the map of the score given by the max of the BD
-            Instantiate(messageCanvas).transform.SetParent(GameObject.Find("GameCanvas").transform);
-            GameObject.Find("messageText").GetComponent<TextMeshProUGUI>().text = GlobalVar.mapScore(score, GlobalVar.getGamemodeNumber()) + "";
+            Instantiate(messageCanvasPrefab).transform.SetParent(GameObject.Find("GameCanvas").transform, false);
+            GameObject.Find("MessageText").GetComponent<TextMeshProUGUI>().text = GlobalVar.mapScore(score, GlobalVar.getGamemodeNumber()) + "";
 
             yield return new WaitForSeconds (3);            
             GlobalVar.addScore (score);
