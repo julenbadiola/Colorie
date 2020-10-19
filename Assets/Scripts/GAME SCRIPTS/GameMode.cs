@@ -39,6 +39,7 @@ namespace GameSpace {
         public GameObject pauseCanvas;
         Button resumeButton;
         Button menuButton;
+        Button nextButton;
 
         protected virtual void Awake () {
             //Defecto = times * waitTime
@@ -89,9 +90,11 @@ namespace GameSpace {
             //The score to show is the map of the score given by the max of the BD
             Instantiate(messageCanvasPrefab).transform.SetParent(GameObject.Find("GameCanvas").transform, false);
             GameObject.Find("MessageText").GetComponent<TextMeshProUGUI>().text = GlobalVar.mapScore(score, GlobalVar.getGamemodeNumber()) + "";
-
-            yield return new WaitForSeconds (3);            
-            GlobalVar.addScore (score);
+            nextButton = GameObject.Find("NextButton").GetComponent<Button>();
+            nextButton.onClick.AddListener (delegate () {
+                GlobalVar.addScore (score);
+            });
+            yield return new WaitForSeconds (3);
         }
     }
 }

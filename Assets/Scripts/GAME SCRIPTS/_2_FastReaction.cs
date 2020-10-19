@@ -9,12 +9,13 @@ namespace GameSpace {
     public class _2_FastReaction : GameMode {
         public float percBlack;
         public GameObject buttonGroup;
+        public GameObject circleGroup;
         //How much time a cube is shown
         public float timeShown;
 
         List<GameObject> buttons;
         List<GameObject> randButtons;
-        int[] blackButtons;
+        int[] incorrectButtons;
         
         protected override void Awake () {
             timerBarValue = (times * waitTime) + timeShown;
@@ -24,6 +25,7 @@ namespace GameSpace {
         void Start () {
             buttons = new List<GameObject> ();
             setButtons();
+            setColors();
             StartCoroutine (show ());
         }
 
@@ -36,17 +38,38 @@ namespace GameSpace {
             }
             //Takes X buttons randomly determined by "times", randomly selects "percBlack %" to be black
             randButtons = buttons.OrderBy (x => random.Next ()).Take (times).ToList ();
-            blackButtons = Enumerable.Range (0, times - 1).OrderBy (x => random.Next ()).Take (Mathf.FloorToInt((float) times * percBlack )).ToArray ();
+            incorrectButtons = Enumerable.Range (0, times - 1).OrderBy (x => random.Next ()).Take (Mathf.FloorToInt((float) times * percBlack )).ToArray ();
+        }
+
+        public void setColors(){
+            int numCircles = circleGroup.transform.childCount;
+            List<ColorObject> colorsList = GlobalVar.colors;
+            colorsList.Remove(GlobalVar.getColorByName("red"));
+            colorsList.Remove(GlobalVar.getColorByName("white"));
+            List<ColorObject> correctColors = colorsList.Take (numCircles).ToList();
+            List<ColorObject> incorrectColors = colorsList.Except(correctColors).ToList();
+            
+            for(int i=0; i<numCircles; i++)
+            {
+                circleGroup.transform.GetChild(i).GetComponent<Button> ().image.color = correctColors[i].Color;
+            }
+
+            for (int i = 0; i < times; i++) {
+                if (incorrectButtons.Contains (i)) {
+                    randButtons[i].GetComponent<_2_FastReactionButton> ().setCorrect (correctColors[random.Next (correctColors.Count)]);
+                } else {
+                    randButtons[i].GetComponent<_2_FastReactionButton> ().setIncorrect (incorrectColors[random.Next (incorrectColors.Count)]);
+                }
+            }
         }
 
         IEnumerator show () {
+            topCanvasScr.count = false;
             yield return new WaitForSeconds (waitTime);
+            
+            topCanvasScr.count = true;
             for (int i = 0; i < times; i++) {
-                if (blackButtons.Contains (i)) {
-                    randButtons[i].GetComponent<_2_FastReactionButton> ().setBlack ();
-                } else {
-                    randButtons[i].GetComponent<_2_FastReactionButton> ().setColored ();
-                }
+                randButtons[i].GetComponent<_2_FastReactionButton> ().show();
                 yield return new WaitForSeconds (waitTime);
             }
 

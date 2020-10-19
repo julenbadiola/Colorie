@@ -24,6 +24,7 @@ namespace GameSpace {
 
         //timerBar animation
         [HideInInspector]
+        public bool count;
         public float time = 5f;
         float passedTime = 0f;
 
@@ -62,7 +63,7 @@ namespace GameSpace {
         }
 
         public void timerBarUpdate () {
-            if (passedTime < time) {
+            if (count && passedTime < time) {
                 float v = (time - passedTime) / time;
                 setTimerBarValue (v);
                 passedTime += Time.deltaTime;
