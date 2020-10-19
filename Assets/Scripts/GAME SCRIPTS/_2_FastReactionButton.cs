@@ -15,6 +15,7 @@ namespace GameSpace {
         bool touched = false;
         int score = 0;
 
+        float multiplier = 50f;
         // Start is called before the first frame update
         float playedTime;
         void Update () {
@@ -55,17 +56,17 @@ namespace GameSpace {
 
             if (!correct) {
                 if (incorrect) {
-                    print("2 Score +" + Mathf.FloorToInt(10f * playedTime));
-                    score -= Mathf.FloorToInt(10f * playedTime); 
+                    print("2 Score +" + Mathf.FloorToInt(multiplier * playedTime));
+                    score -= Mathf.FloorToInt(multiplier * playedTime); 
                 } else {
-                    print("Score -5");
-                    score -= 5;
+                    print("Score -15");
+                    score -= 15;
                 }
 
                 button.image.color = Color.red;
             } else {
-                print("1 Score +" + Mathf.FloorToInt(10f * ((float) script.timeShown / (float) playedTime)));
-                score += Mathf.FloorToInt(10f * ((float) script.timeShown / (float) playedTime));
+                print("1 Score +" + Mathf.FloorToInt(multiplier * ((float) script.timeShown / (float) playedTime)));
+                score += Mathf.FloorToInt(multiplier * ((float) script.timeShown / (float) playedTime));
                 button.image.color = Color.white;
 
             }
@@ -77,10 +78,14 @@ namespace GameSpace {
                 print("Score +10");
                 score = 10;
             }else if(correct && !touched){
-                print("Score -20");
-                score = -20;
+                print("Score -15");
+                score = -15;
             }
-            return score;
+            if(score<0){
+                return 0;
+            }else{
+                return score;
+            }
         }
 
         IEnumerator wait () {

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace GameSpace {
     public class _2_FastReaction : GameMode {
-        public float percBlack;
+        public float percIncorrect;
         public GameObject buttonGroup;
         public GameObject circleGroup;
         //How much time a cube is shown
@@ -38,7 +38,7 @@ namespace GameSpace {
             }
             //Takes X buttons randomly determined by "times", randomly selects "percBlack %" to be black
             randButtons = buttons.OrderBy (x => random.Next ()).Take (times).ToList ();
-            incorrectButtons = Enumerable.Range (0, times - 1).OrderBy (x => random.Next ()).Take (Mathf.FloorToInt((float) times * percBlack )).ToArray ();
+            incorrectButtons = Enumerable.Range (0, times - 1).OrderBy (x => random.Next ()).Take (Mathf.FloorToInt((float) times * percIncorrect )).ToArray ();
         }
 
         public void setColors(){
@@ -46,7 +46,7 @@ namespace GameSpace {
             List<ColorObject> colorsList = GlobalVar.colors;
             colorsList.Remove(GlobalVar.getColorByName("red"));
             colorsList.Remove(GlobalVar.getColorByName("white"));
-            List<ColorObject> correctColors = colorsList.Take (numCircles).ToList();
+            List<ColorObject> correctColors = colorsList.OrderBy (x => random.Next ()).Take (numCircles).ToList();
             List<ColorObject> incorrectColors = colorsList.Except(correctColors).ToList();
             
             for(int i=0; i<numCircles; i++)
@@ -65,13 +65,14 @@ namespace GameSpace {
 
         IEnumerator show () {
             topCanvasScr.count = false;
-            yield return new WaitForSeconds (waitTime);
+            yield return new WaitForSeconds (3);
             
             topCanvasScr.count = true;
             for (int i = 0; i < times; i++) {
                 randButtons[i].GetComponent<_2_FastReactionButton> ().show();
                 yield return new WaitForSeconds (waitTime);
             }
+            yield return new WaitForSeconds (2);
 
             int score = 0;
             for (int i = 0; i < buttonGroup.transform.childCount; i++) {
