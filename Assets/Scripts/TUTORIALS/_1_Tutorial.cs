@@ -22,17 +22,18 @@ namespace GameSpace {
 
         public GameObject tutorialCanvasPrefab;
         void Start () {
-            random = random = new System.Random ();
+            random = new System.Random ();
             GameObject canvasObj = (GameObject)Instantiate(tutorialCanvasPrefab);
             canvasObj.transform.SetParent(GameObject.Find("GameCanvas").transform, false);
 
-            setCorrectColor();
-            setButtonsColor();
             foreach (GameObject but in buttons) {
                 but.AddComponent<_1_ColorButton> ();
             }
+            setCorrectColor();
+            setButtonsColor();
         }
         public void setCorrectColor () {
+            GlobalVar.setColors();
             randColors = GlobalVar.colors.OrderBy (x => random.Next ()).Take (buttons.Count).ToList ();
             correctColor = randColors[0];
             colorText.GetComponent<TextMeshProUGUI> ().text = correctColor.Name.ToUpper ();
