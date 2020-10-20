@@ -11,7 +11,7 @@ namespace GameSpace {
     public static class GlobalVar {
         public static string AuthorizationToken = "Token c83c28761403c5cac48319d062a5ddcf161980dc";
         public static string BearerToken = "";
-        public static bool firstLaunch = true;
+        public static bool launch = true;
         public static bool tryagain = false;
         //Una corrutina que recibe la acción (primer parámetro) a realizar al enviar el form (segundo parámetro)
         //Dentro del action hay un bool (que muestra si el request ha tirado error) y el string (lo devuelto por el server)
@@ -24,7 +24,8 @@ namespace GameSpace {
         public static Dictionary<int, int> scores;
         public static List<int> gamemodes;
         public static List<int> maxScores;
-
+        public static int error = 0;
+        
         public static void resetStartGame () {
             scores = null;
             randomizeGamemodes ();
@@ -130,7 +131,11 @@ namespace GameSpace {
                 for (int i = 1; i <= scores.Count; i++) {
                     suma += scores[i];
                 }
+
                 Debug.Log ("JUEGO ACABADO con SCORE = " + suma);
+                PlayerPrefs.SetString ("scene", "menu");
+                SceneManagerController.ChangeSceneSender ();
+                
             } else {
                 SceneManager.LoadScene ("game" + gamemodes[nextGm]);
             }
@@ -186,24 +191,6 @@ namespace GameSpace {
                 value (new KeyValuePair<bool, string> (true, www.downloadHandler.text));
             }
             yield return null;
-        }
-
-        ///////////////////////////////////
-        //RESULT FUNCTIONS
-        ///////////////////////////////////
-
-        public static void sendData (string send, string scene) {
-            PlayerPrefs.SetString ("send", send);
-            PlayerPrefs.SetString ("scene", scene);
-            SceneManagerController.ChangeSceneSender ();
-        }
-
-        public static void setResultToSend (string difficulty, float time, string message, float result) {
-            PlayerPrefs.SetString ("resDifficulty", difficulty);
-            PlayerPrefs.SetFloat ("resTime", time);
-            PlayerPrefs.SetString ("resMessage", message);
-            PlayerPrefs.SetFloat ("resResult", result);
-            PlayerPrefs.SetInt ("max", 0);
         }
     }
 

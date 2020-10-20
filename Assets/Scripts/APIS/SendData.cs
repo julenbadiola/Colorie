@@ -15,9 +15,7 @@ namespace GameSpace {
         public GameObject ResultPercentText;
         public SoundPlayer soundPlayer;
         public VibrationManager vibrManager;
-        public GameObject loadingText;
-
-        public int counterma = 0;
+        public GameObject FinalMessageCanvas;
         public int gamemode = 0;
         public int total = 0;
         public int counter = 0;
@@ -51,49 +49,18 @@ namespace GameSpace {
             soundPlayer = gameObject.GetComponent<SoundPlayer> ();
 
             PlayerPrefs.SetInt ("error", 0);
-            int time = 0;
-            float result = 0f;
-            string difficulty = "";
-            string message = "";
-            int max = 0;
-
-            if (PlayerPrefs.GetString ("send") == "unlock") {
-                loadingText.SetActive (true);
-                total = 1;
-                messagedone = true;
-                SetUnlock (PlayerPrefs.GetInt ("unlock"));
-            }
-            if (PlayerPrefs.GetString ("send") == "all") {
-                loadingText.SetActive (false);
-                total = 2;
-
-                time = Mathf.RoundToInt (PlayerPrefs.GetFloat ("resTime"));
-                result = PlayerPrefs.GetFloat ("resResult");
-                difficulty = PlayerPrefs.GetString ("resDifficulty");
-                message = PlayerPrefs.GetString ("resMessage");
-                max = PlayerPrefs.GetInt ("max");
-                gamemode = PlayerPrefs.GetInt("gamemode");
-
-                //SetUnlock (PlayerPrefs.GetInt ("unlock"));
-                SetScore (time + "", result + "", difficulty, gamemode);
-                if (max == 1) {
-                    SetMaxStreak (difficulty);
-                } else {
-                    total -= 1;
-                }
-                StartCoroutine (showMessage (message, result, time));
-
-            }
-
+            FinalMessageCanvas.SetActive (true);
+            total = 1;
+            SendScore();
         }
 
         void Update () {
 
             timePassed += Time.deltaTime;
-            counterma += 1;
             if (PlayerPrefs.GetInt ("error") == 1 && !hecho) {
                 hecho = true;
                 Debug.Log ("ERROR EN ALGUNO " + timePassed + " s.");
+
                 if(GlobalVar.tryagain){
                     SceneManagerController.goToScene ("Menu");
                 }else{
@@ -106,27 +73,18 @@ namespace GameSpace {
                 SceneManagerController.goToScene (PlayerPrefs.GetString ("scene"));
             }
         }
-
-        public void SetUnlock (int val) {
-            SetStruct ("setunlock", new string[] { "unlock:" + val });
-        }
-        public void SetMaxStreak (string difficulty) {
-            SetStruct ("setmaxstreak", new string[] { "difficulty:" + difficulty, "streakValue:" + PlayerPrefs.GetInt (difficulty + "MaxStreak") });
-        }
-        public void SetScore (string time, string result, string difficulty, int gm) {
-            Debug.Log ("AQUI RESUL: " + time + ":" + result + ":" + difficulty + ":" + gm);
-            SetStruct ("savemazescore", new string[] {
-                "time:" + time,
-                "result:" + result,
-                "difficulty:" + difficulty,
-                "game_mode:"+gm
-            });
-        }
-        public void CreateMazeProfileIfNew () {
-            SetStruct ("createmazeprofileifnew", new string[] { });
+        public void SendScore () {
+            string[] resList = new string[] {};
+            for (int i = 0; i < GlobalVar.scores.Count; i++)
+            {
+                resList[resList.Length] = "result"+(i+1)+":"+GlobalVar.scores[i];
+            }
+            print(resList);
+            SetStruct ("savemazescore", resList);
         }
 
         public IEnumerator showMessage (string text, float res, float time) {
+            messagedone = true;
             MessageCanvasText.GetComponent<TextMeshProUGUI> ().text = LangDataset.getText (text);
             if (res < 0.5f) {
                 Destroy (StarsImage);
@@ -151,7 +109,7 @@ namespace GameSpace {
             
             yield return new WaitForSeconds (2);
             MessageCanvas.SetActive (false);
-            messagedone = true;
+            
 
         }
     }

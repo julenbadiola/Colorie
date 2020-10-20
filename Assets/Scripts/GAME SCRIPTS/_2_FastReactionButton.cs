@@ -15,17 +15,22 @@ namespace GameSpace {
         bool touched = false;
         int score = 0;
 
-        float multiplier = 50f;
+        float incMultiplier;
+        float corMultiplier;
+
         // Start is called before the first frame update
         float playedTime;
+        bool shown = false;
         void Update () {
-            if ((correct || incorrect) && !touched) {
+            if ((correct || incorrect) && !touched && shown) {
                 playedTime += Time.deltaTime;
             }
 
         }
         void Start () {
             script = GameObject.Find("Dynamics").GetComponent<_2_FastReaction> ();
+            incMultiplier = 50f * script.percIncorrect;
+            corMultiplier = 50f * (1f - script.percIncorrect);
             button = gameObject.GetComponent<Button> ();
 
             button.image.color = Color.white;
@@ -35,13 +40,11 @@ namespace GameSpace {
         }
 
         public void setIncorrect (ColorObject c) {
-            print(c);
             incorrect = true;
             color = c;
         }
 
         public void setCorrect (ColorObject c) {
-            print(c);
             correct = true;
             color = c;
         }
@@ -56,17 +59,17 @@ namespace GameSpace {
 
             if (!correct) {
                 if (incorrect) {
-                    print("2 Score +" + Mathf.FloorToInt(multiplier * playedTime));
-                    score -= Mathf.FloorToInt(multiplier * playedTime); 
+                    //print("1 Score -" + Mathf.FloorToInt(incMultiplier * playedTime));
+                    score -= Mathf.FloorToInt(incMultiplier * playedTime); 
                 } else {
-                    print("Score -15");
+                    //print("2 Score -15");
                     score -= 15;
                 }
 
                 button.image.color = Color.red;
             } else {
-                print("1 Score +" + Mathf.FloorToInt(multiplier * ((float) script.timeShown / (float) playedTime)));
-                score += Mathf.FloorToInt(multiplier * ((float) script.timeShown / (float) playedTime));
+                //print("3 Score +" + ((float) script.timeShown / (float) playedTime));
+                score += Mathf.FloorToInt(corMultiplier * ((float) script.timeShown / (float) playedTime));
                 button.image.color = Color.white;
 
             }
@@ -75,20 +78,17 @@ namespace GameSpace {
         public int getScore () {
             //Mathf.FloorToInt (score * (script.timeShown * 2f / playedTime));
             if(incorrect && !touched){
-                print("Score +10");
-                score = 10;
+                //print("4 Score +" + incMultiplier);
+                score = (int)incMultiplier;
             }else if(correct && !touched){
-                print("Score -15");
-                score = -15;
+                //print("5 Score -" + corMultiplier);
+                score = (int) corMultiplier * -1;
             }
-            if(score<0){
-                return 0;
-            }else{
-                return score;
-            }
+            return score;
         }
 
         IEnumerator wait () {
+            shown = true;
             //Si no ha sido tocado en timeShown segundos y no es negro, incorrecto, si es negro, correcto
             yield return new WaitForSeconds (script.timeShown);
             if (!touched) {

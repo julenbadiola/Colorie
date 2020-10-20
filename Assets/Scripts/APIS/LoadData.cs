@@ -18,11 +18,11 @@ namespace GameSpace {
             loadingText.GetComponent<TextMeshProUGUI> ().text = LangDataset.getText ("loading") + "...";
             PlayerPrefs.SetInt("error", 0);
             counter = 0;
-            total = 4;
+            total = 1;
             timePassed = 0f;
 
-            Debug.Log ("REALIZANDO EL GET UNLOCK");
-            GetUnlock ();
+            Debug.Log ("REALIZANDO EL GET PROFILE");
+            GetProfile ();
         }
 
         void Update () {
@@ -31,11 +31,21 @@ namespace GameSpace {
             if (PlayerPrefs.GetInt ("error") == 1) {
                 hecho = true;
                 Debug.Log ("ERROR EN ALGUNO " + timePassed + " s.");
-                SceneManagerController.goToScene ("Menu");
+                GlobalVar.error += 1;
+                if(GlobalVar.error > 10){
+                    SceneManagerController.goToScene ("Menu");
+                }
+                SceneManagerController.ChangeSceneDataLoad();
+                
             } else if (total == counter && !hecho) {
                 hecho = true;
                 Debug.Log ("TODOS RESUELTOS " + timePassed + " s.");
-                GlobalVar.firstLaunch = false;
+                GlobalVar.launch = false;
+                
+                GlobalVar.error = 0;
+                PlayerPrefs.SetInt ("error", 0);
+                PlayerPrefs.SetString ("errorExp", "");
+                
                 SceneManagerController.goToScene (PlayerPrefs.GetString("scene"));
             } else {
                 //Debug.Log("ESPERANDO A LA RESPUESTA DE TODOS " + timePassed + " s: " + counter + " / " + total);
@@ -51,16 +61,7 @@ namespace GameSpace {
                         if (value.Key) {
                             //Si el valor es true (no ha tirado error), hace lo que sea con el response
                             Debug.Log ("RESPONSE DE UN GET" + value.Value);
-                            int number;
-                            bool success = Int32.TryParse(value.Value, out number);
-                            if(success){
-                                PlayerPrefs.SetInt(prefKey, number);
-                            }
-                            else
-                            {
-                                PlayerPrefs.SetString("errorExp", "ERROR WHILE FORMATTING");
-                                PlayerPrefs.SetInt("error", 1);
-                            }
+                            PlayerPrefs.SetString(prefKey, value.Value);
                             
                         } else {
                             //si queremos hacer algo cuando ha habido error
@@ -74,44 +75,8 @@ namespace GameSpace {
             );
         }
 
-
-        //Llama a la corrutina para que envíe el form
-        public void GetUnlock () {
-            GetStruct ("getunlock", new string[] { }, "unlock");
-
-            /*//LOCAL TEST
-            PlayerPrefs.SetInt("unlock", 2);
-            counter += 1;*/
-        }
-
-        public void GetMaxStreak (string difficulty) {
-            GetStruct ("getmaxstreak", new string[] { "difficulty:" + difficulty }, difficulty + "MaxStreak");
-
-            /*//LOCAL TEST
-            PlayerPrefs.SetInt("easy" + "MaxStreak", 30);
-            PlayerPrefs.SetInt("medium" + "MaxStreak", 0);
-            PlayerPrefs.SetInt("progress", 23);
-            PlayerPrefs.SetInt("hard" + "MaxStreak", 0);
-            counter += 1;*/
-        }
-
-        /////////////// TO DO
-
-        public void GetMazeTimeAvg (string difficulty) {
-            GetStruct ("getmazetimeavg", new string[] { "difficulty:" + difficulty }, "TODO");
-        }
-
-        public void GetMazeAmountResult (int result, string difficulty) {
-            GetStruct ("getmazeamountresult", new string[] {
-                "result:" + result,
-                "difficulty:" + difficulty
-            }, "TODO");
-        }
-
-        public void GetMazeTotalTime (string difficulty) {
-            GetStruct ("getmazetotaltime", new string[] {
-                "difficulty:" + difficulty
-            }, "TODO");
+        public void GetProfile () {
+            GetStruct ("getcolorieprofile", new string[] { }, "profileResponse");
         }
     }
 }

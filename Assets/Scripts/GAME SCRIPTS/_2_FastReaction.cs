@@ -78,6 +78,7 @@ namespace GameSpace {
             for (int i = 0; i < buttonGroup.transform.childCount; i++) {
                 GameObject but = buttonGroup.transform.GetChild (i).gameObject;
                 score += but.GetComponent<_2_FastReactionButton> ().getScore ();
+                print("IT " + i + " | " + score);
             }
             StartCoroutine(showMessage(score));
         }
