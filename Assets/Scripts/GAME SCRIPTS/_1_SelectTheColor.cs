@@ -61,6 +61,7 @@ namespace GameSpace {
 
         //When timeout -> shows message and sends score
         IEnumerator waitSecondsAndSendScore () {
+            topCanvasScr.count = true;
             yield return new WaitForSeconds (times);
             int score = 0;
             foreach (GameObject but in randButtons) {

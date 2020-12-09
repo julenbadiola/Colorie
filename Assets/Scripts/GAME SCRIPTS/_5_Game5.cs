@@ -42,6 +42,7 @@ namespace GameSpace {
             yield return new WaitForSeconds (timerBarValue);
             
             circlesList.ForEach (c => c.hide ());
+            topCanvasScr.count = true;
             buttons.ForEach (b => b.GetComponent<_5_GameButtons> ().show ());
             
             topCanvasScr.resetTimeBar ();
