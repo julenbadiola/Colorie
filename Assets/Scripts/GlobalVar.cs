@@ -8,9 +8,21 @@ using UnityEngine.SceneManagement;
 
 namespace GameSpace {
 
+    [System.Serializable]
+    public class PlayerInfo
+    {
+        public int max1;
+        public int max2;
+        public int max3;
+        public int max4;
+        public int max5;
+        public int maxScoreInGame;
+    }
+
     public static class GlobalVar {
         public static string AuthorizationToken = "Token c83c28761403c5cac48319d062a5ddcf161980dc";
         public static string BearerToken = "";
+        public const int games = 5;
         public static bool launch = true;
         public static bool tryagain = false;
         //Una corrutina que recibe la acción (primer parámetro) a realizar al enviar el form (segundo parámetro)
@@ -23,20 +35,69 @@ namespace GameSpace {
 
         public static Dictionary<int, int> scores;
         public static List<int> gamemodes;
-        public static List<int> maxScores;
         public static int error = 0;
         
+        //FROM SERVER
+        public static PlayerInfo info;
+        public static Dictionary<int, Dictionary<string, int>> scoreSummary;
+
+        public static void InitScoreSummary()
+        {
+            if(scoreSummary == null)
+            {
+                scoreSummary = new Dictionary<int, Dictionary<string, int>>();
+            }
+        }
+
+        static void accessData(JSONObject obj){
+            switch(obj.type){
+                case JSONObject.Type.OBJECT:
+                    for(int i = 0; i < obj.list.Count; i++){
+                        string key = (string)obj.keys[i];
+                        JSONObject j = (JSONObject)obj.list[i];
+                        Debug.Log(key);
+                        accessData(j);
+                    }
+                    break;
+                case JSONObject.Type.ARRAY:
+                    foreach(JSONObject j in obj.list){
+                        accessData(j);
+                    }
+                    break;
+                case JSONObject.Type.STRING:
+                    Debug.Log(obj.str);
+                    break;
+                case JSONObject.Type.NUMBER:
+                    Debug.Log(obj.n);
+                    break;
+                case JSONObject.Type.BOOL:
+                    Debug.Log(obj.b);
+                    break;
+                case JSONObject.Type.NULL:
+                    Debug.Log("NULL");
+                    break;
+                
+            }
+        }
+        public static void SetScoreSummary(int gamemode, string summary)
+        {
+            Dictionary<string, int> particular = new Dictionary<string, int>();
+            JSONObject data = new JSONObject(summary);
+            Debug.Log("TRYING SUMMARY PARSE " + data.GetType() + " // " + data);
+            accessData(data);            
+            scoreSummary.Add(gamemode, particular);
+        }
+
+        public static void CreatePlayerInfoFromJSON(string jsonString)
+        {
+            info = JsonUtility.FromJson<PlayerInfo>(jsonString);
+            Debug.Log("CREATED FROM JSON " + info.max1 + " - "+ info.max2 + " - "+ info.max3 + " - "+ info.max4 + " - "+ info.max5 + " - "+ info.maxScoreInGame);
+        }
+
         public static void resetStartGame () {
             scores = null;
             randomizeGamemodes ();
             setColors ();
-            //TO DO, retrieve max scores form DB
-            maxScores = new List<int> () {
-                200,
-                200,
-                200,
-                200
-            };
             SceneManager.LoadScene ("game" + gamemodes[0]);
         }
 
@@ -70,23 +131,48 @@ namespace GameSpace {
             }*/
         }
 
-        public static int mapScore (float actualScore, int gamemode) {
-            // TO DO, get max of all players on that gamemode;
-            //float maxScore = getMaxOfGamemode(int gamemode);
-            //For that, we have to send the actualScore to the server
-            float maxScore = 1000f;
-            return Mathf.FloorToInt (map (actualScore, 0f, maxScore, 0f, 1000f));
+        public static float getPercent(int gamemode, int score)
+        {
+            int total = 0;
+            int lower = 0;
+            Dictionary<string, int> data = scoreSummary[gamemode];
+            foreach(string key in data.Keys)
+            {
+                total += data[key];
+                string[] subs = key.Split(char.Parse("-"));
+                int min = System.Int32.Parse(subs[0]);
+                int max = System.Int32.Parse(subs[1]);
+                if(min <= score && score <= max)
+                {
+                    lower += Mathf.RoundToInt(data[key] / 2);
+                }
+                else if(min <= score)
+                {
+                    lower += data[key];
+                }
+            }
+            Debug.Log("TOTAL: " + total + " / LOWER: " + lower);
+            if(total != 0 && lower != 0)
+            {
+                return (float) ((float) lower / (float) total) * 100;
+            }
+            else
+            {
+                return 100f;
+            }
         }
 
         public static void randomizeGamemodes () {
-            gamemodes = new List<int> () {
-                1, 2, 3, 4, 5
-            };
-            gamemodes = gamemodes.OrderBy (i => Guid.NewGuid ()).ToList ();
+            gamemodes = new List<int> () {};
+            for(int i=0; i <games; i++)
+            {
+                gamemodes.Add(i+1);
+            }
             //SceneManager load first gamemode
         }
 
         public static float getProgress () {
+            //Para poner la barra de progreso general en su sitio
             float ina = gamemodes.IndexOf (getGamemodeNumber ());
             float of = gamemodes.Count;
             //Debug.Log("In " + ina + " of " + of + " = " + (ina/of));
@@ -94,6 +180,7 @@ namespace GameSpace {
         }
 
         public static float getProgressOfNextGamemode () {
+            //Para la animación de la barra de progreso hacia el siguiente gamemode
             float ina = gamemodes.IndexOf (getGamemodeNumber ()) + 1;
             float of = gamemodes.Count;
             float value = ina / of ;
@@ -108,19 +195,19 @@ namespace GameSpace {
             return Int16.Parse (SceneManager.GetActiveScene ().name.Replace ("game", ""));
         }
 
-        public static void addScore (int score) {
-            int gm = getGamemodeNumber ();
-
+        public static void addScore (int gamemode, int score) {
             if (scores == null) {
                 scores = new Dictionary<int, int> ();
             }
-            scores[gm] = score;
+            
+            scores[gamemode] = score;
             int i = 0;
             foreach (var item in scores) {
                 Debug.Log ("ITEMS" + item + " - " + i);
                 i++;
             }
-            goToNextGamemode (gm);
+            Debug.Log ("ADDING SCORE " + score + " TO " + gamemode + " - LENGTH:" + scores.Count);
+            goToNextGamemode (gamemode);
         }
 
         public static void goToNextGamemode (int gm) {
@@ -133,8 +220,7 @@ namespace GameSpace {
                 }
 
                 Debug.Log ("JUEGO ACABADO con SCORE = " + suma);
-                PlayerPrefs.SetString ("scene", "menu");
-                SceneManagerController.ChangeSceneSender ();
+                SceneManagerController.ChangeSceneSender ("Menu");
                 
             } else {
                 SceneManager.LoadScene ("game" + gamemodes[nextGm]);

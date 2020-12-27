@@ -57,6 +57,7 @@ namespace GameSpace {
             sliders[i].value = r.Max ();
             sliders[i].interactable = false;
             hint = true;
+            hintButton.interactable = false;
         }
 
         public void updatePlayerColor () {
@@ -72,6 +73,11 @@ namespace GameSpace {
             topCanvasScr.count = true;
             yield return new WaitForSeconds (timerBarValue);
             compareColorsAndSendScore ();
+        }
+
+        public void OnClick_accept(){
+            topCanvasScr.count = false;
+            compareColorsAndSendScore();
         }
 
         public void compareColorsAndSendScore () {

@@ -2207,7 +2207,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1895852944}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2084284881}
+        m_MethodName: OnClick_accept
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1895852944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2512,8 +2523,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afad5a4450ba14e4b961da1a93865fe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  times: 10
+  times: 20
   waitTime: 1
+  time_before_start: 0
+  time_after_finish: 0
   timerBarValue: 0
   topCanvasPrefab: {fileID: 6743029984551549610, guid: 7d747162ca3da4845b1c3542efcaa92a,
     type: 3}

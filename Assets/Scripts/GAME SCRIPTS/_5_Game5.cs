@@ -39,7 +39,7 @@ namespace GameSpace {
             for (int i = 0; i < buttons.Count; i++) {
                 buttons[i].GetComponent<_5_GameButtons> ().create (randColorsForButtons[i]);
             }
-            yield return new WaitForSeconds (timerBarValue);
+            yield return new WaitForSeconds (time_before_start);
             
             circlesList.ForEach (c => c.hide ());
             topCanvasScr.count = true;

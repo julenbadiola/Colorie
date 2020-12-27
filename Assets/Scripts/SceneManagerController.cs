@@ -39,12 +39,14 @@ namespace GameSpace {
             SceneManager.LoadScene ("Video");
         }
 
-        public static void ChangeSceneDataLoad(){
+        public static void ChangeSceneDataLoad(string nextscene){
+            PlayerPrefs.SetString("scene", nextscene);
             //Communication.getBearerToken ();
             SceneManager.LoadScene ("LoadData");
         }
 
-        public static void ChangeSceneSender(){
+        public static void ChangeSceneSender(string nextscene){
+            PlayerPrefs.SetString("scene", nextscene);
             //Communication.getBearerToken ();
             SceneManager.LoadScene ("SendData");
         }        

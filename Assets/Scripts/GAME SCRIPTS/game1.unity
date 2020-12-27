@@ -1733,7 +1733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee7ce3861e1f451bb31076e978338e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  times: 5
+  times: 10
   waitTime: 1
   timerBarValue: 0
   topCanvasPrefab: {fileID: 6743029984551549610, guid: 7d747162ca3da4845b1c3542efcaa92a,

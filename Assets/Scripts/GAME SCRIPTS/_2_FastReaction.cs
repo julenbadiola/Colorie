@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace GameSpace {
     public class _2_FastReaction : GameMode {
@@ -16,7 +17,8 @@ namespace GameSpace {
         List<GameObject> buttons;
         List<GameObject> randButtons;
         int[] incorrectButtons;
-        
+        public GameObject text;
+
         protected override void Awake () {
             timerBarValue = (times * waitTime) + timeShown;
             base.Awake();
@@ -65,14 +67,16 @@ namespace GameSpace {
 
         IEnumerator show () {
             topCanvasScr.count = false;
-            yield return new WaitForSeconds (3);
+            yield return new WaitForSeconds (time_before_start);
             
             topCanvasScr.count = true;
+            text.SetActive(false);
+
             for (int i = 0; i < times; i++) {
                 randButtons[i].GetComponent<_2_FastReactionButton> ().show();
                 yield return new WaitForSeconds (waitTime);
             }
-            yield return new WaitForSeconds (2);
+            yield return new WaitForSeconds (time_after_finish);
 
             int score = 0;
             for (int i = 0; i < buttonGroup.transform.childCount; i++) {

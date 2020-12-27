@@ -13,11 +13,7 @@ namespace GameSpace {
             PlayerPrefs.SetInt ("error", 0);
 
             GlobalVar.setColors();
-            SceneManagerController.ChangeSceneMenu ();
-            /*
-            GlobalVar.colors.Add(new ColorObject("brown", Color.brown));
-            GlobalVar.colors.Add(new ColorObject("purple", Color.purple));
-            GlobalVar.colors.Add(new ColorObject("orange", Color.orange));*/
+            SceneManagerController.ChangeSceneDataLoad ("Menu");
 
         }
 

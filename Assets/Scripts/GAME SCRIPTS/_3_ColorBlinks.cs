@@ -12,6 +12,7 @@ namespace GameSpace {
         public GameObject circle;
         public GameObject[] buttons;
         public int numColor;
+        public GameObject text;
 
         List<ColorObject> randColors;
         List<ColorObject> colors;
@@ -37,6 +38,7 @@ namespace GameSpace {
         
         IEnumerator show () {
             //Shows a color every second until times
+            yield return new WaitForSeconds (time_before_start);
             topCanvasScr.count = true;
             for (int i = 0; i < times; i++) {
                 circle.GetComponent<Button> ().image.color = colors[i].Color;
@@ -46,6 +48,8 @@ namespace GameSpace {
                 
             }
             //When all the colors are shown, make buttons interactable and colored
+            circle.SetActive(false);
+            text.SetActive(true);
             for (int i = 0; i < randColors.Count; i++) {
                 buttons[i].GetComponent<_3_ColorBlinksButton>().show();
             }

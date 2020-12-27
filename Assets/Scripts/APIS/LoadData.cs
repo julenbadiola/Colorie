@@ -18,11 +18,19 @@ namespace GameSpace {
             loadingText.GetComponent<TextMeshProUGUI> ().text = LangDataset.getText ("loading") + "...";
             PlayerPrefs.SetInt("error", 0);
             counter = 0;
-            total = 1;
             timePassed = 0f;
 
-            Debug.Log ("REALIZANDO EL GET PROFILE");
+            Debug.Log ("REALIZANDO LOS GETS");
+
+            total = 6;
+
             GetProfile ();
+            GlobalVar.InitScoreSummary();
+            GetScoreSummary(1);
+            GetScoreSummary(2);
+            GetScoreSummary(3);
+            GetScoreSummary(4);
+            GetScoreSummary(5);
         }
 
         void Update () {
@@ -35,7 +43,7 @@ namespace GameSpace {
                 if(GlobalVar.error > 10){
                     SceneManagerController.goToScene ("Menu");
                 }
-                SceneManagerController.ChangeSceneDataLoad();
+                SceneManagerController.ChangeSceneDataLoad(PlayerPrefs.GetString("scene"));
                 
             } else if (total == counter && !hecho) {
                 hecho = true;
@@ -52,31 +60,49 @@ namespace GameSpace {
             }
 
         }
-
-        public void GetStruct (string url, string[] atts, string prefKey) {
+        public void GetProfile () 
+        {
             StartCoroutine (
                 GlobalVar.StartFormCoroutine (
                     value => {
-                        counter += 1;
                         if (value.Key) {
-                            //Si el valor es true (no ha tirado error), hace lo que sea con el response
-                            Debug.Log ("RESPONSE DE UN GET" + value.Value);
-                            PlayerPrefs.SetString(prefKey, value.Value);
-                            
-                        } else {
-                            //si queremos hacer algo cuando ha habido error
-                            Debug.Log ("Error en el response");
+                            Debug.Log ("RESPONSE DE GETPROFILE: " + value.Value);
+                            GlobalVar.CreatePlayerInfoFromJSON(value.Value);                      
+                        } 
+                        else {
+                            Debug.Log ("ERROR EN EL RESPONSE DE GETPROFILE");
                             PlayerPrefs.SetString("errorExp", "ERROR RESPONSE");
                             PlayerPrefs.SetInt("error", 1);
                         }
+                        counter += 1;
                     },
-                    url, atts
+                    "getcolorieprofile", new string[] { }
+                )
+            );
+        }
+        public void GetScoreSummary (int gamemode) 
+        {
+            StartCoroutine (
+                GlobalVar.StartFormCoroutine (
+                    value => {
+                        if (value.Key) {
+                            //Si el valor es true (no ha tirado error), hace lo que sea con el response
+                            Debug.Log ("RESPONSE DE GETSUMMARY " + gamemode.ToString() + ": " + value.Value);
+                            GlobalVar.SetScoreSummary(gamemode, value.Value);                       
+                        } 
+                        else {
+                            //si queremos hacer algo cuando ha habido error
+                            Debug.Log ("ERROR EN EL RESPONSE DE GETSUMMARY " + gamemode.ToString());
+                            PlayerPrefs.SetString("errorExp", "ERROR RESPONSE");
+                            PlayerPrefs.SetInt("error", 1);
+                        }
+                        counter += 1;
+                    },
+                    "getscoresummary", new string[] { "gameMode:" + gamemode }
                 )
             );
         }
 
-        public void GetProfile () {
-            GetStruct ("getcolorieprofile", new string[] { }, "profileResponse");
-        }
+        
     }
 }

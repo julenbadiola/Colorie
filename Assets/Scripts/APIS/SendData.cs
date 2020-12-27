@@ -43,13 +43,11 @@ namespace GameSpace {
             );
         }
 
-
         void Start () {
             vibrManager = gameObject.GetComponent<VibrationManager>();
             soundPlayer = gameObject.GetComponent<SoundPlayer> ();
 
             PlayerPrefs.SetInt ("error", 0);
-            FinalMessageCanvas.SetActive (true);
             total = 1;
             SendScore();
         }
@@ -62,7 +60,7 @@ namespace GameSpace {
                 Debug.Log ("ERROR EN ALGUNO " + timePassed + " s.");
 
                 if(GlobalVar.tryagain){
-                    SceneManagerController.goToScene ("Menu");
+                    SceneManagerController.ChangeSceneDataLoad ("Menu");
                 }else{
                     SceneManagerController.goToScene ("SendData");
                 }
@@ -73,16 +71,19 @@ namespace GameSpace {
                 SceneManagerController.goToScene (PlayerPrefs.GetString ("scene"));
             }
         }
+        
         public void SendScore () {
-            string[] resList = new string[] {};
+            string[] resList = new string[GlobalVar.games];
             for (int i = 0; i < GlobalVar.scores.Count; i++)
             {
-                resList[resList.Length] = "result"+(i+1)+":"+GlobalVar.scores[i];
+                Debug.Log("INTRODUCIENDO " + "result"+(i+1)+":"+GlobalVar.scores[i+1]);
+                resList[i] = "result"+(i+1)+":"+GlobalVar.scores[i+1];
             }
-            print(resList);
-            SetStruct ("savemazescore", resList);
+            //SceneManagerController.goToScene ("Menu");
+            SetStruct("addcoloriescore", resList);
         }
 
+        /*
         public IEnumerator showMessage (string text, float res, float time) {
             messagedone = true;
             MessageCanvasText.GetComponent<TextMeshProUGUI> ().text = LangDataset.getText (text);
@@ -109,9 +110,7 @@ namespace GameSpace {
             
             yield return new WaitForSeconds (2);
             MessageCanvas.SetActive (false);
-            
-
-        }
+        }*/
     }
 
 }

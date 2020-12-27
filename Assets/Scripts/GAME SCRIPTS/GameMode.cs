@@ -22,6 +22,8 @@ namespace GameSpace {
     public class GameMode : MonoBehaviour {
         public int times;
         public float waitTime;
+        public int time_before_start;
+        public int time_after_finish;
         [HideInInspector]
         public float timerBarValue;
 
@@ -85,14 +87,15 @@ namespace GameSpace {
         }
 
         public IEnumerator showMessage (int score) {
+            int gamemode = GlobalVar.getGamemodeNumber();
             StartCoroutine (topCanvasScr.startAnimation ());
             //Message and add score
             //The score to show is the map of the score given by the max of the BD
             Instantiate(messageCanvasPrefab).transform.SetParent(GameObject.Find("GameCanvas").transform, false);
-            GameObject.Find("MessageText").GetComponent<TextMeshProUGUI>().text = GlobalVar.mapScore(score, GlobalVar.getGamemodeNumber()) + "";
+            GameObject.Find("MessageText").GetComponent<TextMeshProUGUI>().text = GlobalVar.getPercent(gamemode, score).ToString() + "%";
             nextButton = GameObject.Find("NextButton").GetComponent<Button>();
             nextButton.onClick.AddListener (delegate () {
-                GlobalVar.addScore (score);
+                GlobalVar.addScore (gamemode, score);
             });
             yield return new WaitForSeconds (3);
         }
