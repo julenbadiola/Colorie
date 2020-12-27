@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace GameSpace {
     public class TopCanvas : MonoBehaviour {
@@ -9,6 +10,9 @@ namespace GameSpace {
         public Slider progressBar;
         public Slider timerBar;
         public Button pause;
+        public GameObject countdown;
+        public GameObject pausePrefab;
+        public TextMeshProUGUI countdowntext;
 
         [HideInInspector]
         public float totalTimeProgressAnim = 0.7f;
@@ -27,9 +31,9 @@ namespace GameSpace {
         public bool count;
         public float time = 5f;
         float passedTime = 0f;
+        private int time_to_start = 0;
 
         void Start () {
-            pause = GameObject.Find ("PauseButton").GetComponent<Button> ();
             progress = GlobalVar.getProgress ();
             nextProgress = GlobalVar.getProgressOfNextGamemode ();
 
@@ -40,8 +44,10 @@ namespace GameSpace {
             //timerBar animation
             timerBar.value = 1f;
             time = GameObject.Find ("Dynamics").GetComponent<GameMode> ().timerBarValue;
+            time_to_start = GameObject.Find ("Dynamics").GetComponent<GameMode> ().time_before_start;
             fillTimer.color = new Color (0f, 0.7255f, 0f, 1f);
             //print ("Progress: " + progress + ", nextProgress: " + nextProgress);
+            pauseCanvasStuff();
         }
 
         public void setTimerBarToZero () {
@@ -71,6 +77,26 @@ namespace GameSpace {
 
         }
 
+        public void startCountdown(float seconds)
+        {
+            count = false;
+            StartCoroutine(countdownRoutine(seconds));
+        }
+
+        public IEnumerator countdownRoutine(float seconds)
+        {
+            float t = seconds;
+            while(t > 0)
+            {
+                yield return new WaitForSeconds(0.1f);
+                t -= 0.1f;
+                countdowntext.text = Mathf.FloorToInt(t).ToString();
+            }
+            pause.gameObject.SetActive(true);
+            countdown.SetActive(false);
+            count = true;
+        }
+
         public void progressBarUpdate () {
             //progressBar animation
             if (progressBarAnim && currentValue < nextProgress) {
@@ -83,6 +109,37 @@ namespace GameSpace {
                 increment = valueToScale / inframes;
                 progressBarAnim = false;
             }
+        }
+
+        public void pauseCanvasStuff(){
+            if(time_to_start == 0)
+            {
+                pause.gameObject.SetActive(true);
+                countdown.SetActive(false);
+            }
+            GameObject pauseCanvas = (GameObject)Instantiate(pausePrefab);
+            pauseCanvas.transform.SetParent(GameObject.Find("GameCanvas").transform, false);
+            Button resumeButton = GameObject.Find("ResumeButton").GetComponent<Button>();
+            Button menuButton = GameObject.Find("MenuButton").GetComponent<Button>();
+            
+            pauseCanvas.SetActive(false);
+            pause.onClick.AddListener (delegate () {
+                SceneManagerController.pauseGame();
+                pauseCanvas.SetActive(true);
+                resumeButton.interactable = true;
+                menuButton.interactable = true;
+            });
+
+            resumeButton.onClick.AddListener (delegate () {
+                SceneManagerController.resumeGame();
+                pauseCanvas.SetActive(false);
+                resumeButton.interactable = false;
+                menuButton.interactable = false;
+            });
+            menuButton.onClick.AddListener (delegate () {
+                SceneManagerController.resumeGame();
+                SceneManagerController.ChangeSceneMenu();
+            });
         }
 
         void Update () {

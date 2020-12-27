@@ -38,8 +38,9 @@ namespace GameSpace {
         
         IEnumerator show () {
             //Shows a color every second until times
+            topCanvasScr.startCountdown(time_before_start);
             yield return new WaitForSeconds (time_before_start);
-            topCanvasScr.count = true;
+            
             for (int i = 0; i < times; i++) {
                 circle.GetComponent<Button> ().image.color = colors[i].Color;
                 yield return new WaitForSeconds (waitTime / 2f);

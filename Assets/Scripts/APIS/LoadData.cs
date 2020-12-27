@@ -22,10 +22,11 @@ namespace GameSpace {
 
             Debug.Log ("REALIZANDO LOS GETS");
 
-            total = 6;
+            total = 7;
 
             GetProfile ();
             GlobalVar.InitScoreSummary();
+            GetScoreSummary(0);
             GetScoreSummary(1);
             GetScoreSummary(2);
             GetScoreSummary(3);

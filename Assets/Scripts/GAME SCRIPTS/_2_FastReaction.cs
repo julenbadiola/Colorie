@@ -66,10 +66,8 @@ namespace GameSpace {
         }
 
         IEnumerator show () {
-            topCanvasScr.count = false;
+            topCanvasScr.startCountdown(time_before_start);
             yield return new WaitForSeconds (time_before_start);
-            
-            topCanvasScr.count = true;
             text.SetActive(false);
 
             for (int i = 0; i < times; i++) {

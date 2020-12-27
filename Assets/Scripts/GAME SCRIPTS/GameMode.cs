@@ -55,35 +55,7 @@ namespace GameSpace {
             }
             GameObject canvasObj = (GameObject)Instantiate(topCanvasPrefab);
             canvasObj.transform.SetParent(GameObject.Find("GameCanvas").transform, false);
-            topCanvasScr = canvasObj.GetComponent<TopCanvas>();            
-            pauseCanvasStuff();
-        }
-
-        public void pauseCanvasStuff(){
-            pauseCanvas = (GameObject)Instantiate(pausePrefab);
-            pauseCanvas.transform.SetParent(GameObject.Find("GameCanvas").transform, false);
-            pauseButton = GameObject.Find("PauseButton").GetComponent<Button>();
-            resumeButton = GameObject.Find("ResumeButton").GetComponent<Button>();
-            menuButton = GameObject.Find("MenuButton").GetComponent<Button>();
-            
-            pauseCanvas.SetActive(false);
-            pauseButton.onClick.AddListener (delegate () {
-                SceneManagerController.pauseGame();
-                pauseCanvas.SetActive(true);
-                resumeButton.interactable = true;
-                menuButton.interactable = true;
-            });
-
-            resumeButton.onClick.AddListener (delegate () {
-                SceneManagerController.resumeGame();
-                pauseCanvas.SetActive(false);
-                resumeButton.interactable = false;
-                menuButton.interactable = false;
-            });
-            menuButton.onClick.AddListener (delegate () {
-                SceneManagerController.resumeGame();
-                SceneManagerController.ChangeSceneMenu();
-            });
+            topCanvasScr = canvasObj.GetComponent<TopCanvas>();
         }
 
         public IEnumerator showMessage (int score) {

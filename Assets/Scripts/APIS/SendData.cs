@@ -9,21 +9,20 @@ using UnityEngine.UI;
 namespace GameSpace {
 
     public class SendData : MonoBehaviour {
-        public GameObject MessageCanvas;
-        public GameObject StarsImage;
-        public GameObject MessageCanvasText;
-        public GameObject ResultPercentText;
-        public SoundPlayer soundPlayer;
-        public VibrationManager vibrManager;
-        public GameObject FinalMessageCanvas;
-        public int gamemode = 0;
-        public int total = 0;
-        public int counter = 0;
-        public float timePassed = 0f;
-        public bool hecho = false;
-        public bool messagedone = false;
+        [SerializeField]
+        private GameObject MessageCanvas;
+        [SerializeField]
+        private TextMeshProUGUI ResultPercentText;
+        [SerializeField]
+        private TextMeshProUGUI LoadingText;
+        private SoundPlayer soundPlayer;
+        private VibrationManager vibrManager;
+        private int total = 0;
+        private int counter = 0;
+        private float timePassed = 0f;
+        private bool hecho = false;
 
-        public void SetStruct (string url, string[] atts) {
+        private void SetStruct (string url, string[] atts) {
             StartCoroutine (
                 GlobalVar.StartFormCoroutine (
                     value => {
@@ -50,6 +49,7 @@ namespace GameSpace {
             PlayerPrefs.SetInt ("error", 0);
             total = 1;
             SendScore();
+            LoadingText.gameObject.SetActive(true);
         }
 
         void Update () {
@@ -65,14 +65,15 @@ namespace GameSpace {
                     SceneManagerController.goToScene ("SendData");
                 }
                 
-            } else if (total == counter && !hecho && messagedone) {
+            } else if (total == counter && !hecho) {
                 hecho = true;
                 Debug.Log ("TODOS RESUELTOS " + timePassed + " s.");
-                SceneManagerController.goToScene (PlayerPrefs.GetString ("scene"));
+                LoadingText.gameObject.SetActive(false);
+                MessageCanvas.SetActive(true);
             }
         }
         
-        public void SendScore () {
+        private void SendScore () {
             string[] resList = new string[GlobalVar.games];
             for (int i = 0; i < GlobalVar.scores.Count; i++)
             {
@@ -83,34 +84,13 @@ namespace GameSpace {
             SetStruct("addcoloriescore", resList);
         }
 
-        /*
-        public IEnumerator showMessage (string text, float res, float time) {
-            messagedone = true;
-            MessageCanvasText.GetComponent<TextMeshProUGUI> ().text = LangDataset.getText (text);
-            if (res < 0.5f) {
-                Destroy (StarsImage);
-            } else if (res <= 0.60f) {
-                StarsImage.GetComponent<Image> ().sprite = Resources.Load<Sprite> ("1stars");
-            } else if (0.6f < res && res <= 0.8f) {
-                StarsImage.GetComponent<Image> ().sprite = Resources.Load<Sprite> ("2stars");
-            } else {
-                StarsImage.GetComponent<Image> ().sprite = Resources.Load<Sprite> ("3stars");
-            }
-            MessageCanvas.SetActive (true);
-            //ResultPercentText.GetComponent<TextMeshProUGUI> ().text = (res * 100).ToString() + " %";
+        public void OnClick_PlayAgain(){
+            SceneManagerController.ChangeToGameScene();
+        }
 
-            if (text == "gameWellDoneMessage") {
-                soundPlayer.playCorrectSound ();
-                vibrManager.shortVibration();
-            } else if (text == "gameFailedMessage") {
-                soundPlayer.playFailedSound ();
-                vibrManager.longVibration();
-            }
-            
-            
-            yield return new WaitForSeconds (2);
-            MessageCanvas.SetActive (false);
-        }*/
+        public void OnClick_Menu(){
+            SceneManagerController.ChangeSceneMenu();
+        }
     }
 
 }

@@ -70,7 +70,9 @@ namespace GameSpace {
         }
 
         IEnumerator waitSecondsAndSendScore () {
-            topCanvasScr.count = true;
+            topCanvasScr.startCountdown(time_before_start);
+            yield return new WaitForSeconds (time_before_start);
+            
             yield return new WaitForSeconds (timerBarValue);
             compareColorsAndSendScore ();
         }
