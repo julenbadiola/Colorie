@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,43 +50,17 @@ namespace GameSpace {
             }
         }
 
-        static void accessData(JSONObject obj){
-            switch(obj.type){
-                case JSONObject.Type.OBJECT:
-                    for(int i = 0; i < obj.list.Count; i++){
-                        string key = (string)obj.keys[i];
-                        JSONObject j = (JSONObject)obj.list[i];
-                        Debug.Log(key);
-                        accessData(j);
-                    }
-                    break;
-                case JSONObject.Type.ARRAY:
-                    foreach(JSONObject j in obj.list){
-                        accessData(j);
-                    }
-                    break;
-                case JSONObject.Type.STRING:
-                    Debug.Log(obj.str);
-                    break;
-                case JSONObject.Type.NUMBER:
-                    Debug.Log(obj.n);
-                    break;
-                case JSONObject.Type.BOOL:
-                    Debug.Log(obj.b);
-                    break;
-                case JSONObject.Type.NULL:
-                    Debug.Log("NULL");
-                    break;
-                
+        public static void SetScoreSummary(int gamemode, Dictionary<string, string> summary)
+        {   
+            if(summary.Count > 0)
+            {
+                Dictionary<string, int> spec = new Dictionary<string, int>();
+                foreach(var i in summary)
+                {
+                    spec.Add(i.Key, int.Parse(i.Value));
+                }
+                scoreSummary.Add(gamemode, spec);
             }
-        }
-        public static void SetScoreSummary(int gamemode, string summary)
-        {
-            Dictionary<string, int> particular = new Dictionary<string, int>();
-            JSONObject data = new JSONObject(summary);
-            Debug.Log("TRYING SUMMARY PARSE " + data.GetType() + " // " + data);
-            accessData(data);            
-            scoreSummary.Add(gamemode, particular);
         }
 
         public static void CreatePlayerInfoFromJSON(string jsonString)
@@ -138,17 +113,26 @@ namespace GameSpace {
             Dictionary<string, int> data = scoreSummary[gamemode];
             foreach(string key in data.Keys)
             {
+                Debug.Log(key);
                 total += data[key];
                 string[] subs = key.Split(char.Parse("-"));
                 int min = System.Int32.Parse(subs[0]);
                 int max = System.Int32.Parse(subs[1]);
+                
+                Debug.Log(min + " - " + max);
                 if(min <= score && score <= max)
                 {
+                    Debug.Log("MI SCORE ESTA DENTRO DE " + key);
                     lower += Mathf.RoundToInt(data[key] / 2);
                 }
-                else if(min <= score)
+                else if(min < score)
                 {
+                    Debug.Log("MI SCORE ES MAYOR QUE " + key);
                     lower += data[key];
+                }
+                else
+                {
+                    Debug.Log("MI SCORE ES MENOR QUE " + key);
                 }
             }
             Debug.Log("TOTAL: " + total + " / LOWER: " + lower);

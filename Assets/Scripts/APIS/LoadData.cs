@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.Networking;
 using TMPro;
+using Newtonsoft.Json;
 
 namespace GameSpace {
     
@@ -89,7 +90,7 @@ namespace GameSpace {
                         if (value.Key) {
                             //Si el valor es true (no ha tirado error), hace lo que sea con el response
                             Debug.Log ("RESPONSE DE GETSUMMARY " + gamemode.ToString() + ": " + value.Value);
-                            GlobalVar.SetScoreSummary(gamemode, value.Value);                       
+                            GlobalVar.SetScoreSummary(gamemode, JsonConvert.DeserializeObject<Dictionary<string, string>>(value.Value.Replace(@"\", "").Trim('"')));                       
                         } 
                         else {
                             //si queremos hacer algo cuando ha habido error

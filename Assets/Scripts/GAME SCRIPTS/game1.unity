@@ -1254,7 +1254,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -107, y: 357}
+  m_AnchoredPosition: {x: -107, y: 420}
   m_SizeDelta: {x: -1317.5, y: -799.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1802200491
@@ -1342,7 +1342,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 112.644196, y: 0, z: -163.86967, w: 0}
+  m_margin: {x: 112.644196, y: 285.19867, z: -163.86967, w: 0}
   m_textInfo:
     textComponent: {fileID: 1802200491}
     characterCount: 5
@@ -1735,6 +1735,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   times: 10
   waitTime: 1
+  time_before_start: 0
+  time_after_finish: 0
   timerBarValue: 0
   topCanvasPrefab: {fileID: 6743029984551549610, guid: 7d747162ca3da4845b1c3542efcaa92a,
     type: 3}
