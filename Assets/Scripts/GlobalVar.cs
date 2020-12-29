@@ -76,10 +76,11 @@ namespace GameSpace {
             SceneManager.LoadScene ("game" + gamemodes[0]);
         }
 
-        public static ColorObject getColorByName(string name){
+        public static ColorObject getColorByName(string key){
+            string name = LangDataset.getText (key);
             for(int i = 0; i < colors.Count; i++) {
                 ColorObject c = colors[i];
-                if ( c.Name == name ) 
+                if ( c.Name == name || c.Name == key) 
                 {
                     return c;
                 }
@@ -106,6 +107,10 @@ namespace GameSpace {
             }*/
         }
 
+        public static int getPlaysNumber(int gamemode)
+        {
+            return scoreSummary[gamemode].Count;
+        }
         public static float getPercent(int gamemode, int score)
         {
             int total = 0;
@@ -136,8 +141,12 @@ namespace GameSpace {
                 }
             }
             Debug.Log("TOTAL: " + total + " / LOWER: " + lower);
-            if(total != 0 && lower != 0)
+            if(total != 0)
             {
+                if(lower == 0)
+                {
+                    return 0f;
+                }
                 return (float) ((float) lower / (float) total) * 100;
             }
             else
@@ -213,19 +222,19 @@ namespace GameSpace {
 
         public static void setColors () {
             basicColors = new List<ColorObject> ();
-            basicColors.Add (new ColorObject ("yellow", Color.yellow, Color.black));
-            basicColors.Add (new ColorObject ("blue", Color.blue, Color.white));
-            basicColors.Add (new ColorObject ("red", Color.red, Color.white));
-            basicColors.Add (new ColorObject ("green", Color.green, Color.black));
-            basicColors.Add (new ColorObject ("purple", Color.magenta, Color.white));
-            basicColors.Add (new ColorObject ("cyan", Color.cyan, Color.black));
+            basicColors.Add (new ColorObject (LangDataset.getText ("yellow"), Color.yellow, Color.black));
+            basicColors.Add (new ColorObject (LangDataset.getText ("blue"), Color.blue, Color.white));
+            basicColors.Add (new ColorObject (LangDataset.getText ("red"), Color.red, Color.white));
+            basicColors.Add (new ColorObject (LangDataset.getText ("green"), Color.green, Color.black));
+            basicColors.Add (new ColorObject (LangDataset.getText ("purple"), Color.magenta, Color.white));
+            basicColors.Add (new ColorObject (LangDataset.getText ("cyan"), Color.cyan, Color.black));
             visibleColors = new List<ColorObject> (basicColors);
-            visibleColors.Add (new ColorObject ("black", Color.black, Color.white));
+            visibleColors.Add (new ColorObject (LangDataset.getText ("black"), Color.black, Color.white));
             colorsWithoutWhite = new List<ColorObject> (visibleColors);
-            colorsWithoutWhite.Add (new ColorObject ("gray", Color.gray, Color.black));
-            colorsWithoutWhite.Add (new ColorObject ("orange", new Color32 (255, 137, 0, 255), Color.black));
+            colorsWithoutWhite.Add (new ColorObject (LangDataset.getText ("gray"), Color.gray, Color.black));
+            colorsWithoutWhite.Add (new ColorObject (LangDataset.getText ("orange"), new Color32 (255, 137, 0, 255), Color.black));
             colors = new List<ColorObject> (colorsWithoutWhite);
-            colors.Add (new ColorObject ("white", Color.white, Color.black));
+            colors.Add (new ColorObject (LangDataset.getText ("white"), Color.white, Color.black));
         }
 
         public static IEnumerator StartFormCoroutine (Action<KeyValuePair<bool, string>> value, string url, string[] args) {

@@ -9,14 +9,15 @@ using Newtonsoft.Json;
 namespace GameSpace {
     
     public class LoadData : MonoBehaviour {
-        public int total = 0;
-        public int counter = 0;
-        public float timePassed = 0f;
-        public bool hecho = false;
-        public GameObject loadingText;
+        private int total = 0;
+        private int counter = 0;
+        private float timePassed = 0f;
+        private bool hecho = false;
+        [SerializeField]
+        private TextMeshProUGUI LoadingText;
 
         void Start () {
-            loadingText.GetComponent<TextMeshProUGUI> ().text = LangDataset.getText ("loading") + "...";
+            LoadingText.text = LangDataset.getText ("loading") + "...";
             PlayerPrefs.SetInt("error", 0);
             counter = 0;
             timePassed = 0f;
@@ -62,7 +63,7 @@ namespace GameSpace {
             }
 
         }
-        public void GetProfile () 
+        private void GetProfile () 
         {
             StartCoroutine (
                 GlobalVar.StartFormCoroutine (
@@ -82,7 +83,7 @@ namespace GameSpace {
                 )
             );
         }
-        public void GetScoreSummary (int gamemode) 
+        private void GetScoreSummary (int gamemode) 
         {
             StartCoroutine (
                 GlobalVar.StartFormCoroutine (

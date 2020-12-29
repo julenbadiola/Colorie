@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace GameSpace {
 
@@ -15,6 +16,8 @@ namespace GameSpace {
         public Slider sliderBlue;
         public Button acceptButton;
         public Button hintButton;
+        public TextMeshProUGUI hintText;
+        public TextMeshProUGUI finishText;
 
         private Color RandomColorCircle;
         private Color PlayerColor;
@@ -32,12 +35,19 @@ namespace GameSpace {
             timePassed += Time.deltaTime;
         }
 
+        private void setTexts()
+        {
+            finishText.text = LangDataset.getText ("next");
+            hintText.text = LangDataset.getText ("hint");
+        }
+
         void Start () {
+            setTexts();
             sliderRed.onValueChanged.AddListener (delegate { updatePlayerColor (); });
             sliderGreen.onValueChanged.AddListener (delegate { updatePlayerColor (); });
             sliderBlue.onValueChanged.AddListener (delegate { updatePlayerColor (); });
             sliders = new Slider[3] { sliderRed, sliderGreen, sliderBlue };
-            acceptButton.onClick.AddListener (delegate { compareColorsAndSendScore (); });
+            acceptButton.onClick.AddListener (delegate { OnClick_accept (); });
             hintButton.onClick.AddListener (delegate { showHint (); });
 
             RandomColorCircle = new Color (

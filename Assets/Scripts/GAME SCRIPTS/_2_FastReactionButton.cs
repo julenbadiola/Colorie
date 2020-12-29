@@ -65,14 +65,11 @@ namespace GameSpace {
                     //print("2 Score -15");
                     score -= 15;
                 }
-
-                button.image.color = Color.red;
             } else {
                 //print("3 Score +" + ((float) script.timeShown / (float) playedTime));
                 score += Mathf.FloorToInt(corMultiplier * ((float) script.timeShown / (float) playedTime));
-                button.image.color = Color.white;
-
             }
+            button.image.color = Color.white;
         }
 
         public int getScore () {
@@ -91,13 +88,7 @@ namespace GameSpace {
             shown = true;
             //Si no ha sido tocado en timeShown segundos y no es negro, incorrecto, si es negro, correcto
             yield return new WaitForSeconds (script.timeShown);
-            if (!touched) {
-                if (incorrect) {
-                    button.image.color = Color.white;
-                } else {
-                    button.image.color = Color.red;
-                }
-            }
+            button.image.color = Color.white;
 
         }
     }

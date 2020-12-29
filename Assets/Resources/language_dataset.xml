@@ -17,42 +17,47 @@
         <off>OFF</off>
         <musicvolume>MUSIC VOLUME</musicvolume>
         <effectsvolume>EFFECTS VOLUME</effectsvolume>
-        
-        <tutFindpath1>THE GOAL IS TO JOIN THE TWO ENDINGS COLORED IN BLUE</tutFindpath1>
-        <tutFindpath2>BROWN CUBES ARE OBSTACLES</tutFindpath2>
-        <tutFindpath3>SELECT A POSSIBLE PATH AFTER THE OBSTACLES ARE HIDED</tutFindpath3>
         <skip>SKIP</skip>
         <next>NEXT</next>
         <finish>FINISH</finish>
-
         <pause>PAUSE</pause>
-        <youareplaying>You are playing</youareplaying>
         <resume>RESUME</resume>
-        <changedifficulty>CHANGE DIFFICULTY</changedifficulty>
         <menu>MENU</menu>
-        <newrecord>NEW RECORD</newrecord>
-        <streak>STREAK</streak>
-        <record>RECORD</record>
-        <records>MAX STREAKS</records>
-
-        <gameWellDoneMessage>WELL DONE!</gameWellDoneMessage>
-        <gameFailedMessage>FAILED...</gameFailedMessage>
-        <gameDifficultyMessage>NEXT DIFFICULTY UNLOCKED!</gameDifficultyMessage>
-
         <close>CLOSE</close>
-
-        <findpathgm>FIND THE PATH</findpathgm>
-        <obstaclesgm>SELECT THE OBSTACLES</obstaclesgm>
-        
-        <tutObstacles1>THE GOAL IS TO SELECT ALL CUBES COLORED IN BROWN</tutObstacles1>
-        <tutObstacles2>IF OTHER CUBE IS SELECTED, THE GAME ENDS WITH INCORRECT RESULT</tutObstacles2>
-        <tutObstacles3>IF MORE THAN 50% OF ALL BROWN CUBES ARE SELECTED, THE GAME ENDS WITH CORRECT RESULT</tutObstacles3>
-        
         <loading>LOADING</loading>
         <wait>WAIT</wait>
         <tryagain>TRY AGAIN</tryagain>
-        <gamemode>GAMEMODE</gamemode>
 
+        <ingeneral>IN GENERAL</ingeneral>
+        <message1>YOU HAVE DONE IT BETTER THAN IN</message1>
+        <message2>OF YOUR</message2>
+        <message3>GAMES</message3>
+        <playagain>PLAY AGAIN</playagain>
+        <hint>HINT</hint>
+
+        <timelimit>There is a time limit.</timelimit>
+
+        <game1>You must select the color representing the text at the top.</game1>
+        <game1ingame></game1ingame>
+        <game2>You must click on the cubes where the color matches the colours of the circles at the top.</game2>
+        <game2ingame>Select the cubes of the colors.</game2ingame>
+        <game3>You must select the color that has been repeated the most.</game3>
+        <game3ingame>What is the most repeated color?</game3ingame>
+        <game4>It should reproduce as accurately as possible the color shown at the top left. To do this, you must mix the red, green and blue colors by using the sliders.</game4>
+        <game4ingame>Reproduce the color.</game4ingame>
+        <game5>Remember the colors shown and their order. Then, you must select them in the same order.</game5>
+        <game5ingame>Remember the colors and their order.</game5ingame>
+
+        <white>WHITE</white>
+        <yellow>YELLOW</yellow>
+        <cyan>CYAN</cyan>
+        <blue>BLUE</blue>
+        <purple>PURPLE</purple>
+        <green>GREEN</green>
+        <black>BLACK</black>
+        <red>RED</red>
+        <gray>GRAY</gray>
+        <orange>ORANGE</orange>
     </English>
  
     <French>
@@ -72,41 +77,52 @@
         <off>OFF</off>
         <musicvolume>VOLUME DE LA MUSIQUE</musicvolume>
         <effectsvolume>VOLUME DES EFFETS</effectsvolume>
-
-        <tutFindpath1>L´OBJECTIF EST DE JOINDRE LES DEUX EXTRÉMITÉS, COLORÉES EN BLEU</tutFindpath1>
-        <tutFindpath2>LES CUBES BRUNS SONT OBSTACLES</tutFindpath2>
-        <tutFindpath3>APRÈS CACHER LES OBSTACLES, CHOISISSEZ UNE ROUTE</tutFindpath3>
         <skip>SAUTER</skip>
         <next>SUIVANT</next>
         <finish>FINIR</finish>
-
         <pause>PAUSE</pause>
-        <youareplaying>Vous jouez dans</youareplaying>
         <resume>SUIVRE</resume>
-        <changedifficulty>CHANGER LA DIFFICULTÉ</changedifficulty>
         <menu>MENU</menu>
-        <newrecord>NOUVEL RECORD</newrecord>
-        <streak>SÉRIE</streak>
-        <record>RECORD</record>
-        <records>RECORDS</records>
-
-        <gameWellDoneMessage>BIEN FAIT!</gameWellDoneMessage>
-        <gameFailedMessage>ÉCHEC...</gameFailedMessage>
-        <gameDifficultyMessage>PROCHAINE DIFFICULTÉ DÉBLOQUÉE!</gameDifficultyMessage>
-
         <close>CLORE</close>
-
-        <findpathgm>TROUVEZ LE CHEMIN</findpathgm>
-        <obstaclesgm>SÉLECTIONNEZ LES OBSTACLES</obstaclesgm>
-        
-        <tutObstacles1>L'OBJECTIF EST DE SÉLECTIONNER TOUS LES CUBES COLORÉS EN BRUN</tutObstacles1>
-        <tutObstacles2>SI UN AUTRE CUBE EST SÉLECTIONNÉ, LE JEU SE TERMINE AVEC UN RÉSULTAT INCORRECT</tutObstacles2>
-        <tutObstacles3>SI 50% DE TOUS LES CUBES BRUNS SONT SÉLECTIONNÉS, LE JEU SE TERMINE AVEC UN RÉSULTAT CORRECT</tutObstacles3>
-        
         <loading>CHARGEMENT</loading>
         <wait>ATTENDRE</wait>
         <tryagain>ESSAYER À NOUVEAU</tryagain>
-        <gamemode>MODE DE JEU</gamemode>
+
+        <ingeneral>EN GÉNÉRAL</ingeneral>
+        <message1>VOUS L'AVEZ FAIT MIEUX QUE DANS</message1>
+        <message2>DE VOS</message2>
+        <message3>JEUX</message3>
+        <playagain>JOUER À NOUVEAU</playagain>
+        <hint>ALLUSION</hint>
+
+        <timelimit>Il y a une limite de temps.</timelimit>
+
+        <game1>Vous devez sélectionner la couleur représentant le texte en haut.</game1>
+        <game1ingame></game1ingame>
+        
+
+        <game2>Vous devez cliquer sur les cubes dont la couleur correspond aux couleurs des cercles du haut.</game2>
+        <game2ingame>Sélectionnez les cubes des couleurs.</game2ingame>
+
+        <game3>Vous devez sélectionner la couleur qui a été le plus répétée.</game3>
+        <game3ingame>Quelle est la couleur la plus répétée ?</game3ingame>
+
+        <game4>Il doit reproduire aussi fidèlement que possible la couleur indiquée en haut à gauche. Pour ce faire, vous devez mélanger les couleurs rouge, verte et bleue en utilisant les curseurs.</game4>
+        <game4ingame>Reproduire la couleur.</game4ingame>
+
+        <game5>Souvenez-vous des couleurs affichées et de leur ordre. Ensuite, vous devez les sélectionner dans le même ordre.</game5>
+        <game5ingame>Rappelez-vous les couleurs et leur ordre.</game5ingame>
+
+        <white>BLANC</white>
+        <yellow>JAUNE</yellow>
+        <cyan>CYAN</cyan>
+        <blue>BLEU</blue>
+        <purple>VIOLET</purple>
+        <green>VERT</green>
+        <black>NOIR</black>
+        <red>ROUGE</red>
+        <gray>GRIS</gray>
+        <orange>ORANGE</orange>
     </French>
  
     <German>
@@ -126,41 +142,52 @@
         <off>DEAKTIVIEREN</off>
         <musicvolume>MUSIKLAUTSTÄRKE</musicvolume>
         <effectsvolume>EFFECTLAUTSTÄRKE</effectsvolume>
-
-        <tutFindpath1>DAS ZIEL IST, DIE BEIDEN ENDEN IN BLAU ZU VERBINDEN</tutFindpath1>
-        <tutFindpath2>BRAUNE WÜRFEL SIND HINDERNISSE</tutFindpath2>
-        <tutFindpath3>NACH DEM DIE HINDERNISSE VERSCHWUNDEN SIND, WÄHLEN SIE DEN WEG</tutFindpath3>
         <skip>ÜBERSPRINGEN</skip>
         <next>NÄCHSTER</next>
         <finish>BEENDEN</finish>
-
         <pause>PAUSE</pause>
-        <youareplaying>Sie spielen</youareplaying>
         <resume>FOLGEN</resume>
-        <changedifficulty>SCHWIERIGKEIT ÄNDERN</changedifficulty>
         <menu>MENÜ</menu>
-        <newrecord>NEUE REKORD</newrecord>
-        <streak>SIEGESSERIE</streak>
-        <record>REKORD</record>
-        <records>REKORDE</records>
-
-        <gameWellDoneMessage>SEHR GUT!</gameWellDoneMessage>
-        <gameFailedMessage>FEHLER...</gameFailedMessage>
-        <gameDifficultyMessage>NÄCHSTE SCHWIERIGKEIT ENTSPERRT!</gameDifficultyMessage>
-
-        <close>SCHLIESSEN</close>
-
-        <findpathgm>FINDEN SIE DEN WEG</findpathgm>
-        <obstaclesgm>WÄHLEN SIE DIE HINDERNISSE AUS</obstaclesgm>
-        
-        <tutObstacles1>DAS ZIEL IST ES, ALLE IN BRAUN GEFÄRBTEN WÜRFEL AUSZUWÄHLEN</tutObstacles1>
-        <tutObstacles2>WENN ANDERER WÜRFEL AUSGEWÄHLT WIRD, ENDET DAS SPIEL MIT FALSCHEM ERGEBNIS</tutObstacles2>
-        <tutObstacles3>WENN 50% ALLER BRAUNEN WÜRFEL AUSGEWÄHLT WERDEN, ENDET DAS SPIEL MIT DEM RICHTIGEN ERGEBNIS</tutObstacles3>
-        
+        <close>SCHLIESSEN</close>      
         <loading>WIRD GELADEN</loading>
         <wait>WARTEN</wait>
         <tryagain>WEITER SPIELEN</tryagain>
-        <gamemode>SPIELEMODUS FOLGEN</gamemode>
+
+        <ingeneral>IM ALLGEMEINEN</ingeneral>
+        <message1>SIE HABEN ES BESSER GEMACHT ALS IN</message1>
+        <message2>IHRER</message2>
+        <message3>SPIELE</message3>
+        <playagain>WIEDERSPIELEN</playagain>
+        <hint>TIPP</hint>
+
+        <timelimit>Es gibt ein Zeitlimit.</timelimit>
+
+        <game1>Sie müssen die Farbe auswählen, die den Text im oberen Bereich darstellt.</game1>
+        <game1ingame></game1ingame>
+        
+
+        <game2>Sie müssen die Würfel anklicken, deren Farbe mit den Farben der Kreise am oberen Rand übereinstimmt.</game2>
+        <game2ingame>Wählen Sie die Würfel der Farben aus.</game2ingame>
+
+        <game3>Sie müssen die Farbe auswählen, die am häufigsten wiederholt wurde.</game3>
+        <game3ingame>Was ist die am häufigsten wiederkehrende Farbe?</game3ingame>
+
+        <game4>Sie soll die oben links dargestellte Farbe möglichst genau wiedergeben. Dazu müssen Sie die Farben Rot, Grün und Blau mit Hilfe der Schieberegler mischen.</game4>
+        <game4ingame>Reproduzieren Sie die Farbe.</game4ingame>
+
+        <game5>Merken Sie sich die angezeigten Farben und deren Reihenfolge. Dann müssen Sie sie in der gleichen Reihenfolge auswählen.</game5>
+        <game5ingame>Merken Sie sich die Farben und ihre Reihenfolge.</game5ingame>
+
+        <white>WEISS</white>
+        <yellow>GELB</yellow>
+        <cyan>CYAN</cyan>
+        <blue>BLAU</blue>
+        <purple>LILA</purple>
+        <green>GRÜN</green>
+        <black>SCHWARZ</black>
+        <red>ROT</red>
+        <gray>GRAU</gray>
+        <orange>ORANGE</orange>
     </German>
     
     <Portuguese>
@@ -180,41 +207,53 @@
         <off>DESATIVAR</off>
         <musicvolume>VOLUME DA MÚSICA</musicvolume>
         <effectsvolume>VOLUME DE EFEITOS</effectsvolume>
-
-        <tutFindpath1>O OBJETIVO É JUNTAR AS DUAS PONTAS, COLORIDAS EM AZUL</tutFindpath1>
-        <tutFindpath2>BALDES MARRONS SÃO OBSTÁCULOS</tutFindpath2>
-        <tutFindpath3>APÓS OCULTAR OS OBSTÁCULOS, SELECIONE UMA ESTRADA</tutFindpath3>
         <skip>PULAR</skip>
         <next>PRÓXIMO</next>
         <finish>ACABAMENTO</finish>
-
         <pause>PAUSAR</pause>
-        <youareplaying>Você está jogando</youareplaying>
         <resume>SEGUIR</resume>
-        <changedifficulty>MUDAR DIFICULDADE</changedifficulty>
         <menu>MENU</menu>
-        <newrecord>NOVA RAIA</newrecord>
-        <streak>RAIA</streak>
-        <record>RECORD</record>
-        <records>RECORDS</records>
-
-        <gameWellDoneMessage>BEM FEITO!</gameWellDoneMessage>
-        <gameFailedMessage>FALHA ...</gameFailedMessage>
-        <gameDifficultyMessage>PRÓXIMA DIFICULDADE DESBLOQUEADA!</gameDifficultyMessage>
-
         <close>FECHAR</close>
-
-        <findpathgm>ENCONTRE O CAMINHO</findpathgm>
-        <obstaclesgm>SELECIONE OS OBSTÁCULOS</obstaclesgm>
-        
-        <tutObstacles1>O OBJETIVO É SELECIONAR TODOS OS CUBOS COLORIDOS EM MARROM</tutObstacles1>
-        <tutObstacles2>SE OUTRO CUBO É SELECIONADO, O JOGO TERMINA COM RESULTADO INCORRETO</tutObstacles2>
-        <tutObstacles3>SE 50% DE TODOS OS CUBOS MARRONS SÃO SELECIONADOS, O JOGO TERMINA COM RESULTADO CORRETO</tutObstacles3>
-        
         <loading>CARREGANDO</loading>
         <wait>ESPERAR</wait>
         <tryagain>TENTE NOVAMENTE</tryagain>
-        <gamemode>MODO DE JOGO</gamemode>
+
+
+        <ingeneral>EM GERAL</ingeneral>
+        <message1>FEZ MELHOR DO QUE EM</message1>
+        <message2>DOS SEUS</message2>
+        <message3>JOGOS</message3>
+        <playagain>JOGAR DE NOVO</playagain>
+        <hint>DICA</hint>
+
+        <timelimit>Existe um limite de tempo.</timelimit>
+
+        <game1>Você deve selecionar a cor que representa o texto na parte superior.</game1>
+        <game1ingame></game1ingame>
+        
+
+        <game2>Você deve clicar nos cubos cuja cor corresponda às cores dos círculos no topo.</game2>
+        <game2ingame>Selecione os cubos das cores.</game2ingame>
+
+        <game3>Você deve selecionar a cor que mais se repetiu.</game3>
+        <game3ingame>Qual é a cor mais repetida?</game3ingame>
+
+        <game4>Deve reproduzir com a maior precisão possível a cor mostrada no canto superior esquerdo. Para fazer isso, você deve misturar as cores vermelha, verde e azul usando os controles deslizantes.</game4>
+        <game4ingame>Reproduza a cor.</game4ingame>
+
+        <game5>Lembre-se das cores mostradas e sua ordem. Então, você deve selecioná-los na mesma ordem.</game5>
+        <game5ingame>Lembre-se das cores e de sua ordem.</game5ingame>
+
+        <white>BRANCO</white>
+        <yellow>AMARELO</yellow>
+        <cyan>CIANO</cyan>
+        <blue>AZUL</blue>
+        <purple>ROXA</purple>
+        <green>VERDE</green>
+        <black>PRETO</black>
+        <red>VERMELHO</red>
+        <gray>CINZENTO</gray>
+        <orange>LARANJA</orange>
     </Portuguese>
 
     <Spanish>
@@ -234,42 +273,51 @@
         <off>DESACTIVADO</off>
         <musicvolume>VOLUMEN DE MÚSICA</musicvolume>
         <effectsvolume>VOLUMEN DE EFECTOS</effectsvolume>
-
-        <tutFindpath1>EL OBJETIVO ES UNIR LOS DOS EXTREMOS, COLOREADOS EN AZUL</tutFindpath1>
-        <tutFindpath2>LOS CUBOS MARRONES SON OBSTÁCULOS</tutFindpath2>
-        <tutFindpath3>TRAS ESCONDERSE LOS OBSTACULOS, SELECCIONA UN CAMINO</tutFindpath3>
         <skip>SALTAR</skip>
         <next>SIGUIENTE</next>
         <finish>CERRAR</finish>
-
         <pause>PAUSA</pause>
-        <youareplaying>Estás jugando en</youareplaying>
         <resume>REANUDAR</resume>
-        <changedifficulty>CAMBIAR DIFICULTAD</changedifficulty>
         <menu>MENU</menu>
-        <newrecord>NUEVO RECORD</newrecord>
-        <streak>RACHA</streak>
-        <record>RECORD</record>
-        <records>RACHAS RECORD</records>
-
-        <gameWellDoneMessage>¡BIEN HECHO!</gameWellDoneMessage>
-        <gameFailedMessage>FALLO...</gameFailedMessage>
-        <gameDifficultyMessage>¡SIGUIENTE DIFICULTAD DESBLOQUEADA!</gameDifficultyMessage>
-        
-
         <close>CERRAR</close>
-
-        <findpathgm>ENCONTRAR EL CAMINO</findpathgm>
-        <obstaclesgm>SELECCIONAR LOS OBSTÁCULOS</obstaclesgm>
-        
-        <tutObstacles1>EL OBJETIVO ES SELECCIONAR TODOS LOS CUBOS COLOREADOS EN MARRÓN</tutObstacles1>
-        <tutObstacles2>SI SE SELECCIONA OTRO CUBO, EL JUEGO TERMINA CON UN RESULTADO INCORRECTO</tutObstacles2>
-        <tutObstacles3>SI EL 50% DE TODOS LOS CUBOS MARRONES ESTÁN SELECCIONADOS, EL JUEGO TERMINA CON EL RESULTADO CORRECTO</tutObstacles3>
-        
         <loading>CARGANDO</loading>
         <wait>ESPERA</wait>
         <tryagain>INTENTAR DE NUEVO</tryagain>
-        <gamemode>MODO DE JUEGO</gamemode>
+
+        <ingeneral>EN GENERAL</ingeneral>
+        <message1>LO HAS HECHO MEJOR QUE EN</message1>
+        <message2>DE TUS</message2>
+        <message3>JUEGOS</message3>
+        <playagain>JUGAR DE NUEVO</playagain>
+        <hint>PISTA</hint>
+        <timelimit>Existe un límite de tiempo</timelimit>
+
+        <game1>Debe seleccionar el color que representa el texto en la parte superior.</game1>
+        <game1ingame></game1ingame>
+        
+
+        <game2>Debe pulsar en los cubos en los que el color coincida con los colores de los círculos de la parte superior.</game2>
+        <game2ingame>Seleccione los cubos de los colores</game2ingame>
+
+        <game3>Debe seleccionar el color que más veces se haya repetido</game3>
+        <game3ingame>¿Cuál es el color que más se ha repetido?</game3ingame>
+
+        <game4>Debe reproducir de la manera más precisa posible el color mostrado en la parte superior izquierda. Para ello, deberá mezclar los colores rojo, verde y azul haciendo uso de las barras deslizantes</game4>
+        <game4ingame>Reproduzca el color</game4ingame>
+
+        <game5>Recuerde los colores mostrados y su orden. Después, deberá seleccionarlos en el mismo orden</game5>
+        <game5ingame>Recuerde los colores y su orden</game5ingame>
+
+        <white>BLANCO</white>
+        <yellow>AMARILLO</yellow>
+        <cyan>CYAN</cyan>
+        <blue>AZUL</blue>
+        <purple>MORADO</purple>
+        <green>VERDE</green>
+        <black>NEGRO</black>
+        <red>ROJO</red>
+        <gray>GRIS</gray>
+        <orange>NARANJA</orange>
     </Spanish>
     
 </languages>

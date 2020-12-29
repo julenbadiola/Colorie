@@ -46,7 +46,7 @@ namespace GameSpace {
         public void setColors(){
             int numCircles = circleGroup.transform.childCount;
             List<ColorObject> colorsList = GlobalVar.colors;
-            colorsList.Remove(GlobalVar.getColorByName("red"));
+            //colorsList.Remove(GlobalVar.getColorByName("red"));
             colorsList.Remove(GlobalVar.getColorByName("white"));
             List<ColorObject> correctColors = colorsList.OrderBy (x => random.Next ()).Take (numCircles).ToList();
             List<ColorObject> incorrectColors = colorsList.Except(correctColors).ToList();

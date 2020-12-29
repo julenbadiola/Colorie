@@ -15,6 +15,7 @@ namespace GameSpace {
         [HideInInspector]
         public List<_5_GameCircles> circlesList;
         public List<Button> buttons;
+        
         List<ColorObject> randColorsForButtons;
         bool finish = false;
 

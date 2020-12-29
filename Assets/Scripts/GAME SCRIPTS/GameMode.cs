@@ -24,6 +24,7 @@ namespace GameSpace {
         public float waitTime;
         public int time_before_start;
         public int time_after_finish;
+        public TextMeshProUGUI ingameText;
         [HideInInspector]
         public float timerBarValue;
 
@@ -50,12 +51,19 @@ namespace GameSpace {
             try {
                 //makeTranslations ();
                 soundPlayer = UnityEngine.EventSystems.EventSystem.current.GetComponent<SoundPlayer> ();
+                if(ingameText != null)
+                {
+                    string key = "game" + GlobalVar.getGamemodeNumber() + "ingame";
+                    ingameText.text = LangDataset.getText (key);
+                }
             } catch (System.Exception) {
-                print ("ERROR EN AWAKE LANGUAGE GAME Creator");
+                print ("ERROR EN GAMEMODE");
             }
             GameObject canvasObj = (GameObject)Instantiate(topCanvasPrefab);
             canvasObj.transform.SetParent(GameObject.Find("GameCanvas").transform, false);
             topCanvasScr = canvasObj.GetComponent<TopCanvas>();
+
+            
         }
 
         public IEnumerator showMessage (int score) {
@@ -64,7 +72,11 @@ namespace GameSpace {
             //Message and add score
             //The score to show is the map of the score given by the max of the BD
             Instantiate(messageCanvasPrefab).transform.SetParent(GameObject.Find("GameCanvas").transform, false);
-            GameObject.Find("MessageText").GetComponent<TextMeshProUGUI>().text = GlobalVar.getPercent(gamemode, score).ToString() + "%";
+            GameObject.Find("MessageText1").GetComponent<TextMeshProUGUI>().text = LangDataset.getText ("message1");
+            string second = LangDataset.getText ("message2") + " " + GlobalVar.getPlaysNumber(gamemode).ToString() + " " + LangDataset.getText ("message3");
+            GameObject.Find("MessageText2").GetComponent<TextMeshProUGUI>().text =  second;
+            GameObject.Find("MessagePercentText").GetComponent<TextMeshProUGUI>().text = GlobalVar.getPercent(gamemode, score).ToString() + "%";
+            GameObject.Find("MessageNextText").GetComponent<TextMeshProUGUI>().text = LangDataset.getText ("next");
             nextButton = GameObject.Find("NextButton").GetComponent<Button>();
             nextButton.onClick.AddListener (delegate () {
                 GlobalVar.addScore (gamemode, score);

@@ -2915,6 +2915,7 @@ MonoBehaviour:
   waitTime: 2
   time_before_start: 2
   time_after_finish: 0
+  ingameText: {fileID: 1192199113}
   timerBarValue: 0
   topCanvasPrefab: {fileID: 6743029984551549610, guid: 7d747162ca3da4845b1c3542efcaa92a,
     type: 3}

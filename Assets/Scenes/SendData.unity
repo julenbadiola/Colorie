@@ -650,8 +650,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -148, y: 231}
-  m_SizeDelta: {x: 406, y: 118}
+  m_AnchoredPosition: {x: -270.19995, y: 177}
+  m_SizeDelta: {x: 670.0928, y: 194.75604}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &638773277
 MonoBehaviour:
@@ -792,8 +792,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MessageCanvas: {fileID: 1971899255042190282}
-  ResultPercentText: {fileID: 4097743633845412893}
+  MessagePercentText: {fileID: 4097743633845412893}
   LoadingText: {fileID: 625539215}
+  MessageText1: {fileID: 5688267576796425468}
+  MessageText2: {fileID: 2018694152986994840}
+  MenuButtonText: {fileID: 1666345543}
+  PlayAgainButtonText: {fileID: 1579829940035989060}
 --- !u!114 &1058181322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1172,7 +1176,7 @@ GameObject:
   - component: {fileID: 1666345544}
   - component: {fileID: 1666345543}
   m_Layer: 5
-  m_Name: NextText
+  m_Name: MenuButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1216,9 +1220,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'MENU
-
-'
+  m_text: ME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -1287,9 +1289,9 @@ MonoBehaviour:
   m_margin: {x: 112.644196, y: 0, z: 112.644196, w: 0}
   m_textInfo:
     textComponent: {fileID: 1666345543}
-    characterCount: 5
+    characterCount: 2
     spriteCount: 0
-    spaceCount: 1
+    spaceCount: 0
     wordCount: 1
     linkCount: 0
     lineCount: 1
@@ -1612,7 +1614,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NEXT
+  m_text: PLAGAIN
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -1678,10 +1680,10 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 112.644196, y: 0, z: 112.644196, w: 0}
+  m_margin: {x: 13.638857, y: 8.800452, z: 22.439283, w: 8.800452}
   m_textInfo:
     textComponent: {fileID: 1579829940035989060}
-    characterCount: 4
+    characterCount: 7
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -1724,7 +1726,7 @@ GameObject:
   - component: {fileID: 1579829940035989061}
   - component: {fileID: 1579829940035989060}
   m_Layer: 5
-  m_Name: NextText
+  m_Name: PlayAgainText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1747,7 +1749,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 202.5, y: 0.099998474}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1579829940306064240
 MonoBehaviour:
@@ -1822,8 +1824,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 229, y: 231}
-  m_SizeDelta: {x: 406, y: 118}
+  m_AnchoredPosition: {x: 352, y: 177}
+  m_SizeDelta: {x: 670.0928, y: 194.75604}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1579829940306064247
 MonoBehaviour:
@@ -2057,7 +2059,7 @@ GameObject:
   - component: {fileID: 453971197527814871}
   - component: {fileID: 4097743633845412893}
   m_Layer: 5
-  m_Name: MessageText
+  m_Name: MessagePercentText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2111,7 +2113,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: de tus partidas
+  m_text: message 2 y 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -2180,10 +2182,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 36.960945}
   m_textInfo:
     textComponent: {fileID: 2018694152986994840}
-    characterCount: 15
+    characterCount: 13
     spriteCount: 0
-    spaceCount: 2
-    wordCount: 3
+    spaceCount: 3
+    wordCount: 4
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -2371,7 +2373,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: message
+  m_text: 50%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -2440,7 +2442,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 14.011537, z: 0, w: 10.939551}
   m_textInfo:
     textComponent: {fileID: 4097743633845412893}
-    characterCount: 7
+    characterCount: 3
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -2513,7 +2515,7 @@ GameObject:
   - component: {fileID: 5155636941984860355}
   - component: {fileID: 2018694152986994840}
   m_Layer: 5
-  m_Name: Detuspartidas
+  m_Name: MessageText2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2538,7 +2540,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lo has hecho mejor que el
+  m_text: Message 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -2607,10 +2609,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 36.960945}
   m_textInfo:
     textComponent: {fileID: 5688267576796425468}
-    characterCount: 25
+    characterCount: 9
     spriteCount: 0
-    spaceCount: 5
-    wordCount: 6
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -2671,7 +2673,7 @@ GameObject:
   - component: {fileID: 1906234654566830346}
   - component: {fileID: 5688267576796425468}
   m_Layer: 5
-  m_Name: Mejorqueel
+  m_Name: MessageText1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
