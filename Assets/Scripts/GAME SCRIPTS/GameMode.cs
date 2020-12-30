@@ -27,7 +27,7 @@ namespace GameSpace {
         public TextMeshProUGUI ingameText;
         [HideInInspector]
         public float timerBarValue;
-
+        
         public GameObject topCanvasPrefab;
         [HideInInspector]
         public TopCanvas topCanvasScr;
@@ -62,8 +62,6 @@ namespace GameSpace {
             GameObject canvasObj = (GameObject)Instantiate(topCanvasPrefab);
             canvasObj.transform.SetParent(GameObject.Find("GameCanvas").transform, false);
             topCanvasScr = canvasObj.GetComponent<TopCanvas>();
-
-            
         }
 
         public IEnumerator showMessage (int score) {
@@ -72,10 +70,15 @@ namespace GameSpace {
             //Message and add score
             //The score to show is the map of the score given by the max of the BD
             Instantiate(messageCanvasPrefab).transform.SetParent(GameObject.Find("GameCanvas").transform, false);
+            /*
             GameObject.Find("MessageText1").GetComponent<TextMeshProUGUI>().text = LangDataset.getText ("message1");
             string second = LangDataset.getText ("message2") + " " + GlobalVar.getPlaysNumber(gamemode).ToString() + " " + LangDataset.getText ("message3");
             GameObject.Find("MessageText2").GetComponent<TextMeshProUGUI>().text =  second;
             GameObject.Find("MessagePercentText").GetComponent<TextMeshProUGUI>().text = GlobalVar.getPercent(gamemode, score).ToString() + "%";
+            */
+            int perc = GlobalVar.getPercent(gamemode, score);
+            string stars = GlobalVar.getStars(perc);
+            GameObject.Find("MessageStars").GetComponent<RawImage>().texture = Resources.Load<Texture2D>(stars);
             GameObject.Find("MessageNextText").GetComponent<TextMeshProUGUI>().text = LangDataset.getText ("next");
             nextButton = GameObject.Find("NextButton").GetComponent<Button>();
             nextButton.onClick.AddListener (delegate () {

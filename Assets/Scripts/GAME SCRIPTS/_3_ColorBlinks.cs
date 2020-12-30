@@ -13,6 +13,7 @@ namespace GameSpace {
         public GameObject[] buttons;
         public int numColor;
         public GameObject text;
+        public TextMeshProUGUI introText;
 
         List<ColorObject> randColors;
         List<ColorObject> colors;
@@ -33,20 +34,26 @@ namespace GameSpace {
                 buttons[i].AddComponent<_3_ColorBlinksButton> ().setButtonParameters(randColors[i]);
             }
             print ("ES " + maxColor.Name);
+            introText.text = LangDataset.getText("game3");
             StartCoroutine (show ());
         }
         
         IEnumerator show () {
-            //Shows a color every second until times
+            //Do the countdown
             topCanvasScr.startCountdown(time_before_start);
             yield return new WaitForSeconds (time_before_start);
-            
+            introText.gameObject.SetActive(false);
+
+            //Shows a color every second until times
+            float timetowait = waitTime / 2f;
+            var colorWithoutAlpha = Color.white;
+            colorWithoutAlpha.a = 0f;
+
             for (int i = 0; i < times; i++) {
                 circle.GetComponent<Button> ().image.color = colors[i].Color;
-                yield return new WaitForSeconds (waitTime / 2f);
-                circle.GetComponent<Button> ().image.color = Color.white;
-                yield return new WaitForSeconds (waitTime / 2f);
-                
+                yield return new WaitForSeconds (timetowait);
+                circle.GetComponent<Button> ().image.color = colorWithoutAlpha;
+                yield return new WaitForSeconds (timetowait);                
             }
             //When all the colors are shown, make buttons interactable and colored
             circle.SetActive(false);

@@ -13,7 +13,12 @@ namespace GameSpace {
         public GameObject countdown;
         public GameObject pausePrefab;
         public TextMeshProUGUI countdowntext;
-
+        [SerializeField]
+        private TextMeshProUGUI pauseText; 
+        [SerializeField]
+        private TextMeshProUGUI timerText; 
+        [SerializeField]
+        private TextMeshProUGUI progressText; 
         [HideInInspector]
         public float totalTimeProgressAnim = 0.7f;
         float fps;
@@ -33,7 +38,13 @@ namespace GameSpace {
         float passedTime = 0f;
         private int time_to_start = 0;
 
+        private void setTexts(){
+            pauseText.text = LangDataset.getText("pause");
+            timerText.text = LangDataset.getText("timer");
+            progressText.text = LangDataset.getText("progress");
+        }
         void Start () {
+            setTexts();
             progress = GlobalVar.getProgress ();
             nextProgress = GlobalVar.getProgressOfNextGamemode ();
 

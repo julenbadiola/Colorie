@@ -50,6 +50,7 @@ namespace GameSpace {
                 Debug.Log ("ERROR EN ALGUNO " + timePassed + " s.");
 
                 if(GlobalVar.tryagain){
+                    GlobalVar.SaveScoresLocally();
                     SceneManagerController.ChangeSceneDataLoad ("Menu");
                 }else{
                     SceneManagerController.goToScene ("SendData");
@@ -61,6 +62,7 @@ namespace GameSpace {
                 LoadingText.gameObject.SetActive(false);
                 
                 setTextsMessage();
+                GlobalVar.SaveScoresLocally();
                 MessageCanvas.SetActive(true);
             }
         }

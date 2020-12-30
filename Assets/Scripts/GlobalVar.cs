@@ -44,9 +44,33 @@ namespace GameSpace {
 
         public static void InitScoreSummary()
         {
-            if(scoreSummary == null)
+            scoreSummary = new Dictionary<int, Dictionary<string, int>>();
+        }
+
+        public static void SaveScoresLocally()
+        {
+            foreach(int gamemode in scores.Keys)
             {
-                scoreSummary = new Dictionary<int, Dictionary<string, int>>();
+                int score = scores[gamemode];
+                Dictionary<string, int> summary = scoreSummary[gamemode];
+                bool done = false;
+                foreach(string key in summary.Keys)
+                {
+                    string[] subs = key.Split(char.Parse("-"));
+                    int min = System.Int32.Parse(subs[0]);
+                    int max = System.Int32.Parse(subs[1]);
+                    if(min <= score && score <= max)
+                    {
+                        Debug.Log("INTRODUCIENDO LOCALLY EN " + key);
+                        summary[key] = summary[key] + 1;
+                        done = true;
+                    }
+                }
+                if(!done){
+                    string key = score.ToString() + "-" + score.ToString();
+                    summary.Add(key, 1);
+                    Debug.Log("INTRODUCIENDO LOCALLY 2 EN " + key);
+                }
             }
         }
 
@@ -111,7 +135,8 @@ namespace GameSpace {
         {
             return scoreSummary[gamemode].Count;
         }
-        public static float getPercent(int gamemode, int score)
+
+        public static int getPercent(int gamemode, int score)
         {
             int total = 0;
             int lower = 0;
@@ -145,13 +170,13 @@ namespace GameSpace {
             {
                 if(lower == 0)
                 {
-                    return 0f;
+                    return 0;
                 }
-                return (float) ((float) lower / (float) total) * 100;
+                return Mathf.FloorToInt (((float) lower / (float) total) * 100);
             }
             else
             {
-                return 100f;
+                return 100;
             }
         }
 
@@ -162,6 +187,22 @@ namespace GameSpace {
                 gamemodes.Add(i+1);
             }
             //SceneManager load first gamemode
+        }
+
+        public static string getStars(int perc)
+        {
+            if(perc < 33)
+            {
+                return "1stars";
+            }
+            if(perc < 66)
+            {
+                return "2stars";
+            }
+            else
+            {
+                return "3stars";
+            }
         }
 
         public static float getProgress () {
