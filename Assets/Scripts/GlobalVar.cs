@@ -153,17 +153,17 @@ namespace GameSpace {
                 Debug.Log(min + " - " + max);
                 if(min <= score && score <= max)
                 {
-                    Debug.Log("MI SCORE ESTA DENTRO DE " + key);
+                    Debug.Log("MI SCORE " + score + " ESTA DENTRO DE " + key);
                     lower += Mathf.RoundToInt(data[key] / 2);
                 }
                 else if(min < score)
                 {
-                    Debug.Log("MI SCORE ES MAYOR QUE " + key);
+                    Debug.Log("MI SCORE " + score + " ES MAYOR QUE " + key);
                     lower += data[key];
                 }
                 else
                 {
-                    Debug.Log("MI SCORE ES MENOR QUE " + key);
+                    Debug.Log("MI SCORE " + score + " ES MENOR QUE " + key);
                 }
             }
             Debug.Log("TOTAL: " + total + " / LOWER: " + lower);

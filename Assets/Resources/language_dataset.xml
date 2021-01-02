@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <languages>
     <English>
+        <ready>READY</ready>
         <progress>PROGRESS</progress>
         <timer>TIMER</timer>
         <play>PLAY</play>
@@ -63,6 +64,7 @@
     </English>
  
     <French>
+        <ready>PRÊT</ready>
         <progress>PROGRÈS</progress>
         <timer>MINUTEUR</timer>
         <play>JOUER</play>
@@ -130,6 +132,7 @@
     </French>
  
     <German>
+        <ready>BEREIT</ready>
         <progress>GESAMTFORTSCHRITT</progress>
         <timer>TIMER</timer>
         <play>SPIELEN</play>
@@ -197,6 +200,7 @@
     </German>
     
     <Portuguese>
+        <ready>PRONTO</ready>
         <progress>PROGRESSO</progress>
         <timer>CRONÔMETRO</timer>
         <play>JOGAR</play>
@@ -265,6 +269,7 @@
     </Portuguese>
 
     <Spanish>
+        <ready>LISTO</ready>
         <progress>PROGRESO</progress>
         <timer>CRONÓMETRO</timer>
         <play>JUGAR</play>

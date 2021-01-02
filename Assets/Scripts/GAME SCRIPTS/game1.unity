@@ -1304,7 +1304,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 200
+  m_fontSize: 18
   m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1321,7 +1321,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -1733,9 +1733,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee7ce3861e1f451bb31076e978338e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  times: 10
+  times: 15
   waitTime: 1
-  time_before_start: 0
+  time_before_start: 3
   time_after_finish: 0
   ingameText: {fileID: 0}
   timerBarValue: 0
@@ -1757,7 +1757,7 @@ MonoBehaviour:
   - {fileID: 1809451321}
   - {fileID: 1180990767}
   - {fileID: 1274930491}
-  colorText: {fileID: 1802200489}
+  colorText: {fileID: 1802200491}
 --- !u!4 &2084284882
 Transform:
   m_ObjectHideFlags: 0

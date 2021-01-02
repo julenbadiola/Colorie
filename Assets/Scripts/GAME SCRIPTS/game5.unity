@@ -3405,7 +3405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   times: 10
   waitTime: 1
-  time_before_start: 3
+  time_before_start: 6
   time_after_finish: 0
   ingameText: {fileID: 965055082}
   timerBarValue: 0

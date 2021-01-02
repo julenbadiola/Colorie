@@ -12,7 +12,7 @@ namespace GameSpace {
 
     public class _1_SelectTheColor : GameMode {
         public List<GameObject> buttons;
-        public GameObject colorText;
+        public TextMeshProUGUI colorText;
 
         List<GameObject> randButtons;
         ColorObject correctColor;
@@ -27,7 +27,6 @@ namespace GameSpace {
             foreach (GameObject but in buttons) {
                 but.AddComponent<_1_ColorButton> ();
             }
-            nextColor ();
             StartCoroutine (waitSecondsAndSendScore ());
         }
 
@@ -41,8 +40,8 @@ namespace GameSpace {
         public void setCorrectColor () {
             randColors = GlobalVar.colors.OrderBy (x => random.Next ()).Take (buttons.Count).ToList ();
             correctColor = randColors[0];
-            colorText.GetComponent<TextMeshProUGUI> ().text = correctColor.Name.ToUpper ();
-            colorText.GetComponent<TextMeshProUGUI> ().color = randColors[1].Color;
+            colorText.text = correctColor.Name.ToUpper ();
+            colorText.color = randColors[1].Color;
         }
 
         //For each iteration, orders the colors randomly
@@ -61,7 +60,11 @@ namespace GameSpace {
 
         //When timeout -> shows message and sends score
         IEnumerator waitSecondsAndSendScore () {
-            topCanvasScr.count = true;
+            colorText.text = LangDataset.getText("ready") + "?";
+            topCanvasScr.startCountdown(time_before_start);
+            yield return new WaitForSeconds (time_before_start);
+            nextColor ();
+            
             yield return new WaitForSeconds (times);
             int score = 0;
             foreach (GameObject but in randButtons) {
