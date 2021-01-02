@@ -6,6 +6,23 @@ using UnityEngine.SceneManagement;
 namespace GameSpace {
     public static class SceneManagerController {
 
+        public static void ResumeApplication (){
+            if (!Communication.flurryStarted)
+            {
+                Debug.Log("START FLURRY");
+                Communication.startFlurry();
+                Communication.flurryStarted = true;
+            }
+        }
+        public static void LeaveApplication (){
+            if (Communication.flurryStarted)
+            {
+                Debug.Log("END FLURRY");
+                Communication.endFlurry();
+                Communication.flurryStarted = false;
+            }
+        }
+        
         public static bool isGamePaused () {
             if (Time.timeScale == 0) {
                 return true;
