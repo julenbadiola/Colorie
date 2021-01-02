@@ -17,8 +17,10 @@ namespace GameSpace {
         public AudioClip failed;
         public AudioClip correct;
         public GameObject backgroundMusic;
-
+        
+        private AudioSource thisAudio;
         void Start () {
+            thisAudio = gameObject.GetComponent<AudioSource> ();
             refresh ();
         }
 
@@ -26,8 +28,8 @@ namespace GameSpace {
             mLevel = PlayerPrefs.HasKey ("MusicLevel") ? PlayerPrefs.GetFloat ("MusicLevel") : DefaultVolumeLevel;
             eLevel = PlayerPrefs.HasKey ("EffectsLevel") ? PlayerPrefs.GetFloat ("EffectsLevel") : DefaultVolumeLevel;
 
-            gameObject.GetComponent<AudioSource> ().volume = eLevel * adjuster;
-            try { backgroundMusic.GetComponent<AudioSource> ().volume = mLevel * adjuster; } catch (System.Exception) { print ("There is no background music"); }
+            thisAudio.volume = eLevel * adjuster;
+            try { backgroundMusic.GetComponent<AudioSource>().volume = mLevel * adjuster; } catch (System.Exception) { print ("There is no background music"); }
         }
 
         public void changeEffectsLevel (float value) {
@@ -41,19 +43,19 @@ namespace GameSpace {
         }
 
         public void playButtonSound () {
-            gameObject.GetComponent<AudioSource> ().PlayOneShot (buttonSound, PlayerPrefs.GetFloat ("EffectsLevel"));
+            thisAudio.PlayOneShot (buttonSound, PlayerPrefs.GetFloat ("EffectsLevel"));
         }
 
         public void playDisabledButtonSound () {
-            gameObject.GetComponent<AudioSource> ().PlayOneShot (disabledButtonSound, PlayerPrefs.GetFloat ("EffectsLevel"));
+            thisAudio.PlayOneShot (disabledButtonSound, PlayerPrefs.GetFloat ("EffectsLevel"));
         }
 
         public void playFailedSound () {
-            gameObject.GetComponent<AudioSource> ().PlayOneShot (failed, PlayerPrefs.GetFloat ("EffectsLevel"));
+            thisAudio.PlayOneShot (failed, PlayerPrefs.GetFloat ("EffectsLevel"));
         }
 
         public void playCorrectSound () {
-            gameObject.GetComponent<AudioSource> ().PlayOneShot (correct, PlayerPrefs.GetFloat ("EffectsLevel"));
+            thisAudio.PlayOneShot (correct, PlayerPrefs.GetFloat ("EffectsLevel"));
         }
 
     }

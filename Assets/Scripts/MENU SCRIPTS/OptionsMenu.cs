@@ -10,13 +10,15 @@ namespace GameSpace {
         public Button BackButton;
 
         public GameObject MusicVolumeText;
-        public GameObject musicSlider;
-        public GameObject effectsSlider;
+        public Slider musicSlider;
+        public Slider effectsSlider;
         public GameObject EffectsVolumeText;
 
         public GameObject vibrationText;
         public Button vibrationButton;
-        public VibrationManager vibrator;
+
+        private SoundPlayer sounder;
+        private VibrationManager vibrator;
 
         void Start () {
             MusicVolumeText.GetComponentInChildren<TextMeshProUGUI> ().text = LangDataset.getText ("musicvolume");
@@ -25,25 +27,26 @@ namespace GameSpace {
             BackButton.GetComponentInChildren<TextMeshProUGUI> ().text = LangDataset.getText ("back");
             vibrationText.GetComponent<TextMeshProUGUI> ().text = LangDataset.getText ("vibration");
             
-            vibrator = gameObject.GetComponent<VibrationManager>();
+            sounder = GameObject.Find("FeedbackManager").GetComponent<SoundPlayer>();
+            vibrator = GameObject.Find("FeedbackManager").GetComponent<VibrationManager>();
             colorVibration();
-            //refreshAudio ();
+            refreshAudio ();
         }
 
-        /*public void refreshAudio () {
-            musicSlider.GetComponent<Slider> ().normalizedValue = ScriptsManager.SM.sounder.mLevel;
-            effectsSlider.GetComponent<Slider> ().normalizedValue = ScriptsManager.SM.sounder.eLevel;
+        public void refreshAudio () {
+            musicSlider.normalizedValue = sounder.mLevel;
+            effectsSlider.normalizedValue = sounder.eLevel;
         }
 
         public void setAudioMusic (Slider slider) {
-            ScriptsManager.SM.sounder.changeMusicLevel (slider.value);
+            sounder.changeMusicLevel (slider.value);
             refreshAudio ();
         }
         public void setAudioEffects (Slider slider) {
-            ScriptsManager.SM.sounder.changeEffectsLevel (slider.value);
+            sounder.changeEffectsLevel (slider.value);
             refreshAudio ();
         }
-        */
+        
         public void refreshVibration () {
             vibrator.change ();
             colorVibration();
