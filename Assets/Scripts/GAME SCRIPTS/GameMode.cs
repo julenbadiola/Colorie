@@ -66,6 +66,7 @@ namespace GameSpace {
 
         public IEnumerator showMessage (int score) {
             int gamemode = GlobalVar.getGamemodeNumber();
+            
             StartCoroutine (topCanvasScr.startAnimation ());
             //Message and add score
             //The score to show is the map of the score given by the max of the BD
@@ -84,7 +85,8 @@ namespace GameSpace {
             nextButton.onClick.AddListener (delegate () {
                 GlobalVar.addScore (gamemode, score);
             });
-            yield return new WaitForSeconds (3);
+            yield return new WaitForSeconds (1.5f);
+            nextButton.interactable = true;
         }
     }
 }

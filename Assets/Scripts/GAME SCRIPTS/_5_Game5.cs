@@ -28,7 +28,7 @@ namespace GameSpace {
         }
 
         void Start () {
-            randColorsForButtons = GlobalVar.colors.OrderBy (x => random.Next ()).Take (buttons.Count).ToList ();
+            randColorsForButtons = GlobalVar.visibleColors.OrderBy (x => random.Next ()).Take (buttons.Count).ToList ();
             circles.ForEach (c => c.AddComponent<_5_GameCircles> ().setCorrectColor (randColorsForButtons.Select (o => o.Name).ToList (), random));
             circles.ForEach(c => circlesList.Add(c.GetComponent<_5_GameCircles>()));
             buttons.ForEach (c => c.gameObject.AddComponent<_5_GameButtons> ());
@@ -40,8 +40,8 @@ namespace GameSpace {
             for (int i = 0; i < buttons.Count; i++) {
                 buttons[i].GetComponent<_5_GameButtons> ().create (randColorsForButtons[i]);
             }
-            yield return new WaitForSeconds (time_before_start);
             topCanvasScr.startCountdown(time_before_start);
+            yield return new WaitForSeconds (time_before_start);
 
             circlesList.ForEach (c => c.hide ());
             buttons.ForEach (b => b.GetComponent<_5_GameButtons> ().show ());

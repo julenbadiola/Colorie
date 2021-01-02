@@ -64,6 +64,7 @@ namespace GameSpace {
                         Debug.Log("INTRODUCIENDO LOCALLY EN " + key);
                         summary[key] = summary[key] + 1;
                         done = true;
+                        break;
                     }
                 }
                 if(!done){
@@ -271,9 +272,9 @@ namespace GameSpace {
             basicColors.Add (new ColorObject (LangDataset.getText ("cyan"), Color.cyan, Color.black));
             visibleColors = new List<ColorObject> (basicColors);
             visibleColors.Add (new ColorObject (LangDataset.getText ("black"), Color.black, Color.white));
+            visibleColors.Add (new ColorObject (LangDataset.getText ("orange"), new Color32 (255, 137, 0, 255), Color.black));
             colorsWithoutWhite = new List<ColorObject> (visibleColors);
             colorsWithoutWhite.Add (new ColorObject (LangDataset.getText ("gray"), Color.gray, Color.black));
-            colorsWithoutWhite.Add (new ColorObject (LangDataset.getText ("orange"), new Color32 (255, 137, 0, 255), Color.black));
             colors = new List<ColorObject> (colorsWithoutWhite);
             colors.Add (new ColorObject (LangDataset.getText ("white"), Color.white, Color.black));
         }
