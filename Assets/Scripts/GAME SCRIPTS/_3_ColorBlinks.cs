@@ -76,7 +76,14 @@ namespace GameSpace {
             int score = 0;
             //If clicked button is the correct, score is positive; on the contrary, is 0
             if(color == maxColor.Color){
-                score = Mathf.FloorToInt(100f / passedTime);
+                if(passedTime < 2f){
+                    passedTime = 0f;
+                }else{
+                    passedTime = passedTime - 2f;
+                }
+                
+                score = Mathf.FloorToInt(500f / passedTime);
+                Debug.Log("GAMEMODE 3: " + score + " = 500f / " + passedTime + "passedTime");
             }
             StartCoroutine(showMessage(score));
         }

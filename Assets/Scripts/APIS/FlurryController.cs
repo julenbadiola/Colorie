@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace GameSpace {
 	public class FlurryController : MonoBehaviour {
-        GameObject instance = null;
+        static GameObject instance = null;
         void Awake () {
             if (instance != null) {
                 Debug.Log("YA HAY");

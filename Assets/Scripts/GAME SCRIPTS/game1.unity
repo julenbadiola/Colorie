@@ -1604,7 +1604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   times: 15
   waitTime: 1
-  time_before_start: 3
+  time_before_start: 5
   time_after_finish: 0
   ingameText: {fileID: 0}
   timerBarValue: 0
@@ -1627,6 +1627,7 @@ MonoBehaviour:
   - {fileID: 1180990767}
   - {fileID: 1274930491}
   colorText: {fileID: 1802200491}
+  maxTimes: 10
 --- !u!4 &2084284882
 Transform:
   m_ObjectHideFlags: 0

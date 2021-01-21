@@ -14,12 +14,14 @@ namespace GameSpace {
       public GameObject ErrorObject;
       public GameObject ErrorExp;
       public GameObject tryagain;
+      public TextMeshProUGUI videotutorial;
       void makeTranslations () {
          // MAIN MENU
          PlayButton.GetComponentInChildren<TextMeshProUGUI> ().text = LangDataset.getText ("play");
          ExitButton.GetComponentInChildren<TextMeshProUGUI> ().text = LangDataset.getText ("exit");
          OptionsButton.GetComponentInChildren<TextMeshProUGUI> ().text = LangDataset.getText ("options");
          tryagain.GetComponent<TextMeshProUGUI> ().text = LangDataset.getText ("tryagain");
+         videotutorial.text = LangDataset.getText ("videotutorial");
       }
 
       public void Start () {

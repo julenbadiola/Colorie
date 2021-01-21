@@ -25,6 +25,7 @@ namespace GameSpace {
 
         private float timePassed = 0f;
         private bool hint = false;
+        private bool sent = false;
 
         protected override void Awake () {
             timerBarValue = times;
@@ -84,7 +85,10 @@ namespace GameSpace {
             yield return new WaitForSeconds (time_before_start);
             
             yield return new WaitForSeconds (timerBarValue);
-            compareColorsAndSendScore ();
+            if(!sent){
+                compareColorsAndSendScore ();
+            }
+            
         }
 
         public void OnClick_accept(){
@@ -93,16 +97,23 @@ namespace GameSpace {
         }
 
         public void compareColorsAndSendScore () {
+            sent = true;
             float suma = Mathf.Abs (RandomColorCircle.r - PlayerColor.r) +
                 Mathf.Abs (RandomColorCircle.g - PlayerColor.g) +
                 Mathf.Abs (RandomColorCircle.b - PlayerColor.b);
 
-            float percDiferente = 100 * suma * 100 / 255;
-            float percParecido = 100 - percDiferente;
-            float timeScore = Mathf.FloorToInt(timePassed / (float) timerBarValue);
-            print ("PERC: " + percParecido + " de igualdad, TIMESCORE: " + timeScore);
+            float percDiferente = suma * 100 / 255;
+            float percParecido = 1 - percDiferente;
 
-            int score = Mathf.FloorToInt(percParecido * timeScore);
+            //Tiempo que ha tardado (mas 5 de ventaja)
+            float tiPassed = GlobalVar.checkIfFloatInInterval(timePassed - 5f, 0f, (float) timerBarValue);
+            float t = tiPassed / timerBarValue;
+            float timeScore = 1 - GlobalVar.checkIfFloatInInterval(t, 0f, 1f);
+
+            print ("PERC: " + percParecido + " de igualdad, TIME MULTIPLIER: " + timeScore + " (" + timePassed + " / " + timerBarValue+ ")");
+            
+            float finalPerc = (percParecido * 0.7f) + (timeScore * 0.3f);
+            int score = Mathf.FloorToInt(finalPerc * 1000f);
             StartCoroutine (showMessage (score));
         }
     }

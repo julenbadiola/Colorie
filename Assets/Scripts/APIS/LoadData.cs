@@ -68,16 +68,24 @@ namespace GameSpace {
             StartCoroutine (
                 GlobalVar.StartFormCoroutine (
                     value => {
-                        if (value.Key) {
-                            Debug.Log ("RESPONSE DE GETPROFILE: " + value.Value);
-                            GlobalVar.CreatePlayerInfoFromJSON(value.Value);                      
-                        } 
-                        else {
-                            Debug.Log ("ERROR EN EL RESPONSE DE GETPROFILE");
-                            PlayerPrefs.SetString("errorExp", "ERROR RESPONSE");
-                            PlayerPrefs.SetInt("error", 1);
+                        try
+                        {
+                            Debug.Log("RESPONSE GENERAL DE GETPROFILE: " +value);
+                            if (value.Key) {
+                                Debug.Log ("RESPONSE DE GETPROFILE: " + value.Value);
+                                GlobalVar.CreatePlayerInfoFromJSON(value.Value);                      
+                            } 
+                            else {
+                                Debug.Log ("ERROR EN EL RESPONSE DE GETPROFILE");
+                                PlayerPrefs.SetString("errorExp", "ERROR RESPONSE");
+                                PlayerPrefs.SetInt("error", 1);
+                            }
+                            counter += 1;
                         }
-                        counter += 1;
+                        catch (System.Exception)
+                        {
+                            Debug.Log("Could not parse JSON");
+                        }
                     },
                     "getcolorieprofile", new string[] { }
                 )
@@ -88,19 +96,30 @@ namespace GameSpace {
             StartCoroutine (
                 GlobalVar.StartFormCoroutine (
                     value => {
-                        if (value.Key) {
-                            //Si el valor es true (no ha tirado error), hace lo que sea con el response
-                            Debug.Log ("RESPONSE DE GETSUMMARY " + gamemode.ToString() + ": " + value.Value);
-                            GlobalVar.SetScoreSummary(gamemode, JsonConvert.DeserializeObject<Dictionary<string, string>>(value.Value.Replace(@"\", "").Trim('"')));                       
-                        } 
-                        else {
-                            //si queremos hacer algo cuando ha habido error
-                            Debug.Log ("ERROR EN EL RESPONSE DE GETSUMMARY " + gamemode.ToString());
-                            PlayerPrefs.SetString("errorExp", "ERROR RESPONSE");
-                            PlayerPrefs.SetInt("error", 1);
-                        }
-                        counter += 1;
-                    },
+                            Debug.Log("RESPONSE GENERAL DE GETSUMMARY " + gamemode.ToString() + ": " + value);
+                            if (value.Key) {
+                                
+                                //Si el valor es true (no ha tirado error), hace lo que sea con el response
+                                try
+                                {
+                                    var aprobar = value.Value.Replace(@"\", "").Trim('"');
+                                    Debug.Log ("RESPONSE DE GETSUMMARY " + gamemode.ToString() + ": " + value.Value + " - clean: " + aprobar);
+                                    GlobalVar.SetScoreSummary(gamemode, JsonConvert.DeserializeObject<Dictionary<string, string>>(aprobar));                       
+                                }
+                                catch (System.Exception)
+                                {
+                                    Debug.Log("Could not parse JSON 2");
+                                    GlobalVar.SetScoreSummary(gamemode, new Dictionary<string, string>());    
+                                } 
+                            }
+                            else {
+                                //si queremos hacer algo cuando ha habido error
+                                Debug.Log ("ERROR EN EL RESPONSE DE GETSUMMARY " + gamemode.ToString());
+                                PlayerPrefs.SetString("errorExp", "ERROR RESPONSE");
+                                PlayerPrefs.SetInt("error", 1);
+                            }
+                            counter += 1;
+                        },
                     "getscoresummary", new string[] { "gameMode:" + gamemode }
                 )
             );

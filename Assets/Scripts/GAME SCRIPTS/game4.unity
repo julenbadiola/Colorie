@@ -610,10 +610,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.4627451, g: 0.21176471, b: 0.14901961, a: 0.9019608}
-    m_HighlightedColor: {r: 0.4627451, g: 0.21176471, b: 0.14901961, a: 0.78431374}
-    m_PressedColor: {r: 0.4627451, g: 0.21176471, b: 0.14901961, a: 1}
-    m_SelectedColor: {r: 0.4627451, g: 0.21176471, b: 0.14901961, a: 0.78431374}
+    m_NormalColor: {r: 0.7924528, g: 0.08597367, b: 0.61821675, a: 0.9019608}
+    m_HighlightedColor: {r: 0.8301887, g: 0.19971518, b: 0.67344093, a: 0.78431374}
+    m_PressedColor: {r: 0.59607846, g: 0.09019608, b: 0.47058824, a: 1}
+    m_SelectedColor: {r: 0.5943396, g: 0.08690815, b: 0.46818247, a: 0.78431374}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2491,9 +2491,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afad5a4450ba14e4b961da1a93865fe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  times: 20
+  times: 30
   waitTime: 1
-  time_before_start: 0
+  time_before_start: 2
   time_after_finish: 0
   ingameText: {fileID: 0}
   timerBarValue: 0

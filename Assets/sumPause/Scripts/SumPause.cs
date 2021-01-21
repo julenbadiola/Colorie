@@ -20,7 +20,7 @@ public class SumPause : MonoBehaviour {
     Sprite pausedSprite, playingSprite;
 
     // Link to button's image
-    Image image;
+    public Image image;
 
     static bool status = false;
     /// <summary>
@@ -48,10 +48,6 @@ public class SumPause : MonoBehaviour {
 
     // Instance used for singleton
     public static SumPause instance;
-
-    void Awake () {
-        image = GetComponent<Image> ();
-    }
 
     void Start () {
         videoPlayer = GameObject.Find("VideoPlayer").GetComponent<VideoPlayer>();

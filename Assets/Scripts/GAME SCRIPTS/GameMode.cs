@@ -63,6 +63,7 @@ namespace GameSpace
 
         public IEnumerator showMessage(int score)
         {
+            score = Mathf.FloorToInt(GlobalVar.checkIfFloatInInterval(score, 0f, 1000f));
             int gamemode = GlobalVar.getGamemodeNumber();
 
             StartCoroutine(topCanvasScr.startAnimation());

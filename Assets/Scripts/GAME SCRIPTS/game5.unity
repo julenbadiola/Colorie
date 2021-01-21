@@ -3272,9 +3272,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c556345c3486f41ba90a273dd0d4d766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  times: 10
+  times: 15
   waitTime: 1
-  time_before_start: 6
+  time_before_start: 7
   time_after_finish: 0
   ingameText: {fileID: 965055082}
   timerBarValue: 0

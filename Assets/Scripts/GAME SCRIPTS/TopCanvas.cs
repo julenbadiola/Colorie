@@ -88,6 +88,11 @@ namespace GameSpace {
 
         }
 
+        public void stopTimerBar(){
+            count = false;
+            setTimerBarValue (0f);
+        }
+
         public void startCountdown(float seconds)
         {
             count = false;

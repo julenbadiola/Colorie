@@ -77,9 +77,12 @@ namespace GameSpace {
             int score = 0;
             for (int i = 0; i < buttonGroup.transform.childCount; i++) {
                 GameObject but = buttonGroup.transform.GetChild (i).gameObject;
-                score += but.GetComponent<_2_FastReactionButton> ().getScore ();
-                print("IT " + i + " | " + score);
+                int butScore = but.GetComponent<_2_FastReactionButton> ().getScore ();
+                print("BUTTON " + i + " | score: " + butScore);
+                score += butScore;
             }
+            score = Mathf.FloorToInt(GlobalVar.mapScore(score, 0f, 100 * times));
+            Debug.Log("GAMEMODE 2: " + score);
             StartCoroutine(showMessage(score));
         }
     }

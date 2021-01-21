@@ -17,6 +17,9 @@ namespace GameSpace {
         List<GameObject> randButtons;
         ColorObject correctColor;
         List<ColorObject> randColors;
+        public int maxTimes = 10;
+        private bool scoreShown = false;
+        private int timesDone = 0;
 
         protected override void Awake () {
             timerBarValue = times;
@@ -31,8 +34,15 @@ namespace GameSpace {
         }
 
         public void nextColor () {
-            setCorrectColor ();
-            setButtonsColor ();
+            if(timesDone < maxTimes){
+                setCorrectColor ();
+                setButtonsColor ();
+                timesDone++;
+            }else{
+                if(!scoreShown){
+                    sendScore();
+                }
+            }
         }
 
         //Picks random colors determined by "buttons.Count" (buttons number in buttons list)
@@ -48,12 +58,17 @@ namespace GameSpace {
         public void setButtonsColor () {
             randButtons = buttons.OrderBy (x => random.Next ()).ToList ();
             int i = 0;
+            
+            
             foreach (GameObject but in randButtons) {
-                Color a = randColors[i].Color;
-                if (a == correctColor.Color) {
-                    but.GetComponent<_1_ColorButton> ().setCorrect ();
+                Color c = randColors[i].Color;
+                if (c == correctColor.Color) {
+                    but.GetComponent<_1_ColorButton> ().setCorrect (true);
+                }else{
+                    but.GetComponent<_1_ColorButton> ().setCorrect (false);
                 }
-                but.GetComponent<_1_ColorButton> ().setColor (a);
+                float timePerfection = ((float) times / (float) maxTimes);
+                but.GetComponent<_1_ColorButton> ().setColor (c, timePerfection);
                 i++;
             }
         }
@@ -66,11 +81,26 @@ namespace GameSpace {
             nextColor ();
             
             yield return new WaitForSeconds (times);
-            int score = 0;
-            foreach (GameObject but in randButtons) {
-                score += but.GetComponent<_1_ColorButton> ().getScore ();
+            if(!scoreShown){
+                sendScore();
             }
-            StartCoroutine (showMessage (score));
+        }
+
+        private void sendScore(){
+            if(!scoreShown){
+                topCanvasScr.stopTimerBar();
+                scoreShown = true;
+                int score = 0;
+                foreach (GameObject but in randButtons) {
+                    int butScore = but.GetComponent<_1_ColorButton> ().getScore ();
+                    UnityEngine.Debug.Log("BUTTON | score of button: " + butScore);
+                    score += butScore;
+                }
+                //100f es la puntuacion maxima de cada iteracion, por lo que:
+                GlobalVar.mapScore(score, 0f, 100f * maxTimes);
+                UnityEngine.Debug.Log("GAMEMODE 1: score " + score);
+                StartCoroutine (showMessage (score)); 
+            }
         }
 
     }

@@ -68,7 +68,16 @@ namespace GameSpace {
 
             int score = 0;
             circlesList.ForEach (c => score += c.getScore ());
-            score = Mathf.FloorToInt(score * (timerBarValue / passedTime));
+
+            float pTime = 0f;
+            if (passedTime > 2f){
+                pTime = passedTime - 2f;
+            }
+            float timeScore = 1 - (pTime / timerBarValue);
+            score = Mathf.FloorToInt(GlobalVar.mapScore(score, 0f, 100f * circles.Count));
+            UnityEngine.Debug.Log("Score: " + score + " - timescore: " + timeScore);
+            score = Mathf.FloorToInt(score * timeScore);
+            
             StartCoroutine (showMessage (score));
         }
 

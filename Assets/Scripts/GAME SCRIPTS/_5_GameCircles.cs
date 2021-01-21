@@ -42,7 +42,7 @@ namespace GameSpace {
 
         public int getScore(){
             if(playedColor != null && CorrectColor.Color == playedColor.Color){
-                return 20;
+                return 100;
             }
             else{
                 return 0;

@@ -21,16 +21,21 @@ namespace GameSpace {
         // Start is called before the first frame update
         float playedTime;
         bool shown = false;
+
+        private bool isActive() {
+            return correct || incorrect;
+        }
+
         void Update () {
-            if ((correct || incorrect) && !touched && shown) {
+            if (shown && !touched && (correct || incorrect)) {
                 playedTime += Time.deltaTime;
             }
 
         }
         void Start () {
             script = GameObject.Find("Dynamics").GetComponent<_2_FastReaction> ();
-            incMultiplier = 50f * script.percIncorrect;
-            corMultiplier = 50f * (1f - script.percIncorrect);
+            incMultiplier = 50f * (1f - script.percIncorrect);
+            corMultiplier = 50f * script.percIncorrect; //35 en caso de 0.7
             button = gameObject.GetComponent<Button> ();
 
             button.image.color = Color.white;
@@ -55,38 +60,53 @@ namespace GameSpace {
         }
 
         public void touch () {
-            touched = true;
+            if(!touched && isActive()){
+                touched = true;
 
-            if (!correct) {
-                if (incorrect) {
-                    //print("1 Score -" + Mathf.FloorToInt(incMultiplier * playedTime));
-                    score -= Mathf.FloorToInt(incMultiplier * playedTime); 
-                } else {
-                    //print("2 Score -15");
-                    score -= 15;
+                float multiplier = 0f; 
+                float pTime = playedTime;
+                if(pTime < 0.5f){
+                    pTime = 0.5f;
                 }
-            } else {
-                //print("3 Score +" + ((float) script.timeShown / (float) playedTime));
-                score += Mathf.FloorToInt(corMultiplier * ((float) script.timeShown / (float) playedTime));
+                
+                if (correct) {
+                    //así sabemos que el mínimo de pTime es 0.4, por lo tanto el máximo de timeShown = 6.25 (para 2.5 y 0.4)
+                    float a = ((float) script.timeShown / (float) pTime - 0.4f);
+                    float max = ((float) script.timeShown / 0.5f);
+                    multiplier = GlobalVar.map(a, 1f, max, 1f, 2f);
+                } else if (incorrect){
+                    //El cubo tocado es incorrecto = (-) 50 * reverseTime (cuanto más tiempo ha visto que era incorrecto, más penalización)
+                    float a = ((float) pTime / (float) script.timeShown);
+                    multiplier = GlobalVar.map(a, 0f, 1f, 1f, 2f) * -1f;
+                }
+                Debug.Log("PLAYED TIME: " + playedTime + " / TIME SHOWN: " + script.timeShown);
+                Debug.Log("MULTIPLIER: " + multiplier + " / RESULT: " + 50*multiplier);
+                score = Mathf.FloorToInt(50 * multiplier);
+                button.image.color = Color.white;
             }
-            button.image.color = Color.white;
         }
 
         public int getScore () {
-            //Mathf.FloorToInt (score * (script.timeShown * 2f / playedTime));
-            if(incorrect && !touched){
-                //print("4 Score +" + incMultiplier);
-                score = (int)incMultiplier;
-            }else if(correct && !touched){
-                //print("5 Score -" + corMultiplier);
-                score = (int) corMultiplier * -1;
+            if(!touched){
+                //Si el cubo no ha sido tocado y es incorrecto
+                if(incorrect){
+                    //Incorrecto y no tocado = correcto
+                    return 50;
+                }else if(correct){
+                    //Correcto y no tocado = incorrecto
+                    return -50;
+                }else{
+                    return 0;
+                }
+            }else{
+                //Si el cubo ya ha sido tocado, el score es el que está calculado
+                return score;
             }
-            return score;
         }
 
         IEnumerator wait () {
-            shown = true;
             //Si no ha sido tocado en timeShown segundos y no es negro, incorrecto, si es negro, correcto
+            shown = true;
             yield return new WaitForSeconds (script.timeShown);
             button.image.color = Color.white;
 

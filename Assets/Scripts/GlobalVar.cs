@@ -47,6 +47,16 @@ namespace GameSpace {
             scoreSummary = new Dictionary<int, Dictionary<string, int>>();
         }
 
+        public static float checkIfFloatInInterval(float s, float min, float max){
+            if (s > max){
+                return max;
+            }else if (s < min){
+                return min;
+            }else{
+                return s;
+            }
+        }
+
         public static void SaveScoresLocally()
         {
             foreach(int gamemode in scores.Keys)
@@ -123,6 +133,11 @@ namespace GameSpace {
             }
         }
 
+        public static float mapScore(float s, float a1, float a2){
+            s = checkIfFloatInInterval(s, a1, a2);
+            return map(s, a1, a2, 0f, 1000f);
+        }
+
         public static float map (float s, float a1, float a2, float b1, float b2) {
             return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
             /*if(res>b2){
@@ -144,26 +159,26 @@ namespace GameSpace {
             Dictionary<string, int> data = scoreSummary[gamemode];
             foreach(string key in data.Keys)
             {
-                Debug.Log(key);
+                //Debug.Log(key);
                 total += data[key];
                 string[] subs = key.Split(char.Parse("-"));
                 int min = System.Int32.Parse(subs[0]);
                 int max = System.Int32.Parse(subs[1]);
                 
-                Debug.Log(min + " - " + max);
+                //Debug.Log(min + " - " + max);
                 if(min <= score && score <= max)
                 {
-                    Debug.Log("MI SCORE " + score + " ESTA DENTRO DE " + key);
+                    //Debug.Log("MI SCORE " + score + " ESTA DENTRO DE " + key);
                     lower += Mathf.RoundToInt(data[key] / 2);
                 }
                 else if(min < score)
                 {
-                    Debug.Log("MI SCORE " + score + " ES MAYOR QUE " + key);
+                    //Debug.Log("MI SCORE " + score + " ES MAYOR QUE " + key);
                     lower += data[key];
                 }
                 else
                 {
-                    Debug.Log("MI SCORE " + score + " ES MENOR QUE " + key);
+                    //Debug.Log("MI SCORE " + score + " ES MENOR QUE " + key);
                 }
             }
             Debug.Log("TOTAL: " + total + " / LOWER: " + lower);
@@ -234,8 +249,12 @@ namespace GameSpace {
             if (scores == null) {
                 scores = new Dictionary<int, int> ();
             }
-            
-            scores[gamemode] = score;
+            int scoreToSend = score;
+            if (scoreToSend < 0)
+            {
+                scoreToSend = 0;
+            }
+            scores[gamemode] = scoreToSend;
             int i = 0;
             foreach (var item in scores) {
                 Debug.Log ("ITEMS" + item + " - " + i);

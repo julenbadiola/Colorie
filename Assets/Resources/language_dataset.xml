@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <languages>
     <English>
+        <videotutorial>VIDEO-TUTORIAL</videotutorial>
         <ready>READY</ready>
         <progress>PROGRESS</progress>
         <timer>TIMER</timer>
@@ -46,7 +47,7 @@
         <game2ingame>Select the cubes of the colours.</game2ingame>
         <game3>You must select the colour that has been repeated the most.</game3>
         <game3ingame>Which is the most repeated colour?</game3ingame>
-        <game4>You should reproduce as accurately as possible the colour shown at the top left. To do this, you must mix the red, green and blue coloursa by using the sliders.</game4>
+        <game4>You should reproduce as accurately as possible the colour shown at the top left. To do this, you may mix the red, green and blue coloursa by using the sliders.</game4>
         <game4ingame>Reproduce the colour.</game4ingame>
         <game5>Remember the colours shown and their order. Then, you must select them in the same order.</game5>
         <game5ingame>Remember the colours and their order.</game5ingame>
@@ -64,6 +65,7 @@
     </English>
  
     <French>
+        <videotutorial>DIDACTICIEL VIDÉO</videotutorial>
         <ready>PRÊT</ready>
         <progress>PROGRÈS</progress>
         <timer>MINUTEUR</timer>
@@ -132,6 +134,7 @@
     </French>
  
     <German>
+        <videotutorial>VIDEOANLEITUNG</videotutorial>
         <ready>BEREIT</ready>
         <progress>GESAMTFORTSCHRITT</progress>
         <timer>TIMER</timer>
@@ -200,6 +203,7 @@
     </German>
     
     <Portuguese>
+        <videotutorial>VÍDEO TUTORIAL</videotutorial>
         <ready>PRONTO</ready>
         <progress>PROGRESSO</progress>
         <timer>CRONÔMETRO</timer>
@@ -269,6 +273,7 @@
     </Portuguese>
 
     <Spanish>
+        <videotutorial>VIDEOTUTORIAL</videotutorial>
         <ready>LISTO</ready>
         <progress>PROGRESO</progress>
         <timer>CRONÓMETRO</timer>
