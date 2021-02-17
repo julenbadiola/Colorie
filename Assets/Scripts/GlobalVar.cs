@@ -100,6 +100,11 @@ namespace GameSpace {
                 {
                     spec.Add(i.Key, int.Parse(i.Value));
                 }
+                try{
+                    scoreSummary.Remove(gamemode);
+                }catch(System.Exception e){
+                    Debug.Log(e.ToString());
+                }
                 scoreSummary.Add(gamemode, spec);
             }
         }
@@ -162,8 +167,6 @@ namespace GameSpace {
         {
             int total = 0;
             int lower = 0;
-            Debug.Log("GETTING PERCENT FOR " + gamemode);
-            Debug.Log(scoreSummary.Keys);
             Dictionary<string, int> data = scoreSummary[gamemode];
             foreach(string key in data.Keys)
             {
@@ -196,7 +199,7 @@ namespace GameSpace {
                 {
                     return 0;
                 }
-                return Mathf.FloorToInt (((float) lower / (float) total) * 100);
+                return Mathf.FloorToInt ((((float) lower + 0.5f )/ (float) total) * 100);
             }
             else
             {
@@ -213,8 +216,13 @@ namespace GameSpace {
             //SceneManager load first gamemode
         }
 
-        public static string getStars(int perc)
+        public static string getStars(int gamemode, int score)
         {
+            float perc = getPercent(gamemode, score);
+            int plays = getPlaysNumber(gamemode);
+            if(plays < 5){
+                perc += (20 * plays);
+            }
             if(perc < 33)
             {
                 return "1stars";

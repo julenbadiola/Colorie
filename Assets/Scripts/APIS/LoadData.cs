@@ -106,9 +106,9 @@ namespace GameSpace {
                                     Debug.Log ("RESPONSE DE GETSUMMARY " + gamemode.ToString() + ": " + value.Value + " - clean: " + aprobar);
                                     GlobalVar.SetScoreSummary(gamemode, JsonConvert.DeserializeObject<Dictionary<string, string>>(aprobar));                       
                                 }
-                                catch (System.Exception)
+                                catch (System.Exception e)
                                 {
-                                    Debug.Log("Could not parse JSON 2");
+                                    Debug.Log("Could not parse JSON 2: " + e.ToString());
                                     GlobalVar.SetScoreSummary(gamemode, new Dictionary<string, string>());    
                                 } 
                             }

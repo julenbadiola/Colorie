@@ -104,8 +104,8 @@ namespace GameSpace {
             float t = seconds;
             while(t > 0)
             {
-                yield return new WaitForSeconds(0.1f);
-                t -= 0.1f;
+                yield return null;
+                t -= Time.deltaTime;
                 countdowntext.text = Mathf.FloorToInt(t).ToString();
             }
             pause.gameObject.SetActive(true);

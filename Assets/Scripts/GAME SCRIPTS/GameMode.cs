@@ -76,8 +76,7 @@ namespace GameSpace
             GameObject.Find("MessageText2").GetComponent<TextMeshProUGUI>().text =  second;
             GameObject.Find("MessagePercentText").GetComponent<TextMeshProUGUI>().text = GlobalVar.getPercent(gamemode, score).ToString() + "%";
             */
-            int perc = GlobalVar.getPercent(gamemode, score);
-            string stars = GlobalVar.getStars(perc);
+            string stars = GlobalVar.getStars(gamemode, score);
             GameObject.Find("MessageStars").GetComponent<RawImage>().texture = Resources.Load<Texture2D>(stars);
             GameObject.Find("MessageNextText").GetComponent<TextMeshProUGUI>().text = LangDataset.getText("next");
             nextButton = GameObject.Find("NextButton").GetComponent<Button>();
