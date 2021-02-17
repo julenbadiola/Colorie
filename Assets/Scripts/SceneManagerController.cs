@@ -53,8 +53,8 @@ namespace GameSpace {
         public static void ChangeSceneVideo () {
             resumeGame ();
             //Communication.getBearerToken ();
-            //SceneManager.LoadScene ("CopiedVideo");
-            Application.OpenURL("https://www.youtube.com/embed/BrWyn8Gnxow");
+            SceneManager.LoadScene ("Video");
+            //Application.OpenURL("https://www.youtube.com/embed/BrWyn8Gnxow");
         }
 
         public static void ChangeSceneDataLoad(string nextscene){

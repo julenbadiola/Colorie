@@ -58,6 +58,10 @@ public class SumPause : MonoBehaviour {
             Destroy (this);
     }
 
+    public void progressDragged(){
+        Status = false;
+    }
+    
     void Update () {
         // Listen for escape key and pause if needed
         if (detectEscapeKey && Input.GetKeyDown (KeyCode.Escape))
