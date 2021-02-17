@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scripts/GAME SCRIPTS/Menu.unity
     guid: dc1d94625e0f046e1b59fe994fc53270
   - enabled: 1
-    path: Assets/Scenes/Video.unity
-    guid: 34ec9b7ce13b13d42b2753e7261f886d
-  - enabled: 1
     path: Assets/Scenes/LoadData.unity
     guid: d88ced14df60f4e06ba4b2dc6a2bd8ef
   - enabled: 1

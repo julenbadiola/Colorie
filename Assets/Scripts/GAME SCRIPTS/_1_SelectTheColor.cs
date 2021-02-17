@@ -20,7 +20,7 @@ namespace GameSpace {
         public int maxTimes = 10;
         private bool scoreShown = false;
         private int timesDone = 0;
-
+        private Coroutine waitCor;
         protected override void Awake () {
             timerBarValue = times;
             base.Awake();
@@ -30,7 +30,7 @@ namespace GameSpace {
             foreach (GameObject but in buttons) {
                 but.AddComponent<_1_ColorButton> ();
             }
-            StartCoroutine (waitSecondsAndSendScore ());
+            waitCor = StartCoroutine (waitSecondsAndSendScore ());
         }
 
         public void nextColor () {
@@ -88,6 +88,7 @@ namespace GameSpace {
 
         private void sendScore(){
             if(!scoreShown){
+                StopCoroutine (waitCor); 
                 topCanvasScr.stopTimerBar();
                 scoreShown = true;
                 int score = 0;

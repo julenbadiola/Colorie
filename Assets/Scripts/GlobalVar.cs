@@ -45,6 +45,12 @@ namespace GameSpace {
         public static void InitScoreSummary()
         {
             scoreSummary = new Dictionary<int, Dictionary<string, int>>();
+            scoreSummary[0] = new Dictionary<string, int>();
+            scoreSummary[1] = new Dictionary<string, int>();
+            scoreSummary[2] = new Dictionary<string, int>();
+            scoreSummary[3] = new Dictionary<string, int>();
+            scoreSummary[4] = new Dictionary<string, int>();
+            scoreSummary[5] = new Dictionary<string, int>();
         }
 
         public static float checkIfFloatInInterval(float s, float min, float max){
@@ -156,6 +162,8 @@ namespace GameSpace {
         {
             int total = 0;
             int lower = 0;
+            Debug.Log("GETTING PERCENT FOR " + gamemode);
+            Debug.Log(scoreSummary.Keys);
             Dictionary<string, int> data = scoreSummary[gamemode];
             foreach(string key in data.Keys)
             {
